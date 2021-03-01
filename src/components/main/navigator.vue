@@ -1,10 +1,10 @@
-<template lang="">
+<template>
 <div class="navigator">
   <div class="nav-bar">
     <div class="nav-btn zoom-in" @click="zoomIn" title="放大" :class="{ 'active' : zoomRadioIn }">
       <div class="icon"></div>
     </div>
-    <div class="zoom-pan">
+    <div class="zoom-pan" ref="zoomPan">
       <div class="origin" :style="{'transform': 'translate(0, ' + getHeight(100) + 'px)'}" @click="RestoreSize"></div>
       <div class="indicator" :style="{
                  'transform': 'translate(0, ' + getHeight(this.zoom) + 'px)',
@@ -24,7 +24,7 @@
       <div class="icon"></div>
     </div>
   </div>
-  <div class="nav-previewer" v-show="isNavOpen"></div>
+  <div class="nav-previewer" v-show="isNavOpen" ref="navPreviewer"></div>
 </div>
 </template>
 
@@ -104,8 +104,10 @@ export default {
     },
 
     getHeight(value) {
-      var totalHeight = $(".zoom-pan").height();
-      return this.getZoomRadio(value) * totalHeight;
+      this.$nextTick(() => {
+        var totalHeight = this.$refs.zoomPan.style.height;
+        return this.getZoomRadio(value) * totalHeight;
+      })
     },
 
     locateToOrigin() {
@@ -218,10 +220,10 @@ export default {
     var minder = self.minder;
 
     // 以下部分是缩略图导航器
-    self.$previewNavigator = $(".nav-previewer");
+    self.$previewNavigator = this.$refs.navPreviewer;
 
     // 画布，渲染缩略图
-    self.paper = new kity.Paper(self.$previewNavigator[0]);
+    self.paper = new kity.Paper(self.$previewNavigator);
 
     // 用两个路径来挥之节点和连线的缩略图
     self.nodeThumb = self.paper.put(new kity.Path());
@@ -271,7 +273,7 @@ export default {
       self.paper.on("mousedown", function (e) {
         dragging = true;
         moveView(e.getPosition("top"), 200);
-        self.$previewNavigator.addClass("grab");
+        self.$previewNavigator.classList.add("grab");
       });
       self.paper.on("mousemove", function (e) {
         if (dragging) {
@@ -280,7 +282,7 @@ export default {
       });
       $(window).on("mouseup", function () {
         dragging = false;
-        self.$previewNavigator && self.$previewNavigator.removeClass("grab");
+        self.$previewNavigator && self.$previewNavigator.classList.remove("grab");
       });
     }
   },

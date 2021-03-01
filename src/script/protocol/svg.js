@@ -1,5 +1,5 @@
 function exportSVG(minder) {
-
+//todo
   var paper = minder.getPaper();
   var paperTransform = paper.shapeNode.getAttribute('transform');
   var svgXml;

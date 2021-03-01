@@ -1,10 +1,15 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <editor/>
   </div>
 </template>
 
 <script>
+
+import Vue from 'vue'
+import msMinderEditor from "./components/ms-minder-editor";
+Vue.use(msMinderEditor)
+
 export default {
   name: 'app'
 }
