@@ -28,9 +28,9 @@
 </template>
 
 <script>
-  import editMenu from './menu/edit/editMenu'
-  import viewMenu from './menu/view/viewMenu'
-  import {editMenuProps, moleProps, priorityProps, tagProps} from "./props";
+  import editMenu from '../menu/edit/editMenu'
+  import viewMenu from '../menu/view/viewMenu'
+  import {editMenuProps, moleProps, priorityProps, tagProps} from "../props";
   export default {
     name: 'headerVue',
     data() {
@@ -65,5 +65,5 @@
 </script>
 
 <style lang="scss">
-  @import "../style/header.scss";
+  @import "src/style/header";
 </style>

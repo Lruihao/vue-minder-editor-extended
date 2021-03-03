@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <editor/>
+    <minder-editor/>
+<!--    <test-plugin/>-->
   </div>
 </template>
 
 <script>
 
 import Vue from 'vue'
-import msMinderEditor from "./components/ms-minder-editor";
-Vue.use(msMinderEditor)
+import minderEditor from "./components/plugin";
+Vue.use(minderEditor) //开发测试
+
+import TestPlugin from "./test/test-plugin"; //打包测试
 
 export default {
-  name: 'app'
+  name: 'app',
+  components: {TestPlugin}
 }
 </script>
 

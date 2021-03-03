@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import headerMenu from '@/components/header'
+import headerMenu from '@/components/main/header'
 import mainEditor from '@/components/main/mainEditor'
 import navigator from '@/components/main/navigator'
 import {editMenuProps, importJson, moleProps, priorityProps, tagProps} from "./props";
 
 export default {
-  name: 'editor',
+  name: 'minderEditor',
   components: {
     headerMenu,
     mainEditor,
