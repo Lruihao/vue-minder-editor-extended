@@ -54,9 +54,5 @@ export default {
 </script>
 
 <style scoped>
-  .el-dropdown-menu .el-dropdown-menu__item {
-    padding: 0px !important;
-    height: 40px !important;
-    margin: 5px !important;
-  }
+
 </style>

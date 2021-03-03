@@ -1,7 +1,7 @@
 <template>
 <div class="menu-container">
   <mold :default_mold="default_mold"/>
-  <theme/>
+<!--  <theme/>-->
   <arrange/>
   <styleOperation/>
   <fontOperation/>
