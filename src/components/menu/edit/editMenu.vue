@@ -1,12 +1,13 @@
 <template lang="html">
 <div class="menu-container">
-  <expand></expand>
-  <selection></selection>
-  <insert-box></insert-box>
-  <move-box></move-box>
-  <edit-del></edit-del>
-  <sequence-box></sequence-box>
-  <progress-box></progress-box>
+  <expand/>
+  <selection/>
+  <insert-box/>
+  <move-box/>
+  <edit-del/>
+  <sequence-box v-if="sequenceEnable"/>
+  <progress-box v-if="progressEnable"/>
+  <tag-box v-if="tagEnable"/>
 </div>
 </template>
 
@@ -18,10 +19,12 @@ import sequenceBox from './sequenceBox'
 import progressBox from './progressBox'
 import expand from './expand'
 import selection from './selection'
+import TagBox from "./tagBox";
 
 export default {
   name: 'editMenu',
   components: {
+    TagBox,
     insertBox,
     moveBox,
     editDel,
@@ -29,6 +32,20 @@ export default {
     progressBox,
     expand,
     selection
-  }
+  },
+  props: {
+    sequenceEnable: {
+      type: Boolean,
+      default: true
+    },
+    tagEnable: {
+      type: Boolean,
+      default: true
+    },
+    progressEnable: {
+      type: Boolean,
+      default: true
+    }
+  },
 }
 </script>

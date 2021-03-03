@@ -1,5 +1,5 @@
-<template lang="html">
-<div class="mind-editor"></div>
+<template>
+  <div class="mind-editor"></div>
 </template>
 
 <script>

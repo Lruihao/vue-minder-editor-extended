@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="selection-group">
 
   <el-button class="tab-icons selection" @click="selectAll"></el-button>

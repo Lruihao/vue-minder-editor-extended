@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="edit-del-group">
   <div class="edit menu-btn" :disabled="disabled1" @click="edit" title="编辑">
     <i class="tab-icons"></i>

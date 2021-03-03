@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="font-group">
     <el-select v-model="fontFamilyDefaultValue" placeholder="字体" class="font-family-select" :disabled="disabledFont" @change="execCommandFontFamily">
         <el-option v-for="item in fontFamilys" :label="item.name" :value="item.value" :key="item.id" :style="{'font-family':item.value}">

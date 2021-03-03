@@ -1,8 +1,12 @@
 <template>
 <div class="main-container">
-  <header-menu></header-menu>
-  <main-editor></main-editor>
-  <navigator></navigator>
+  <header-menu
+    :sequence-enable="sequenceEnable"
+    :tag-enable="tagEnable"
+    :progress-enable="progressEnable"
+  />
+  <main-editor/>
+  <navigator/>
 </div>
 
 </template>
@@ -18,6 +22,20 @@ export default {
     headerMenu,
     mainEditor,
     navigator
+  },
+  props: {
+    sequenceEnable: {
+      type: Boolean,
+      default: true
+    },
+    tagEnable: {
+      type: Boolean,
+      default: true
+    },
+    progressEnable: {
+      type: Boolean,
+      default: true
+    }
   },
 }
 

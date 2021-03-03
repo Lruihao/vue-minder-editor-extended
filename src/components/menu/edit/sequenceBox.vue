@@ -1,32 +1,44 @@
-<template lang="">
-<div class="sequence-group">
-  <ul :disabled="commandDisabled">
-    <li v-for="(item, index) in items" class="menu-btn" :class="classArray(index)" @click="execCommand(index)" :title="title(index)"></li>
-  </ul>
+<template>
+<div :disabled="commandDisabled">
+
+  <el-button type="info" class="delete-btn" icon="el-icon-delete" @click="execCommand(null)" circle></el-button>
+
+  <el-button type="info" class="priority-btn"
+             v-for="(item, index) in (priorityCount + 1)"
+             :key="item"
+             v-if="index != 0"
+             :class="'priority-btn_' + index"
+             @click="execCommand(index)" size="mini">{{prefix}}{{ startWithZero ? index - 1 : index }}</el-button>
 </div>
 </template>
 
 <script>
 import {
   mapGetters,
-  mapActions
 } from 'vuex'
+
 export default {
   name: 'sequenceBox',
   data() {
     return {
-      items: [
-        { id: '0' },
-        { id: '1' },
-        { id: '2' },
-        { id: '3' },
-        { id: '4' },
-        { id: '5' },
-        { id: '6' },
-        { id: '7' },
-        { id: '8' },
-        { id: '9' }
-      ],
+    }
+  },
+  props: {
+    prefix: {
+      type: String,
+      default: 'P'
+    },
+    priorityCount: {
+      type: Number,
+      default: 4,
+      validator: function (value) {
+        // 优先级最多支持 9 个级别
+        return value <= 9;
+      }
+    },
+    startWithZero: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
@@ -34,36 +46,154 @@ export default {
       'minder': 'getMinder'
     }),
     commandDisabled() {
-      var minder = this.minder
+      let minder = this.minder
+      this.$nextTick(() => {
+        this.setPriorityView();
+      });
       minder.on && minder.on('interactchange', function () {
         this.commandValue = minder.queryCommandValue('priority');
-      });
+      })
       return minder.queryCommandState && minder.queryCommandState('priority') === -1;
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      let minder = this.minder;
+      let freshFuc = this.setPriorityView;
+      minder.on && minder.on('contentchange', function () {
+        // 异步执行，否则执行完，还会被重置
+        setTimeout(function(){
+          freshFuc();
+        },0)
+      });
+    })
+  },
   methods: {
     execCommand(index) {
-      this.commandDisabled || this.minder.execCommand('priority', index)
-    },
-    classArray(index) {
-      var isActive = this.minder.queryCommandValue && this.minder.queryCommandValue('priority') == index;
-      var sequence = 'sequence-' + index;
-
-      // 用数组返回多个class
-      var arr = [{
-        'active': isActive
-      }, sequence]
-      return arr
-    },
-    title(index) {
-      switch (index) {
-        case 0:
-          return '移除优先级';
-        default:
-          return '优先级' + index;
+      if (index) {
+        this.commandDisabled || this.minder.execCommand('priority', index);
+        this.setPriorityView();
+      } else {
+        this.commandDisabled || this.minder.execCommand('priority');
       }
+    },
+    setPriorityView() {
+      //手动将优先级前面加上P显示
+      let items = document.getElementsByTagName('text');
+      if (items) {
+        for (let i = 0; i < items.length; i++) {
+          let item = items[i];
+          if (this.isPriority(item)) {
+            let content = item.innerHTML;
+            if (content.indexOf(this.prefix) < 0) {
+              if (this.startWithZero) {
+                content = parseInt(content) - 1 + '';
+              }
+              item.innerHTML = this.prefix + content;
+            }
+          }
+        }
+      }
+    },
+    isPriority(e) {
+      if (e.getAttribute('text-rendering') === 'geometricPrecision'
+        && e.getAttribute('text-anchor') === 'middle'
+      ) {
+        return true;
+      }
+      return false;
     }
   },
-
 }
 </script>
+<style scoped>
+
+  .delete-btn {
+    height: 23px;
+    width: 23px;
+    margin: 0px 4px;
+    padding: 2px !important;
+  }
+
+  .el-button >>> .el-icon-delete {
+    font-size: 4px;
+  }
+
+  .el-button+.el-button {
+    margin-left: 0px;
+  }
+
+  .priority-btn {
+    border-radius: 8px;
+    padding: 0px;
+    padding-right: 5px;
+    font-style: italic;
+    font-size: 12px;
+    height: 22px;
+    width: 22px;
+    margin-right: 4px;
+    color: white;
+    border: 0px;
+  }
+
+  .priority-btn_1 {
+    background-color: #FF1200;
+    border-bottom: 3px solid #840023;
+  }
+
+  .priority-btn_1:hover {
+    background-color: #FF1200;
+    border-bottom: 3px solid #840023;
+    color: white;
+  }
+
+  .priority-btn_2 {
+    background-color: #0074FF;
+    border-bottom: 3px solid #01467F;
+  }
+  .priority-btn_2:hover {
+    background-color: #0074FF;
+    border-bottom: 3px solid #01467F;
+    color: white;
+  }
+
+  .priority-btn_3 {
+    background-color: #00AF00;
+    border-bottom: 3px solid #006300;
+  }
+  .priority-btn_3:hover {
+    background-color: #00AF00;
+    border-bottom: 3px solid #006300;
+    color: white;
+  }
+
+  .priority-btn_4 {
+    background-color: #FF962E;
+    border-bottom: 3px solid #B25000;
+  }
+  .priority-btn_4:hover {
+    background-color: #FF962E;
+    border-bottom: 3px solid #B25000;
+    color: white;
+  }
+
+  .priority-btn_5 {
+    background-color: #A464FF;
+    border-bottom: 3px solid #4720C4;
+  }
+  .priority-btn_5:hover {
+    background-color: #A464FF;
+    border-bottom: 3px solid #4720C4;
+    color: white;
+  }
+
+  .priority-btn_6 {
+    background-color: #A3A3A3;
+    border-bottom: 3px solid #515151;
+  }
+  .priority-btn_6:hover {
+    background-color: #A3A3A3;
+    border-bottom: 3px solid #515151;
+    color: white;
+  }
+</style>

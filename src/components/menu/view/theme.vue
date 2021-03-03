@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="theme-group">
   <el-row class="block-col-1">
     <el-col :span="24">

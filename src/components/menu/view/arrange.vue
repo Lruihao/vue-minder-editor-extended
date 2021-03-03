@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="arrange-group">
     <div class="arrange menu-btn" @click="resetlayout" :disabled="disabled">
         <span class="tab-icons"></span>

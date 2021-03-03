@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="style-group">
     <div class="clear-style-btn menu-btn" @click="clearstyle" :disabled="disabled1">
         <span class="tab-icons"></span>

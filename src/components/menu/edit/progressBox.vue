@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="progress-group">
   <ul>
     <ul :disabled="commandDisabled">

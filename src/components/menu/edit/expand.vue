@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="expand-group">
 
   <el-button class="tab-icons expand" @click="expandAll"></el-button>

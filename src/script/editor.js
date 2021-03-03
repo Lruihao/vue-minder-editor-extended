@@ -31,6 +31,7 @@ define(function (require, exports, module) {
   assemble(require('./runtime/priority'));
   assemble(require('./runtime/progress'));
   assemble(require('./runtime/exports'));
+  assemble(require('./runtime/ms-tag'));
 
   return module.exports = KMEditor;
 });
