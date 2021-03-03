@@ -8,21 +8,10 @@ import {
   mapMutations,
   mapGetters
 } from 'vuex'
+import {importJson} from "../props";
 export default {
   props: {
-    importJson: {
-      type: Object,
-      default() {
-        return {
-          "root": {
-            "data": {
-              "text": "中心主题"
-            },
-          },
-          "template":"default"
-        }
-      }
-    }
+    importJson
   },
   mounted() {
     var Editor = require('../../script/editor');

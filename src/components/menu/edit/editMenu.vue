@@ -25,6 +25,7 @@ import progressBox from './progressBox'
 import expand from './expand'
 import selection from './selection'
 import TagBox from "./tagBox";
+import {editMenuProps, priorityProps, tagProps} from "../../props";
 
 export default {
   name: 'editMenu',
@@ -39,32 +40,9 @@ export default {
     selection
   },
   props: {
-    sequenceEnable: {
-      type: Boolean,
-    },
-    tagEnable: {
-      type: Boolean,
-    },
-    progressEnable: {
-      type: Boolean,
-    },
-    priorityCount: {
-      type: Number,
-      validator: function (value) {
-        // 优先级最多支持 9 个级别
-        return value <= 9;
-      }
-    },
-    priorityStartWithZero: {
-      // 优先级是否从0开始
-      type: Boolean,
-    },
-    priorityPrefix: {
-      type: String,
-    },
-    tags: {
-      type: Array
-    }
+    ...editMenuProps,
+    ...priorityProps,
+    ...tagProps
   },
 }
 </script>

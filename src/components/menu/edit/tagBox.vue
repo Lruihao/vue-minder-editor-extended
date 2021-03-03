@@ -13,39 +13,11 @@
 import {
   mapGetters,
 } from 'vuex'
+import {tagProps} from "../../props";
 export default {
   name: 'tagBox',
   props: {
-    tags: {
-      type: Array,
-      default() {
-        return [
-          {
-            key: 'module',
-            value: '模块',
-          },
-          {
-            key: 'case',
-            value: '用例',
-          },
-          {
-            key: 'prerequisite',
-            value: '前置条件',
-          },
-          {
-            key: 'steps',
-            value: '测试步骤',
-          },
-          {
-            key: 'result',
-            value: '预期结果',
-          },
-          {
-            key: 'remark',
-            value: '备注',
-          }]
-      }
-    }
+    ...tagProps
   },
   computed: {
     ...mapGetters({

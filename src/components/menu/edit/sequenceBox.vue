@@ -1,4 +1,4 @@
-<template>
+﻿<template>
 <div :disabled="commandDisabled">
 
   <el-button type="info" class="delete-btn" icon="el-icon-delete" @click="execCommand(null)" circle></el-button>
@@ -8,7 +8,7 @@
              :key="item"
              v-if="index != 0"
              :class="'priority-btn_' + index"
-             @click="execCommand(index)" size="mini">{{prefix}}{{ startWithZero ? index - 1 : index }}</el-button>
+             @click="execCommand(index)" size="mini">{{priorityPrefix}}{{ priorityStartWithZero ? index - 1 : index }}</el-button>
 </div>
 </template>
 
@@ -16,29 +16,12 @@
 import {
   mapGetters,
 } from 'vuex'
+import {priorityProps} from "../../props";
 
 export default {
   name: 'sequenceBox',
-  data() {
-    return {
-    }
-  },
   props: {
-    prefix: {
-      type: String,
-      default: 'P'
-    },
-    priorityCount: {
-      type: Number,
-      default: 4,
-      validator: function (value) {
-        return value <= 9;
-      }
-    },
-    startWithZero: {
-      type: Boolean,
-      default: true
-    }
+    ...priorityProps
   },
   computed: {
     ...mapGetters({
@@ -84,11 +67,11 @@ export default {
           let item = items[i];
           if (this.isPriority(item)) {
             let content = item.innerHTML;
-            if (content.indexOf(this.prefix) < 0) {
-              if (this.startWithZero) {
+            if (content.indexOf(this.priorityPrefix) < 0) {
+              if (this.priorityStartWithZero) {
                 content = parseInt(content) - 1 + '';
               }
-              item.innerHTML = this.prefix + content;
+              item.innerHTML = this.priorityPrefix + content;
             }
           }
         }
