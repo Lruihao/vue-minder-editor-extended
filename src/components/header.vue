@@ -21,7 +21,7 @@
         />
       </div>
       <div class="mind-tab-panel" v-show="switchShow.showViewMenu">
-        <view-menu></view-menu>
+        <view-menu :default_mold="default_mold"/>
       </div>
     </div>
   </header>
@@ -30,7 +30,7 @@
 <script>
   import editMenu from './menu/edit/editMenu'
   import viewMenu from './menu/view/viewMenu'
-  import {editMenuProps, priorityProps, tagProps} from "./props";
+  import {editMenuProps, moleProps, priorityProps, tagProps} from "./props";
   export default {
     name: 'headerVue',
     data() {
@@ -44,7 +44,8 @@
     props: {
       ...editMenuProps,
       ...priorityProps,
-      ...tagProps
+      ...tagProps,
+      ...moleProps
     },
     components: {
       editMenu,

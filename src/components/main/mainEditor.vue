@@ -14,9 +14,9 @@ export default {
     importJson
   },
   mounted() {
-    var Editor = require('../../script/editor');
-    var el = this.$el;
-    var editor = window.editor = new Editor(el);
+    let Editor = require('../../script/editor');
+    let el = this.$el;
+    let editor = window.editor = new Editor(el);
     this.setEditor(editor);
     if (this.importJson) {
       editor.minder.importJson(this.importJson);

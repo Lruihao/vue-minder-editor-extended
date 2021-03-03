@@ -89,3 +89,10 @@ export let editMenuProps = {
     default: true
   },
 }
+
+export let moleProps = {
+  default_mold: {
+    type: Number,
+    default: 3
+  }
+}

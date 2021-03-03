@@ -1,10 +1,10 @@
 <template>
 <div class="menu-container">
-  <mold></mold>
-  <theme></theme>
-  <arrange></arrange>
-  <styleOperation></styleOperation>
-  <fontOperation></fontOperation>
+  <mold :default_mold="default_mold"/>
+  <theme/>
+  <arrange/>
+  <styleOperation/>
+  <fontOperation/>
 </div>
 
 </template>
@@ -15,6 +15,7 @@ import theme from './theme'
 import arrange from './arrange'
 import styleOperation from './styleOperation'
 import fontOperation from './fontOperation.vue'
+import {moleProps} from "../../props";
 
 export default {
   name: 'viewMenu',
@@ -24,7 +25,18 @@ export default {
     arrange,
     styleOperation,
     fontOperation
+  },
+  props: {
+    ...moleProps
   }
 }
 
 </script>
+
+<style>
+  .menu-container i {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+</style>

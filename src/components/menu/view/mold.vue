@@ -2,17 +2,12 @@
 <div class="mold-group" :disabled="disabled">
     <el-row class="block-col-1">
         <el-col :span="24">
-            <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle mold-icons menu-btn" @command="handleCommand" :class="class_mold_index">
+            <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle mold-icons menu-btn" @command="handleCommand" :class="class_default_mold">
                 <span class="el-dropdown-link ">
                     <i class="el-icon-caret-bottom el-icon--right"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown" class="mold-dropdown-list">
-                    <el-dropdown-item class="mold-1 dropdown-item mold-icons" command="0"></el-dropdown-item>
-                    <el-dropdown-item class="mold-2 dropdown-item mold-icons" command="1"></el-dropdown-item>
-                    <el-dropdown-item class="mold-3 dropdown-item mold-icons" command="2"></el-dropdown-item>
-                    <el-dropdown-item class="mold-4 dropdown-item mold-icons" command="3"></el-dropdown-item>
-                    <el-dropdown-item class="mold-5 dropdown-item mold-icons" command="4"></el-dropdown-item>
-                    <el-dropdown-item class="mold-6 dropdown-item mold-icons" command="5"></el-dropdown-item>
+                    <el-dropdown-item v-for="(item, index) in 6" :key="item" class="dropdown-item mold-icons" :class="'mold-' + item" :command="index"/>
                 </el-dropdown-menu>
             </el-dropdown>
         </el-col>
@@ -24,19 +19,18 @@
 import {
     mapGetters
 } from 'vuex'
+import {moleProps} from "../../props";
 export default {
     name: 'mold',
-    data() {
-        return {
-            mold_index: 1,
-        }
+    props: {
+      ...moleProps
     },
     computed: {
         ...mapGetters({
             'minder': 'getMinder'
         }),
-        class_mold_index() {
-            return 'mold-' + this.mold_index
+        class_default_mold() {
+            return 'mold-' + this.default_mold
         },
         disabled() {
             return this.minder.queryCommandState && this.minder.queryCommandState('template') === -1
@@ -45,11 +39,24 @@ export default {
             return kityminder.Minder.getTemplateList();
         }
     },
+    mounted() {
+      this.$nextTick(() => {
+        this.handleCommand(this.default_mold);
+      })
+    },
     methods: {
         handleCommand(command) {
-            this.mold_index = ~~command + 1;
+            this.default_mold = ~~command + 1;
             this.minder.execCommand('template', Object.keys(this.templateList)[command]);
         }
     }
 }
 </script>
+
+<style scoped>
+  .el-dropdown-menu .el-dropdown-menu__item {
+    padding: 0px !important;
+    height: 40px !important;
+    margin: 5px !important;
+  }
+</style>

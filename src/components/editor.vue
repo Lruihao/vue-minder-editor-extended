@@ -8,6 +8,7 @@
     :priority-prefix="priorityPrefix"
     :priority-start-with-zero="priorityStartWithZero"
     :tags="tags"
+    :default_mold="default_mold"
   />
   <main-editor :import-json="importJson"/>
   <navigator/>
@@ -19,7 +20,7 @@
 import headerMenu from '@/components/header'
 import mainEditor from '@/components/main/mainEditor'
 import navigator from '@/components/main/navigator'
-import {editMenuProps, importJson, priorityProps, tagProps} from "./props";
+import {editMenuProps, importJson, moleProps, priorityProps, tagProps} from "./props";
 
 export default {
   name: 'editor',
@@ -32,6 +33,7 @@ export default {
     ...editMenuProps,
     ...priorityProps,
     ...tagProps,
+    ...moleProps,
     importJson
   },
 }
