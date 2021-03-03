@@ -4,7 +4,7 @@
         <el-col :span="24">
             <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle mold-icons menu-btn" @command="handleCommand" :class="class_default_mold">
                 <span class="el-dropdown-link ">
-                    <i class="el-icon-caret-bottom el-icon--right"></i>
+                    <i class="el-icon-caret-bottom el-icon--right"/>
                 </span>
                 <el-dropdown-menu slot="dropdown" class="mold-dropdown-list">
                     <el-dropdown-item v-for="(item, index) in 6" :key="item" class="dropdown-item mold-icons" :class="'mold-' + item" :command="index"/>
@@ -30,7 +30,7 @@ export default {
             'minder': 'getMinder'
         }),
         class_default_mold() {
-            return 'mold-' + this.default_mold
+            return 'mold-' + this.default_mold;
         },
         disabled() {
             return this.minder.queryCommandState && this.minder.queryCommandState('template') === -1
@@ -46,7 +46,6 @@ export default {
     },
     methods: {
         handleCommand(command) {
-            this.default_mold = ~~command + 1;
             this.minder.execCommand('template', Object.keys(this.templateList)[command]);
         }
     }
