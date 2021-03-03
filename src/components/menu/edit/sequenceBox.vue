@@ -32,7 +32,6 @@ export default {
       type: Number,
       default: 4,
       validator: function (value) {
-        // 优先级最多支持 9 个级别
         return value <= 9;
       }
     },

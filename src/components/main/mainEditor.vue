@@ -9,19 +9,29 @@ import {
   mapGetters
 } from 'vuex'
 export default {
+  props: {
+    importJson: {
+      type: Object,
+      default() {
+        return {
+          "root": {
+            "data": {
+              "text": "中心主题"
+            },
+          },
+          "template":"default"
+        }
+      }
+    }
+  },
   mounted() {
     var Editor = require('../../script/editor');
     var el = this.$el;
     var editor = window.editor = new Editor(el);
     this.setEditor(editor);
-    if (window.localStorage.mindText) {
-      editor.minder.importJson(JSON.parse(window.localStorage.mindText));
+    if (this.importJson) {
+      editor.minder.importJson(this.importJson);
     }
-
-    editor.minder.on('contentchange', function () {
-      window.localStorage.mindText = JSON.stringify(editor.minder.exportJson());
-    });
-
     window.minder = window.km = editor.minder;
     this.setMinder(editor.minder);
     this.executeCallback();

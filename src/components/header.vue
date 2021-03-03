@@ -14,6 +14,10 @@
           :sequence-enable="sequenceEnable"
           :tag-enable="tagEnable"
           :progress-enable="progressEnable"
+          :priority-count="priorityCount"
+          :priority-prefix="priorityPrefix"
+          :priority-start-with-zero="priorityStartWithZero"
+          :tags="tags"
         />
       </div>
       <div class="mind-tab-panel" v-show="switchShow.showViewMenu">
@@ -39,15 +43,29 @@
     props: {
       sequenceEnable: {
         type: Boolean,
-        default: true
       },
       tagEnable: {
         type: Boolean,
-        default: true
       },
       progressEnable: {
         type: Boolean,
-        default: true
+      },
+      priorityCount: {
+        type: Number,
+        validator: function (value) {
+          // 优先级最多支持 9 个级别
+          return value <= 9;
+        }
+      },
+      priorityStartWithZero: {
+        // 优先级是否从0开始
+        type: Boolean,
+      },
+      priorityPrefix: {
+        type: String,
+      },
+      tags: {
+        type: Array
       }
     },
     components: {

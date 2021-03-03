@@ -5,9 +5,14 @@
   <insert-box/>
   <move-box/>
   <edit-del/>
-  <sequence-box v-if="sequenceEnable"/>
+  <sequence-box
+    v-if="sequenceEnable"
+    :prefix="priorityPrefix"
+    :priority-count="priorityCount"
+    :start-with-zero="priorityStartWithZero"
+  />
   <progress-box v-if="progressEnable"/>
-  <tag-box v-if="tagEnable"/>
+  <tag-box :tags="tags" v-if="tagEnable"/>
 </div>
 </template>
 
@@ -36,15 +41,29 @@ export default {
   props: {
     sequenceEnable: {
       type: Boolean,
-      default: true
     },
     tagEnable: {
       type: Boolean,
-      default: true
     },
     progressEnable: {
       type: Boolean,
-      default: true
+    },
+    priorityCount: {
+      type: Number,
+      validator: function (value) {
+        // 优先级最多支持 9 个级别
+        return value <= 9;
+      }
+    },
+    priorityStartWithZero: {
+      // 优先级是否从0开始
+      type: Boolean,
+    },
+    priorityPrefix: {
+      type: String,
+    },
+    tags: {
+      type: Array
     }
   },
 }

@@ -5,6 +5,7 @@
             size="small"
             :color="getResourceColor(item.value)"
             @click="editResource(item.value)">{{item.value}}</el-tag>
+<!--  <el-button class="add-btn" icon="el-icon-plus"></el-button>-->
 </div>
 </template>
 
@@ -14,12 +15,6 @@ import {
 } from 'vuex'
 export default {
   name: 'tagBox',
-  data() {
-    return {
-      used: false,
-      // minder: {}
-    }
-  },
   props: {
     tags: {
       type: Array,
@@ -52,7 +47,6 @@ export default {
       }
     }
   },
-  // props: ['minder'],
   computed: {
     ...mapGetters({
       'minder': 'getMinder'
@@ -103,4 +97,13 @@ export default {
  .el-tag:first-child {
    margin-left: 4px;
  }
+</style>
+
+<style >
+   .add-btn {
+     height: 24px;
+     width: 36px;
+     padding: 0px !important;
+     border-style: dashed !important;
+   }
 </style>
