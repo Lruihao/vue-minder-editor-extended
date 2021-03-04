@@ -2,7 +2,7 @@
   "name": "vue-minder-editor",
   "version": "1.0.0",
   "description": "A Vue2 project",
-  "author": "LIUYI <yijiubasi@163.com>",
+  "author": "AgAngle <1323481023@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
