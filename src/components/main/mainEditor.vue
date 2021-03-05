@@ -10,9 +10,10 @@ import {
   mapMutations,
   mapGetters
 } from 'vuex'
-import {importJson} from "../props";
+import {editMenuProps, importJson} from "../props";
 export default {
   props: {
+    ...editMenuProps,
     importJson
   },
   data() {
@@ -23,7 +24,7 @@ export default {
   mounted() {
     let Editor = require('../../script/editor');
     let el = this.$el;
-    let editor = window.editor = new Editor(el);
+    let editor = window.editor = new Editor(el, this.editMenuProps);
     this.setEditor(editor);
     if (this.importJson) {
       editor.minder.importJson(this.importJson);
@@ -32,6 +33,18 @@ export default {
     this.minder = editor.minder;
     this.setMinder(editor.minder);
     this.executeCallback();
+  },
+  computed: {
+    editMenuProps() {
+      let sequenceEnable = this.sequenceEnable;
+      let tagEnable = this.tagEnable;
+      let progressEnable = this.progressEnable;
+      return {
+        sequenceEnable,
+        tagEnable,
+        progressEnable
+      }
+    }
   },
   methods: {
     ...mapActions([

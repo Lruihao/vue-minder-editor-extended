@@ -5,12 +5,25 @@ define(function (require, exports, module) {
     runtimes.push(runtime);
   }
 
-  function KMEditor(selector) {
+  function KMEditor(selector, editMenuProps) {
     this.selector = selector;
     for (var i = 0; i < runtimes.length; i++) {
-      if (typeof runtimes[i] == 'function') {
+      if (typeof runtimes[i] == 'function' && isEnable(editMenuProps, runtimes[i])) {
         runtimes[i].call(this, this);
       }
+    }
+  }
+
+  function isEnable(editMenuProps, runtime) {
+    switch (runtime.name) {
+      case "PriorityRuntime":
+        return editMenuProps.sequenceEnable != true ? false : true;
+      case "TagRuntime":
+        return editMenuProps.tagEnable != true ? false : true;
+      case "ProgressRuntime":
+        return editMenuProps.progressEnable != true ? false : true;
+      default:
+        return true
     }
   }
 

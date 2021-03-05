@@ -10,7 +10,12 @@
     :tags="tags"
     :default_mold="default_mold"
   />
-  <main-editor @save="save" :import-json="importJson"/>
+  <main-editor
+    :sequence-enable="sequenceEnable"
+    :tag-enable="tagEnable"
+    :progress-enable="progressEnable"
+    :import-json="importJson"
+    @save="save"/>
   <navigator/>
 </div>
 

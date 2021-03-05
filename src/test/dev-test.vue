@@ -1,6 +1,11 @@
 <template>
   <div>
-    <minder-editor :import-json="importJson" @save="save"/>
+    <minder-editor
+      :import-json="importJson"
+      :progress-enable="false"
+      :tag-enable="false"
+      :sequence-enable="false"
+      @save="save"/>
   </div>
 </template>
 
