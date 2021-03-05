@@ -1,23 +1,16 @@
 <template>
-  <div>aaa
+  <div>
     <minder-editor/>
-<!--    <acccc></acccc>-->
   </div>
 </template>
 
 <script>
-
-// import minderEditor from '../components/plugin'
-// import minderEditor from '../../dist/vendors.vueMinderEditor'
-// import minderEditor1 from '../../dist/0.vueMinderEditor.js'
 import Vue from 'vue'
-// Vue.use(minderEditor);
-// //
-// console.log(minderEditor);
-// console.log(minderEditor1);
+import minderEditor from "../components/plugin";
+Vue.use(minderEditor) //开发测试
 
 export default {
-  name: "test-plugin",
+  name: "dev-test",
   data() {
     return {
       importJson: {

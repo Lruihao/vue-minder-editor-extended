@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <minder-editor/>
+    <dev-test/>
 <!--    <test-plugin/>-->
   </div>
 </template>
 
 <script>
 
-import Vue from 'vue'
-import minderEditor from "./components/plugin";
-Vue.use(minderEditor) //开发测试
-
-import TestPlugin from "./test/test-plugin"; //打包测试
+// import TestPlugin from "./test/test-plugin";
+import DevTest from "./test/dev-test";
 
 export default {
   name: 'app',
-  components: {TestPlugin}
+  components: {
+    DevTest,
+    // TestPlugin
+  }
 }
 </script>
 

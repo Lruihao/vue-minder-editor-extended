@@ -2,6 +2,11 @@
 > 该项目是参考 [vue-mindeditor](https://github.com/fudax/vue-mindeditor) 以及 [kityminder-editor](https://github.com/fex-team/kityminder-editor)
 > 源码，基于 [kityminder-core](https://github.com/fex-team/kityminder-core) 实现
 
+## developing
+``` bash
+功能完善中，之后会完善api及文档。。。
+```
+
 ## install
 ``` bash
 npm install vue-minder-editor --save
@@ -64,7 +69,4 @@ export default {
     BSD-3-Clause License
 ```
 
-## developing
-``` bash
-功能完善中，之后会完善api及文档。。。
-```
+

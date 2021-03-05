@@ -1,16 +1,17 @@
 {
-  "name": "vue-minder-editor",
-  "version": "1.0.0",
+  "name": "vue-minder-editor-plus",
+  "version": "1.0.4",
   "description": "A Vue2 project",
   "author": "AgAngle <1323481023@qq.com>",
-  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e"
+    "test": "npm run unit && npm run e2e",
+    "pub": "npm run build && npm publish"
   },
+  "main": "dist/vueMinderEditor.js",
   "dependencies": {
     "codemirror": "^5.24.2",
     "color-picker": "0.0.1",
