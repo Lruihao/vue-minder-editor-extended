@@ -1,5 +1,7 @@
 <template>
-  <div class="mind-editor"></div>
+  <div class="mind-editor">
+    <el-button class="save-btn" @click="save" type="primary">保存</el-button>
+  </div>
 </template>
 
 <script>
@@ -13,6 +15,11 @@ export default {
   props: {
     importJson
   },
+  data() {
+    return {
+      minder: {}
+    }
+  },
   mounted() {
     let Editor = require('../../script/editor');
     let el = this.$el;
@@ -22,13 +29,9 @@ export default {
       editor.minder.importJson(this.importJson);
     }
     window.minder = window.km = editor.minder;
+    this.minder = editor.minder;
     this.setMinder(editor.minder);
     this.executeCallback();
-  },
-  computed: {
-    ...mapGetters([
-      'minder',
-    ])
   },
   methods: {
     ...mapActions([
@@ -37,11 +40,22 @@ export default {
     ...mapMutations([
       'setMinder',
       'setEditor'
-    ])
+    ]),
+    save() {
+      this.$emit('save', this.minder.exportJson());
+    }
   },
 }
 </script>
 
 <style lang="scss">
   @import "../../style/editor.scss";
+</style>
+
+<style scoped>
+  .save-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+  }
 </style>

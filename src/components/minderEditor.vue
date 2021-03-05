@@ -10,7 +10,7 @@
     :tags="tags"
     :default_mold="default_mold"
   />
-  <main-editor :import-json="importJson"/>
+  <main-editor @save="save" :import-json="importJson"/>
   <navigator/>
 </div>
 
@@ -28,6 +28,11 @@ export default {
     headerMenu,
     mainEditor,
     navigator
+  },
+  methods: {
+    save(data) {
+      this.$emit('save', data);
+    }
   },
   props: {
     ...editMenuProps,

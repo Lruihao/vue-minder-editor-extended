@@ -1,6 +1,6 @@
 <template>
   <div>
-    <minder-editor/>
+    <minder-editor @save="save"/>
   </div>
 </template>
 
@@ -25,6 +25,11 @@ export default {
         },
         "template":"default"
       }
+    }
+  },
+  methods: {
+    save(data) {
+      console.log(data);
     }
   }
 }
