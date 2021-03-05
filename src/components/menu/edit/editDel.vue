@@ -1,10 +1,10 @@
 <template>
 <div class="edit-del-group">
-  <div class="edit menu-btn" :disabled="disabled1" @click="edit" title="编辑">
+  <div class="edit menu-btn" :disabled="disabled('text')" @click="edit" title="编辑">
     <i class="tab-icons"></i>
     <span>编辑</span>
   </div>
-  <div class="del menu-btn" :disabled="disabled2" @click="del" title="删除">
+  <div class="del menu-btn" :disabled="disabled('RemoveNode')" @click="del" title="删除">
     <i class="tab-icons"></i>
     <span>删除</span>
   </div>
@@ -15,6 +15,7 @@
 import {
   mapGetters
 } from 'vuex';
+import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'edit_del',
   computed: {
@@ -22,14 +23,14 @@ export default {
       'minder': 'getMinder',
       'editor': 'getEditor'
     }),
-    disabled1() {
-      return this.minder.queryCommandState && this.minder.queryCommandState('text') === -1;
-    },
-    disabled2() {
-      return this.minder.queryCommandState && this.minder.queryCommandState('RemoveNode') === -1
-    }
   },
   methods: {
+    disabled(command) {
+      if (isDisableNode(this.minder)) {
+        return true;
+      }
+      return this.minder.queryCommandState && this.minder.queryCommandState(command) === -1
+    },
     edit() {
       this.minder.queryCommandState('text') === -1 || this.editNode();
     },

@@ -3,6 +3,7 @@ define(function (require, exports, module) {
   function TagRuntime() {
     var minder = this.minder;
     var hotbox = this.hotbox;
+    var {isDisableNode} = require('../tool/utils');
 
     var main = hotbox.state('main');
 
@@ -12,6 +13,9 @@ define(function (require, exports, module) {
       key: 'H',
       next: 'tag',
       enable: function () {
+        if (isDisableNode(minder)) {
+          return false;
+        }
         return minder.queryCommandState('tag') != -1;
       }
     });

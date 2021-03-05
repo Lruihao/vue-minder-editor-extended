@@ -1,6 +1,6 @@
 <template>
   <div>
-    <minder-editor @save="save"/>
+    <minder-editor :import-json="importJson" @save="save"/>
   </div>
 </template>
 
@@ -16,7 +16,8 @@ export default {
       importJson: {
         "root": {
           "data": {
-            "text": "test222"
+            "text": "test222",
+            "disable": true
           },
           "children": [
             { "data": { "text": "地图aa" } },

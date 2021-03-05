@@ -17,6 +17,7 @@ import {
   mapGetters,
 } from 'vuex'
 import {priorityProps} from "../../props";
+import {isDisableNode} from "../../../script/tool/utils";
 
 export default {
   name: 'sequenceBox',
@@ -35,6 +36,9 @@ export default {
       minder.on && minder.on('interactchange', function () {
         this.commandValue = minder.queryCommandValue('priority');
       })
+      if (isDisableNode(minder)) {
+        return true;
+      }
       return minder.queryCommandState && minder.queryCommandState('priority') === -1;
     },
   },

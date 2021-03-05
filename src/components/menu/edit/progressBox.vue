@@ -12,6 +12,7 @@
 import {
   mapGetters,
 } from 'vuex'
+import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'progressBox',
   data() {
@@ -39,6 +40,9 @@ export default {
       minder.on && minder.on('interactchange', function () {
         this.commandValue = minder.queryCommandValue('progress');
       });
+      if (isDisableNode(minder)) {
+        return true;
+      }
       return minder.queryCommandState && minder.queryCommandState('progress') === -1;
     },
   },

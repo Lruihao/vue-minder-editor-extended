@@ -3,6 +3,7 @@ define(function (require, exports, module) {
   function HistoryRuntime() {
     var minder = this.minder;
     var hotbox = this.hotbox;
+    var {isDisableNode} = require('../tool/utils');
 
     var MAX_HISTORY = 100;
 
@@ -188,7 +189,12 @@ define(function (require, exports, module) {
       position: 'bottom',
       label: '撤销',
       key: 'Ctrl + Z',
-      enable: hasUndo,
+      enable: function() {
+          if (isDisableNode(minder)) {
+            return false;
+          }
+        return hasUndo;
+      },
       action: undo,
       next: 'idle'
     });
@@ -196,7 +202,12 @@ define(function (require, exports, module) {
       position: 'bottom',
       label: '重做',
       key: 'Ctrl + Y',
-      enable: hasRedo,
+      enable: function() {
+        if (isDisableNode(minder)) {
+          return false;
+        }
+        return hasRedo;
+      },
       action: redo,
       next: 'idle'
     });

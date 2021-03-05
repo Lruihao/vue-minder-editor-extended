@@ -14,6 +14,7 @@ import {
   mapGetters,
 } from 'vuex'
 import {tagProps} from "../../props";
+import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'tagBox',
   props: {
@@ -28,6 +29,9 @@ export default {
       minder.on && minder.on('interactchange', function () {
         this.commandValue = minder.queryCommandValue('resource');
       });
+      if (isDisableNode(minder)) {
+        return true;
+      }
       return minder.queryCommandState && minder.queryCommandState('resource') === -1;
     },
   },

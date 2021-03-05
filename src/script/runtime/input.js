@@ -9,6 +9,7 @@
 define(function (require, exports, module) {
 
   require('../tool/innertext');
+  var {isDisableNode} = require('../tool/utils');
 
   var Debug = require('../tool/debug');
   var debug = new Debug('input');
@@ -61,7 +62,7 @@ define(function (require, exports, module) {
       });
 
       minder.on('dblclick', function () {
-        if (minder.getSelectedNode() && minder._status !== 'readonly') {
+        if (minder.getSelectedNode() && minder._status !== 'readonly' && !isDisableNode(minder)) {
           editText();
         }
       });
@@ -97,6 +98,9 @@ define(function (require, exports, module) {
         label: '编辑',
         key: 'F2',
         enable: function () {
+          if (isDisableNode(minder)) {
+            return false;
+          }
           return minder.queryCommandState('text') != -1;
         },
         action: editText
