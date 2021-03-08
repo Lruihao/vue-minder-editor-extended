@@ -12,15 +12,13 @@ const env = config.build.env
 
 const webpackConfig = merge(baseWebpackConfig, {
    mode: 'production',
- // mode: 'development',
 
-  // entry: path.resolve(__dirname, './src/components/plugin.js'),
   entry: './src/components/plugin.js',
   output: {
     path: config.build.assetsRoot,
-    publicPath: '/dist/',
-    // filename: '[name].js',
-    filename: 'vueMinderEditor.js',
+    filename: utils.assetsPath('./vue-minder-editor-[chunkhash:5].js'),
+    chunkFilename: utils.assetsPath('./[name].[chunkhash].js'),
+    // //增加以下库配置信息
     library: 'vueMinderEditorPlus',
     libraryTarget: 'umd',
     umdNamedDefine: true
@@ -30,7 +28,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       {
         test: /\.less$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'vue-style-loader',
+          // MiniCssExtractPlugin.loader,
           'css-loader',
           'less-loader',
           'postcss-loader'
@@ -39,13 +38,9 @@ const webpackConfig = merge(baseWebpackConfig, {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
-          },
+          'vue-style-loader',
+          // MiniCssExtractPlugin.loader,
+          'css-loader',
           'postcss-loader'
         ]
       }
@@ -53,18 +48,18 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    },
-    runtimeChunk: {
-      name: 'runtime'
-    }
+    // splitChunks: {
+    //   cacheGroups: {
+    //     commons: {
+    //       test: /[\\/]node_modules[\\/]/,
+    //       name: 'vendors',
+    //       chunks: 'all'
+    //     }
+    //   }
+    // },
+    // runtimeChunk: {
+    //   name: 'runtime'
+    // }
   },
   plugins: [
     new webpack.ProgressPlugin(),
@@ -85,10 +80,10 @@ const webpackConfig = merge(baseWebpackConfig, {
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
-    new MiniCssExtractPlugin({
-      filename: utils.assetsPath('css/[name].[hash].css'),
-      chunkFilename: utils.assetsPath('css/[id].[hash].css'),
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: utils.assetsPath('css/[name].[hash].css'),
+    //   chunkFilename: utils.assetsPath('css/[id].[hash].css'),
+    // }),
     new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }
@@ -97,26 +92,26 @@ const webpackConfig = merge(baseWebpackConfig, {
   ]
 })
 
-// if (config.build.productionGzip) {
-//   var CompressionWebpackPlugin = require('compression-webpack-plugin')
-//   webpackConfig.plugins.push(
-//     new CompressionWebpackPlugin({
-//       asset: '[path].gz[query]',
-//       algorithm: 'gzip',
-//       test: new RegExp(
-//         '\\.(' +
-//         config.build.productionGzipExtensions.join('|') +
-//         ')$'
-//       ),
-//       threshold: 10240,
-//       minRatio: 0.8
-//     })
-//   )
-// }
+if (config.build.productionGzip) {
+  var CompressionWebpackPlugin = require('compression-webpack-plugin')
+  webpackConfig.plugins.push(
+    new CompressionWebpackPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: new RegExp(
+        '\\.(' +
+        config.build.productionGzipExtensions.join('|') +
+        ')$'
+      ),
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  )
+}
 
-// if (config.build.bundleAnalyzerReport) {
-//   var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-//   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
-// }
+if (config.build.bundleAnalyzerReport) {
+  var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+}
 
 module.exports = webpackConfig

@@ -1,20 +1,16 @@
 <template>
-  <div>aaa
+  <div>
     <minder-editor/>
-<!--    <acccc></acccc>-->
   </div>
 </template>
 
 <script>
 
-// import minderEditor from '../components/plugin'
-// import minderEditor from '../../dist/vendors.vueMinderEditor'
-// import minderEditor1 from '../../dist/0.vueMinderEditor.js'
+import minderEditor1 from '../../dist/static/vue-minder-editor-60695'
 import Vue from 'vue'
-// Vue.use(minderEditor);
-// //
-// console.log(minderEditor);
-// console.log(minderEditor1);
+Vue.use(minderEditor1);
+
+console.log(minderEditor1);
 
 export default {
   name: "test-plugin",

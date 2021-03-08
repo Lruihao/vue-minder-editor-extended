@@ -46,31 +46,7 @@ export let tagProps = {
     // 自定义标签
     type: Array,
     default() {
-      return [
-        {
-          key: 'module',
-          value: '模块',
-        },
-        {
-          key: 'case',
-          value: '用例',
-        },
-        {
-          key: 'prerequisite',
-          value: '前置条件',
-        },
-        {
-          key: 'steps',
-          value: '测试步骤',
-        },
-        {
-          key: 'result',
-          value: '预期结果',
-        },
-        {
-          key: 'remark',
-          value: '备注',
-        }]
+      return ['模块', '用例','前置条件','测试步骤','预期结果', '备注',]
     }
   }
 }
