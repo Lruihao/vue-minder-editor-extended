@@ -3,8 +3,9 @@
     <minder-editor
       :import-json="importJson"
       :progress-enable="false"
-      :tag-enable="false"
-      :sequence-enable="false"
+      :tag-enable="true"
+      :sequence-enable="true"
+      :tags="tags"
       @save="save"/>
   </div>
 </template>
@@ -25,12 +26,15 @@ export default {
             "disable": true
           },
           "children": [
-            { "data": { "text": "地图aa" } },
+            {
+              "data": { "text": "地图aa" , resource: ["模块1"]}
+            },
             { "data": { "text": "百科aa","expandState":"collapse"}}
           ]
         },
         "template":"default"
-      }
+      },
+      tags:  ['模块1','用例','前置条件','测试步骤', '预期结果','备注',]
     }
   },
   methods: {

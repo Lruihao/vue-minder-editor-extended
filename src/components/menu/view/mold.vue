@@ -2,7 +2,7 @@
 <div class="mold-group" :disabled="disabled">
     <el-row class="block-col-1">
         <el-col :span="24">
-            <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle mold-icons menu-btn" @command="handleCommand" :class="class_default_mold">
+            <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle mold-icons menu-btn" @command="handleCommand" :class="'mold-' + (mold_index + 1)">
                 <span class="el-dropdown-link ">
                     <i class="el-icon-caret-bottom el-icon--right"/>
                 </span>
@@ -25,13 +25,15 @@ export default {
     props: {
       ...moleProps
     },
+    data() {
+      return {
+        mold_index: 0
+      }
+    },
     computed: {
         ...mapGetters({
             'minder': 'getMinder'
         }),
-        class_default_mold() {
-            return 'mold-' + this.default_mold;
-        },
         disabled() {
             return this.minder.queryCommandState && this.minder.queryCommandState('template') === -1
         },
@@ -46,7 +48,8 @@ export default {
     },
     methods: {
         handleCommand(command) {
-            this.minder.execCommand('template', Object.keys(this.templateList)[command]);
+          this.mold_index = command;
+          this.minder.execCommand('template', Object.keys(this.templateList)[command]);
         }
     }
 }

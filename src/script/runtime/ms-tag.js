@@ -21,30 +21,15 @@ define(function (require, exports, module) {
     });
 
     var tag = hotbox.state('tag');
-    let tags = [{
-        key: 'prerequisite',
-        value: '前置条件'
-      },
-      {
-        key: 'steps',
-        value: '测试步骤'
-      },
-      {
-        key: 'result',
-        value: '预期结果'
-      },
-      {
-        key: 'remark',
-        value: '备注'
-      }]
+    let tags = ['前置条件', '测试步骤', '预期结果', '备注']
 
     tags.forEach(item => {
       tag.button({
         position: 'ring',
-        label: item.value,
-        key: item.key,
+        label: item,
+        key: item,
         action: function () {
-          minder.execCommand('Tag', item.value);
+          minder.execCommand('Tag', item);
         }
       });
     })
