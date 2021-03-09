@@ -1,11 +1,6 @@
-@import "~codemirror/lib/codemirror.css";
 @import "~kityminder-core/dist/kityminder.core.css";
 @import "navigator.scss";
 @import "hotbox.scss";
-
-// * {
-//   box-sizing: border-box;
-// }
 
 .mind-editor {
   position: absolute;
@@ -34,7 +29,7 @@
   position: absolute;
   background: white;
   outline: none;
-  box-shadow: 0 0 20px fadeout(black, 50%);
+  box-shadow: 0 0 20px;
   left: 0;
   top: 0;
   padding: 3px 5px;

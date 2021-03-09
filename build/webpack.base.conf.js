@@ -46,7 +46,6 @@ module.exports = {
         resolve('node_modules/hotbox/src'),
         resolve('node_modules/marked/lib'),
         resolve('node_modules/kity/src'),
-        resolve('node_modules/codemirror/src'),
         resolve('node_modules/kityminder-core/src'),
         resolve('node_modules/json-diff/lib')
       ]
