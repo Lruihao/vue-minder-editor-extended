@@ -16,9 +16,9 @@ const webpackConfig = merge(baseWebpackConfig, {
   entry: './src/components/plugin.js',
   output: {
     path: config.build.assetsRoot,
-    filename: utils.assetsPath('./vue-minder-editor-[chunkhash:5].js'),
-    chunkFilename: utils.assetsPath('./[name].[chunkhash].js'),
-    // //增加以下库配置信息
+    publicPath: '/dist/',
+    filename: utils.assetsPath('vue-minder-editor.js'),
+    chunkFilename: utils.assetsPath('[name].[chunkhash].js'),
     library: 'vueMinderEditorPlus',
     libraryTarget: 'umd',
     umdNamedDefine: true

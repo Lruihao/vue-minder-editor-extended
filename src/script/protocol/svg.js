@@ -1,5 +1,5 @@
 function exportSVG(minder) {
-//todo
+
   var paper = minder.getPaper();
   var paperTransform = paper.shapeNode.getAttribute('transform');
   var svgXml;
@@ -17,20 +17,24 @@ function exportSVG(minder) {
   console.log(svgXml);
   paper.shapeNode.setAttribute('transform', paperTransform);
 
-  $svg = $(svgXml).filter('svg');
-  $svg.attr({
-    width: width + padding * 2 | 0,
-    height: height + padding * 2 | 0,
-    style: 'font-family: Arial, "Microsoft Yahei",  "Heiti SC"; background: ' + minder.getStyle('background')
-  });
+  let document = window.document;
+  let el = document.createElement("div");
+  el.innerHTML = svgXml;
+  $svg = el.getElementsByTagName('svg');
+
+  $svg[0].setAttribute('width', width + padding * 2 | 0);
+  $svg[0].setAttribute('height', height + padding * 2 | 0);
+  $svg[0].setAttribute('style', 'font-family: Arial, "Microsoft Yahei",  "Heiti SC"; background: ' + minder.getStyle('background'));
+
   $svg[0].setAttribute('viewBox', [renderBox.x - padding | 0,
   renderBox.y - padding | 0,
   width + padding * 2 | 0,
   height + padding * 2 | 0
   ].join(' '));
 
-  svgXml = $('<div></div>').append($svg).html();
-  svgXml = $('<div></div>').append($svg).html();
+  let div = document.createElement("div");
+  div.appendChild($svg[0]);
+  svgXml = div.innerHTML;
   svgXml = svgXml.replace(/&nbsp;/g, '&#xa0;');
 
   var blob = new Blob([svgXml], {

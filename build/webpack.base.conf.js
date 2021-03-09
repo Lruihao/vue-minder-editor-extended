@@ -44,7 +44,6 @@ module.exports = {
         resolve('node_modules/element-ui/src'),
         resolve('node_modules/element-ui/src'),
         resolve('node_modules/hotbox/src'),
-        resolve('node_modules/jquery/src'),
         resolve('node_modules/marked/lib'),
         resolve('node_modules/kity/src'),
         resolve('node_modules/codemirror/src'),
@@ -80,10 +79,6 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new webpack.ProvidePlugin({
-      jQuery: "jquery",
-      $: "jquery"
-    })
   ],
   node: {
     setImmediate: false,

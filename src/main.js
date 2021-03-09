@@ -3,7 +3,6 @@ import App from './App'
 import store from './store'
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
-import $ from 'jquery'
 
 require('../node_modules/codemirror/lib/codemirror.js')
 require('../node_modules/codemirror/mode/xml/xml.js')

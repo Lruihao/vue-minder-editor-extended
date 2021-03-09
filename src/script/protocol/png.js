@@ -54,14 +54,17 @@ function getSVGInfo(minder) {
   paper.shapeNode.setAttribute('transform', paperTransform);
 
   // 过滤内容
-  $svg = $(svgXml).filter('svg');
-  $svg.attr({
-    width: renderBox.width + 1,
-    height: renderBox.height + 1,
-    style: 'font-family: Arial, "Microsoft Yahei","Heiti SC";'
-  });
+  let el = document.createElement("div");
+  el.innerHTML = svgXml;
+  $svg = el.getElementsByTagName('svg');
 
-  svgXml = $('<div></div>').append($svg).html();
+  $svg[0].setAttribute('width', renderBox.width + 1);
+  $svg[0].setAttribute('height', renderBox.height + 1);
+  $svg[0].setAttribute('style', 'font-family: Arial, "Microsoft Yahei","Heiti SC";');
+
+  let div = document.createElement("div");
+  div.appendChild($svg[0]);
+  svgXml = div.innerHTML;
 
   // Dummy IE
   svgXml = svgXml.replace(' xmlns="http://www.w3.org/2000/svg" xmlns:NS1="" NS1:ns1:xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:NS2="" NS2:xmlns:ns1=""', '');

@@ -280,10 +280,10 @@ export default {
           moveView(e.getPosition("top"));
         }
       });
-      $(window).on("mouseup", function () {
+      document.onkeyup = function () {
         dragging = false;
         self.$previewNavigator && self.$previewNavigator.classList.remove("grab");
-      });
+      };
     }
   },
 };
