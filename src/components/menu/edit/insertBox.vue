@@ -16,38 +16,30 @@
 </template>
 
 <script>
-import {
-  mapGetters
-} from 'vuex'
 import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'insertBox',
-  computed: {
-    ...mapGetters([
-      'getMinder'
-    ]),
-  },
   methods: {
     disabled(command) {
-      let minder = this.getMinder;
+      let minder = this.$minder;
       if (isDisableNode(minder)) {
         return true;
       }
-      if (minder.queryCommandState) {
+      if (minder && minder.queryCommandState) {
         return minder.queryCommandState(command) === -1;
       }
       return false
     },
     appendChildNode() {
-      var minder = this.getMinder;
+      var minder = this.$minder;
       minder.queryCommandState('AppendChildNode') === -1 || minder.execCommand('AppendChildNode')
     },
     appendParentNode() {
-      var minder = this.getMinder;
+      var minder = this.$minder;
       minder.queryCommandState('AppendParentNode') === -1 || minder.execCommand('AppendParentNode')
     },
     appendSiblingNode() {
-      var minder = this.getMinder;
+      var minder = this.$minder;
       minder.queryCommandState('AppendSiblingNode') === -1 || minder.execCommand('AppendSiblingNode')
     }
   }

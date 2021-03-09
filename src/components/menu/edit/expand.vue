@@ -25,24 +25,15 @@
 </template>
 
 <script>
-import {
-  mapGetters
-} from 'vuex';
 export default {
   name: 'expand',
-  computed: {
-    ...mapGetters({
-      'minder': 'getMinder'
-    })
-
-  },
   methods: {
     handleCommand(command) {
-      this.minder.execCommand && this.minder.execCommand('ExpandToLevel', command);
+      this.$minder.execCommand && this.$minder.execCommand('ExpandToLevel', command);
     },
 
     expandAll() {
-      this.minder.execCommand && minder.execCommand('ExpandToLevel', 9999);
+      this.$minder.execCommand && this.$minder.execCommand('ExpandToLevel', 9999);
     }
   }
 }

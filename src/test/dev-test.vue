@@ -2,7 +2,7 @@
   <div>
     <minder-editor
       :import-json="importJson"
-      :progress-enable="false"
+      :progress-enable="true"
       :tag-enable="true"
       :sequence-enable="true"
       :tags="tags"

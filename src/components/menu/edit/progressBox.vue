@@ -1,22 +1,20 @@
 <template>
-<div class="progress-group">
-  <ul>
-    <ul :disabled="commandDisabled">
-      <li v-for="(item, index) in items" class="menu-btn" :class="classArray(index)" @click="execCommand(index)" :title="title(index)"></li>
+  <div class="progress-group">
+    <ul>
+      <ul :disabled="commandDisabled">
+        <li v-for="(item, index) in items" class="menu-btn" :class="classArray(index)" @click="execCommand(index)" :title="title(index)"></li>
+      </ul>
     </ul>
-  </ul>
-</div>
+  </div>
 </template>
 
 <script>
-import {
-  mapGetters,
-} from 'vuex'
 import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'progressBox',
   data() {
     return {
+      minder: {},
       items: [
         { text: '0' },
         { text: '1' },
@@ -32,11 +30,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      'minder': 'getMinder'
-    }),
     commandDisabled() {
-      var minder = this.minder
+      let minder = this.minder;
+      if (!minder) return true;
       minder.on && minder.on('interactchange', function () {
         this.commandValue = minder.queryCommandValue('progress');
       });
@@ -46,12 +42,17 @@ export default {
       return minder.queryCommandState && minder.queryCommandState('progress') === -1;
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      this.minder = this.$minder;
+    })
+  },
   methods: {
     execCommand(index) {
-      this.commandDisabled || this.minder.execCommand('progress', index)
+      this.commandDisabled || this.$minder.execCommand('progress', index)
     },
     classArray(index) {
-      var isActive = this.minder.queryCommandValue && this.minder.queryCommandValue('progress') == index;
+      var isActive = this.$minder && this.$minder.queryCommandValue && this.$minder.queryCommandValue('progress') == index;
       var sequence = 'progress-' + index;
 
       // 用数组返回多个class

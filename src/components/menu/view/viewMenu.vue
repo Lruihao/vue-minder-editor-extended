@@ -27,7 +27,8 @@ export default {
     fontOperation
   },
   props: {
-    ...moleProps
+    ...moleProps,
+    minder: {}
   }
 }
 

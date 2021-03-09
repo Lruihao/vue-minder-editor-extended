@@ -11,6 +11,7 @@
     <div id="mind_tab-content">
       <div class="mind-tab-panel" v-show="switchShow.showEditMenu">
         <edit-menu
+          :minder="minder"
           :sequence-enable="sequenceEnable"
           :tag-enable="tagEnable"
           :progress-enable="progressEnable"
@@ -21,7 +22,9 @@
         />
       </div>
       <div class="mind-tab-panel" v-show="switchShow.showViewMenu">
-        <view-menu :default_mold="default_mold"/>
+        <view-menu
+          :minder="minder"
+          :default_mold="default_mold"/>
       </div>
     </div>
   </header>
@@ -45,7 +48,8 @@
       ...editMenuProps,
       ...priorityProps,
       ...tagProps,
-      ...moleProps
+      ...moleProps,
+      minder: {}
     },
     components: {
       editMenu,

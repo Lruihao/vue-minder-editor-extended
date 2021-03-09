@@ -16,9 +16,6 @@
 </template>
 
 <script>
-import {
-    mapGetters
-} from 'vuex'
 import {moleProps} from "../../props";
 export default {
     name: 'mold',
@@ -31,11 +28,8 @@ export default {
       }
     },
     computed: {
-        ...mapGetters({
-            'minder': 'getMinder'
-        }),
         disabled() {
-            return this.minder.queryCommandState && this.minder.queryCommandState('template') === -1
+            return this.$minder && this.$minder.queryCommandState && this.$minder.queryCommandState('template') === -1
         },
         templateList() {
             return kityminder.Minder.getTemplateList();
@@ -49,7 +43,7 @@ export default {
     methods: {
         handleCommand(command) {
           this.mold_index = command;
-          this.minder.execCommand('template', Object.keys(this.templateList)[command]);
+          this.$minder.execCommand('template', Object.keys(this.templateList)[command]);
         }
     }
 }

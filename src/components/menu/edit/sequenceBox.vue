@@ -1,21 +1,18 @@
 ﻿<template>
-<div :disabled="commandDisabled">
+  <div :disabled="commandDisabled">
 
-  <el-button type="info" class="delete-btn" icon="el-icon-delete" @click="execCommand(null)" circle></el-button>
+    <el-button type="info" class="delete-btn" icon="el-icon-delete" @click="execCommand(null)" circle></el-button>
 
-  <el-button type="info" class="priority-btn"
-             v-for="(item, index) in (priorityCount + 1)"
-             :key="item"
-             v-if="index != 0"
-             :class="'priority-btn_' + index"
-             @click="execCommand(index)" size="mini">{{priorityPrefix}}{{ priorityStartWithZero ? index - 1 : index }}</el-button>
-</div>
+    <el-button type="info" class="priority-btn"
+               v-for="(item, index) in (priorityCount + 1)"
+               :key="item"
+               v-if="index != 0"
+               :class="'priority-btn_' + index"
+               @click="execCommand(index)" size="mini">{{priorityPrefix}}{{ priorityStartWithZero ? index - 1 : index }}</el-button>
+  </div>
 </template>
 
 <script>
-import {
-  mapGetters,
-} from 'vuex'
 import {priorityProps} from "../../props";
 import {isDisableNode} from "../../../script/tool/utils";
 
@@ -24,12 +21,15 @@ export default {
   props: {
     ...priorityProps
   },
+  data() {
+    return {
+      minder: undefined
+    }
+  },
   computed: {
-    ...mapGetters({
-      'minder': 'getMinder'
-    }),
     commandDisabled() {
-      let minder = this.minder
+      let minder = this.minder;
+      if (!minder) return true;
       this.$nextTick(() => {
         this.setPriorityView();
       });
@@ -44,7 +44,8 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      let minder = this.minder;
+      this.minder = this.$minder;
+      let minder = this.$minder;
       let freshFuc = this.setPriorityView;
       minder.on && minder.on('contentchange', function () {
         // 异步执行，否则执行完，还会被重置
@@ -57,10 +58,10 @@ export default {
   methods: {
     execCommand(index) {
       if (index) {
-        this.commandDisabled || this.minder.execCommand('priority', index);
+        this.commandDisabled || this.$minder.execCommand('priority', index);
         this.setPriorityView();
       } else {
-        this.commandDisabled || this.minder.execCommand('priority');
+        this.commandDisabled || this.$minder.execCommand('priority');
       }
     },
     setPriorityView() {

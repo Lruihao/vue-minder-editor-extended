@@ -18,46 +18,43 @@
 </template>
 
 <script>
-import {
-    mapGetters
-} from "vuex";
 export default {
     name: "styleOpreation",
     computed: {
-        ...mapGetters({
-            minder: "getMinder",
-        }),
         disabled1() {
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("clearstyle") === -1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("clearstyle") === -1
             );
         },
         disabled2() {
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("copystyle") === -1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("copystyle") === -1
             );
         },
         disabled3() {
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("pastestyle") === -1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("pastestyle") === -1
             );
         },
     },
     methods: {
         clearstyle() {
-            this.minder.queryCommandState("clearstyle") === -1 ||
-                this.minder.execCommand("clearstyle");
+            this.$minder.queryCommandState("clearstyle") === -1 ||
+                this.$minder.execCommand("clearstyle");
         },
         copystyle() {
-            this.minder.queryCommandState("copystyle") === -1 ||
-                this.minder.execCommand("copystyle");
+            this.$minder.queryCommandState("copystyle") === -1 ||
+                this.$minder.execCommand("copystyle");
         },
         pastestyle() {
-            this.minder.queryCommandState("pastestyle") === -1 ||
-                this.minder.execCommand("pastestyle");
+            this.$minder.queryCommandState("pastestyle") === -1 ||
+                this.$minder.execCommand("pastestyle");
         },
     },
 };

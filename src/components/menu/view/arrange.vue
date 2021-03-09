@@ -8,22 +8,16 @@
 </template>
 
 <script>
-import {
-    mapGetters
-} from 'vuex'
 export default {
     name: 'arrange',
     computed: {
-        ...mapGetters({
-            'minder': 'getMinder'
-        }),
         disabled() {
-            return this.minder.queryCommandState && this.minder.queryCommandState('resetlayout') === -1;
+            return this.$minder && this.$minder.queryCommandState && this.$minder.queryCommandState('resetlayout') === -1;
         }
     },
     methods: {
         resetlayout() {
-            this.minder.queryCommandState('resetlayout') === -1 || this.minder.execCommand('resetlayout')
+            this.$minder.queryCommandState('resetlayout') === -1 || this.$minder.execCommand('resetlayout')
         }
     }
 }

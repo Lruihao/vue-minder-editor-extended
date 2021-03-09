@@ -12,28 +12,22 @@
 </template>
 
 <script>
-import {
-  mapGetters
-} from 'vuex'
 import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'moveBox',
-  computed: {
-    ...mapGetters({
-      'minder': 'getMinder'
-    }),
-  },
   methods: {
     disabled(command) {
-      if (isDisableNode(this.minder)) {
+      if (isDisableNode(this.$minder)) {
         return true;
       }
       let bool = false;
-      bool = this.minder.queryCommandState && this.minder.queryCommandState(command) === -1
+      if (this.$minder) {
+        bool = this.$minder.queryCommandState && this.$minder.queryCommandState(command) === -1
+      }
       return bool;
     },
     execCommand(command) {
-      this.minder.queryCommandState(command) === -1 || this.minder.execCommand(command)
+      this.$minder.queryCommandState(command) === -1 || this.$minder.execCommand(command)
     },
   }
 }

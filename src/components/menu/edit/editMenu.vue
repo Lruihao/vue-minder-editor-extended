@@ -1,19 +1,19 @@
 <template lang="html">
-<div class="menu-container">
-  <expand/>
-  <selection/>
-  <insert-box/>
-  <move-box/>
-  <edit-del/>
-  <sequence-box
-    v-if="sequenceEnable"
-    :prefix="priorityPrefix"
-    :priority-count="priorityCount"
-    :start-with-zero="priorityStartWithZero"
-  />
-  <progress-box v-if="progressEnable"/>
-  <tag-box :tags="tags" v-if="tagEnable"/>
-</div>
+  <div class="menu-container">
+    <expand/>
+    <selection/>
+    <insert-box/>
+    <move-box/>
+    <edit-del/>
+    <sequence-box
+      v-if="sequenceEnable"
+      :prefix="priorityPrefix"
+      :priority-count="priorityCount"
+      :start-with-zero="priorityStartWithZero"
+    />
+    <progress-box v-if="progressEnable"/>
+    <tag-box :tags="tags" v-if="tagEnable"/>
+  </div>
 </template>
 
 <script>

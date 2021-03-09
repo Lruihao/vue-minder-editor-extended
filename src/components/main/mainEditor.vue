@@ -5,12 +5,8 @@
 </template>
 
 <script>
-import {
-  mapActions,
-  mapMutations,
-  mapGetters
-} from 'vuex'
 import {editMenuProps, importJson} from "../props";
+import Vue from 'vue'
 export default {
   props: {
     ...editMenuProps,
@@ -25,14 +21,12 @@ export default {
     let Editor = require('../../script/editor');
     let el = this.$el;
     let editor = window.editor = new Editor(el, this.editMenuProps);
-    this.setEditor(editor);
     if (this.importJson) {
       editor.minder.importJson(this.importJson);
     }
     window.minder = window.km = editor.minder;
-    this.minder = editor.minder;
-    this.setMinder(editor.minder);
-    this.executeCallback();
+    Vue.prototype.$minder = editor.minder;
+    Vue.prototype.$minderEditor = editor;
   },
   computed: {
     editMenuProps() {
@@ -47,15 +41,8 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'executeCallback'
-    ]),
-    ...mapMutations([
-      'setMinder',
-      'setEditor'
-    ]),
     save() {
-      this.$emit('save', this.minder.exportJson());
+      this.$emit('save', this.$minder.exportJson());
     }
   },
 }

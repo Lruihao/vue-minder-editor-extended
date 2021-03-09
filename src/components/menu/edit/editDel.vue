@@ -12,38 +12,31 @@
 </template>
 
 <script>
-import {
-  mapGetters
-} from 'vuex';
 import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'edit_del',
-  computed: {
-    ...mapGetters({
-      'minder': 'getMinder',
-      'editor': 'getEditor'
-    }),
-  },
   methods: {
     disabled(command) {
-      if (isDisableNode(this.minder)) {
+      if (isDisableNode(this.$minder)) {
         return true;
       }
-      return this.minder.queryCommandState && this.minder.queryCommandState(command) === -1
+      if (this.$minder) {
+        return this.$minder.queryCommandState && this.$minder.queryCommandState(command) === -1
+      }
     },
     edit() {
-      this.minder.queryCommandState('text') === -1 || this.editNode();
+      this.$minder.queryCommandState('text') === -1 || this.editNode();
     },
     del() {
-      this.minder.queryCommandState('RemoveNode') === -1 || this.minder.execCommand('RemoveNode');
+      this.$minder.queryCommandState('RemoveNode') === -1 || this.$minder.execCommand('RemoveNode');
     },
     editNode() {
-      var editor = this.editor;
-      var receiverElement = editor.receiver.element;
-      var fsm = editor.fsm;
-      var receiver = editor.receiver;
+      let editor = this.$minderEditor;
+      let receiverElement = editor.receiver.element;
+      let fsm = editor.fsm;
+      let receiver = editor.receiver;
 
-      receiverElement.innerText = this.minder.queryCommandValue('text');
+      receiverElement.innerText = this.$minder.queryCommandValue('text');
       fsm.jump('input', 'input-request');
       receiver.selectAll();
     }

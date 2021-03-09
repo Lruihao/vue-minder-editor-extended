@@ -10,22 +10,24 @@
 </template>
 
 <script>
-import {
-  mapGetters,
-} from 'vuex'
+
 import {tagProps} from "../../props";
 import {isDisableNode} from "../../../script/tool/utils";
+
 export default {
   name: 'tagBox',
   props: {
     ...tagProps
   },
+  data() {
+    return {
+      minder: undefined
+    }
+  },
   computed: {
-    ...mapGetters({
-      'minder': 'getMinder'
-    }),
     commandDisabled() {
-      let minder = this.minder
+      let minder = this.minder;
+      if (!minder) return true;
       minder.on && minder.on('interactchange', function () {
         this.commandValue = minder.queryCommandValue('resource');
       });
@@ -36,10 +38,13 @@ export default {
     },
   },
   mounted() {
+    this.$nextTick(() => {
+      this.minder = this.$minder;
+    })
   },
   methods: {
     getResourceColor(resource) {
-      if (this.minder.getResourceColor) {
+      if (this.minder && this.minder.getResourceColor) {
         return this.minder.getResourceColor(resource).toHEX();
       }
     },

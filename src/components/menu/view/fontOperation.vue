@@ -14,9 +14,6 @@
 </template>
 
 <script>
-import {
-    mapGetters
-} from "vuex";
 export default {
     data() {
         return {
@@ -124,56 +121,61 @@ export default {
     },
 
     computed: {
-        ...mapGetters({
-            minder: "getMinder",
-        }),
         currentTheme() {
-            return this.minder.getThemeItems();
+            return this.$minder.getThemeItems();
         },
 
         // 直接定义model的计算型属性会时select异常，
         disabledFont() {
             var currentFontFamily =
-                this.minder.queryCommandValue &&
-                this.minder.queryCommandValue("fontfamily");
+              this.$minder &&
+              this.$minder.queryCommandValue &&
+              this.$minder.queryCommandValue("fontfamily");
             this.fontFamilyDefaultValue = currentFontFamily || "字体";
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("fontfamily") === -1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("fontfamily") === -1
             );
         },
         disabledFontSize() {
             this.fontSizeDefaultValue =
-                (this.minder.queryCommandValue &&
-                    this.minder.queryCommandValue("fontsize")) ||
+                (this.$minder &&
+                  this.$minder.queryCommandValue &&
+                  this.$minder.queryCommandValue("fontsize")) ||
                 "字号";
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("fontsize") === -1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("fontsize") === -1
             );
         },
         disabledBold() {
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("bold") === -1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("bold") === -1
             );
         },
         disabledItalic() {
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("italic") === -1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("italic") === -1
             );
         },
         boldSelected() {
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("bold") == 1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("bold") == 1
             );
         },
         italicSelected() {
             return (
-                this.minder.queryCommandState &&
-                this.minder.queryCommandState("italic") == 1
+              this.$minder &&
+              this.$minder.queryCommandState &&
+              this.$minder.queryCommandState("italic") == 1
             );
         },
     },
@@ -182,16 +184,16 @@ export default {
             if (value == "字体") {
                 return;
             }
-            this.minder.execCommand("fontfamily", value);
+            this.$minder.execCommand("fontfamily", value);
         },
         execCommandFontSize(value) {
             if (typeof value !== "number") {
                 return;
             }
-            this.minder.execCommand("fontsize", value);
+            this.$minder.execCommand("fontsize", value);
         },
         execCommandFontStyle(style) {
-            var minder = this.minder;
+            var minder = this.$minder;
             switch (style) {
                 case "bold":
                     minder.queryCommandState("bold") === -1 || minder.execCommand("bold");

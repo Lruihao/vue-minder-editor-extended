@@ -29,10 +29,7 @@
 </template>
 
 <script>
-import {
-  mapGetters,
-  mapActions
-} from "vuex";
+import {getLocalStorage, setLocalStorage} from '../../script/store'
 export default {
   name: "navigator",
   data() {
@@ -47,15 +44,25 @@ export default {
       contentView: "",
       visibleView: "",
       pathHandler: "",
+      minder: undefined,
+      config: {
+      // 右侧面板最小宽度
+      ctrlPanelMin: 250,
+        // 右侧面板宽度
+        ctrlPanelWidth: parseInt(window.localStorage.__dev_minder_ctrlPanelWidth) || 250,
+        // 分割线宽度
+        dividerWidth: 3,
+        // 默认语言
+        defaultLang: 'zh-cn',
+        // 放大缩小比例
+        zoom: [10, 20, 30, 50, 80, 100, 120, 150, 200]
+    }
     };
   },
   computed: {
-    ...mapGetters({
-      minder: "getMinder",
-      config: "config",
-    }),
     enableHand() {
       return (
+        this.minder &&
         this.minder.queryCommandState &&
         this.minder.queryCommandState("hand") == 1
       );
@@ -68,32 +75,29 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["setMemory", "getMemory"]),
-
     //避免缓存
     getNavOpenState() {
-      var res = window.localStorage.getItem("navigator-hidden");
-      return res;
+      return getLocalStorage("navigator-hidden");
     },
 
     zoomIn() {
-      this.minder.execCommand("zoomIn");
+      this.$minder.execCommand("zoomIn");
     },
 
     RestoreSize() {
-      this.minder.execCommand("zoom", 100);
+      this.$minder.execCommand("zoom", 100);
     },
 
     zoomOut() {
-      this.minder.execCommand("zoomOut");
+      this.$minder.execCommand("zoomOut");
     },
 
     hand() {
-      this.minder.execCommand("hand");
+      this.$minder.execCommand("hand");
     },
 
     getZoomRadio(value) {
-      var zoomStack = this.minder.getOption && this.minder.getOption("zoom");
+      var zoomStack = this.$minder && this.$minder.getOption && this.$minder.getOption("zoom");
       if (!zoomStack) {
         return;
       }
@@ -111,17 +115,18 @@ export default {
     },
 
     locateToOrigin() {
-      this.minder.execCommand("camera", minder.getRoot(), 600);
+      this.$minder.execCommand("camera", minder.getRoot(), 600);
     },
 
     toggleNavOpen() {
       var self = this;
       var isNavOpen = "";
       isNavOpen = !JSON.parse(self.getNavOpenState());
-      self.setMemory({
-        key: "navigator-hidden",
-        value: isNavOpen,
-      });
+      // self.setMemory({
+      //   key: "navigator-hidden",
+      //   value: isNavOpen,
+      // });
+      setLocalStorage("navigator-hidden", isNavOpen);
       self.isNavOpen = isNavOpen;
       setTimeout(function () {
         if (self.isNavOpen) {
@@ -135,13 +140,13 @@ export default {
     },
 
     bind() {
-      this.minder.on("layout layoutallfinish", this.updateContentView);
-      this.minder.on("viewchange", this.updateVisibleView);
+      this.$minder.on("layout layoutallfinish", this.updateContentView);
+      this.$minder.on("viewchange", this.updateVisibleView);
     },
 
     unbind() {
-      this.minder.off("layout layoutallfinish", this.updateContentView);
-      this.minder.off("viewchange", this.updateVisibleView);
+      this.$minder.off("layout layoutallfinish", this.updateContentView);
+      this.$minder.off("viewchange", this.updateVisibleView);
     },
 
     getPathHandler(theme) {
@@ -173,7 +178,7 @@ export default {
 
     updateContentView() {
       var self = this;
-      var view = self.minder.getRenderContainer().getBoundaryBox();
+      var view = self.$minder.getRenderContainer().getBoundaryBox();
       self.contentView = view;
       var padding = 30;
       self.paper.setViewBox(
@@ -184,7 +189,7 @@ export default {
       );
       var nodePathData = [];
       var connectionThumbData = [];
-      self.minder.getRoot().traverse(function (node) {
+      self.$minder.getRoot().traverse(function (node) {
         var box = node.getLayoutBox();
         self.pathHandler(nodePathData, box.x, box.y, box.width, box.height);
         if (node.getConnection() && node.parent && node.parent.isExpanded()) {
@@ -210,81 +215,83 @@ export default {
     },
 
     updateVisibleView() {
-      this.visibleView = this.minder.getViewDragger().getView();
+      this.visibleView = this.$minder.getViewDragger().getView();
       this.visibleRect.setBox(this.visibleView.intersect(this.contentView));
     },
   },
 
   mounted() {
     var self = this;
-    var minder = self.minder;
+    this.$nextTick(() => {
+      this.minder = self.$minder;
+      var minder = self.$minder;
+      // 以下部分是缩略图导航器
+      self.$previewNavigator = this.$refs.navPreviewer;
 
-    // 以下部分是缩略图导航器
-    self.$previewNavigator = this.$refs.navPreviewer;
+      // 画布，渲染缩略图
+      self.paper = new kity.Paper(self.$previewNavigator);
 
-    // 画布，渲染缩略图
-    self.paper = new kity.Paper(self.$previewNavigator);
+      // 用两个路径来挥之节点和连线的缩略图
+      self.nodeThumb = self.paper.put(new kity.Path());
+      self.connectionThumb = self.paper.put(new kity.Path());
 
-    // 用两个路径来挥之节点和连线的缩略图
-    self.nodeThumb = self.paper.put(new kity.Path());
-    self.connectionThumb = self.paper.put(new kity.Path());
+      // 表示可视区域的矩形
+      self.visibleRect = self.paper.put(
+        new kity.Rect(100, 100).stroke("red", "1%")
+      );
+      self.contentView = new kity.Box();
+      self.visibleView = new kity.Box();
 
-    // 表示可视区域的矩形
-    self.visibleRect = self.paper.put(
-      new kity.Rect(100, 100).stroke("red", "1%")
-    );
-    self.contentView = new kity.Box();
-    self.visibleView = new kity.Box();
+      self.pathHandler = self.getPathHandler(minder.getTheme());
+      minder.setDefaultOptions({
+        zoom: self.config.zoom,
+      });
 
-    self.pathHandler = self.getPathHandler(minder.getTheme());
-    minder.setDefaultOptions({
-      zoom: self.config.zoom,
-    });
-
-    minder &&
+      minder &&
       minder.on("zoom", function (e) {
         self.zoom = e.zoom;
       });
-    if (self.isNavOpen) {
-      self.bind();
-      self.updateContentView();
-      self.updateVisibleView();
-    } else {
-      self.unbind();
-    }
-    // 主题切换事件
-    minder.on("themechange", function (e) {
-      pathHandler = self.getPathHandler(e.theme);
-    });
-
-    navigate();
-
-    function navigate() {
-      function moveView(center, duration) {
-        var box = self.visibleView;
-        center.x = -center.x;
-        center.y = -center.y;
-        var viewMatrix = minder.getPaper().getViewPortMatrix();
-        box = viewMatrix.transformBox(box);
-        var targetPosition = center.offset(box.width / 2, box.height / 2);
-        minder.getViewDragger().moveTo(targetPosition, duration);
+      if (self.isNavOpen) {
+        self.bind();
+        self.updateContentView();
+        self.updateVisibleView();
+      } else {
+        self.unbind();
       }
-      var dragging = false;
-      self.paper.on("mousedown", function (e) {
-        dragging = true;
-        moveView(e.getPosition("top"), 200);
-        self.$previewNavigator.classList.add("grab");
+      // 主题切换事件
+      minder.on("themechange", function (e) {
+        pathHandler = self.getPathHandler(e.theme);
       });
-      self.paper.on("mousemove", function (e) {
-        if (dragging) {
-          moveView(e.getPosition("top"));
+
+      navigate();
+
+      function navigate() {
+        function moveView(center, duration) {
+          var box = self.visibleView;
+          center.x = -center.x;
+          center.y = -center.y;
+          var viewMatrix = minder.getPaper().getViewPortMatrix();
+          box = viewMatrix.transformBox(box);
+          var targetPosition = center.offset(box.width / 2, box.height / 2);
+          minder.getViewDragger().moveTo(targetPosition, duration);
         }
-      });
-      document.onkeyup = function () {
-        dragging = false;
-        self.$previewNavigator && self.$previewNavigator.classList.remove("grab");
-      };
-    }
+        var dragging = false;
+        self.paper.on("mousedown", function (e) {
+          dragging = true;
+          moveView(e.getPosition("top"), 200);
+          self.$previewNavigator.classList.add("grab");
+        });
+        self.paper.on("mousemove", function (e) {
+          if (dragging) {
+            moveView(e.getPosition("top"));
+          }
+        });
+        document.onkeyup = function () {
+          dragging = false;
+          self.$previewNavigator && self.$previewNavigator.classList.remove("grab");
+        };
+      }
+    })
   },
 };
 </script>

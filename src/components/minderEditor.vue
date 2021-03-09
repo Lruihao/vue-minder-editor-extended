@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import headerMenu from '@/components/main/header'
-import mainEditor from '@/components/main/mainEditor'
-import navigator from '@/components/main/navigator'
+import headerMenu from './main/header'
+import mainEditor from './main/mainEditor'
+import navigator from './main/navigator'
 import {editMenuProps, importJson, moleProps, priorityProps, tagProps} from "./props";
 
 export default {
@@ -34,10 +34,15 @@ export default {
     mainEditor,
     navigator
   },
+  data() {
+    return {
+      minder: {}
+    }
+  },
   methods: {
     save(data) {
       this.$emit('save', data);
-    }
+    },
   },
   props: {
     ...editMenuProps,

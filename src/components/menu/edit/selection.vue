@@ -5,7 +5,7 @@
   <el-row class="block-col-1">
     <el-col :span="24">
       <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle menu-btn" @command="handleCommand">
-        <span class="el-dropdown-link ">
+        <span class="el-dropdown-link">
           全选
           <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
@@ -27,7 +27,7 @@ export default {
   name: 'selection',
   methods: {
     selectAll() {
-      var selection = [];
+      let selection = [];
       minder.getRoot().traverse(function (node) {
         selection.push(node);
       });
@@ -36,8 +36,8 @@ export default {
     },
 
     selectRevert() {
-      var selected = minder.getSelectedNodes();
-      var selection = [];
+      let selected = minder.getSelectedNodes();
+      let selection = [];
       minder.getRoot().traverse(function (node) {
         if (selected.indexOf(node) == -1) {
           selection.push(node);
