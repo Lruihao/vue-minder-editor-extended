@@ -25,8 +25,7 @@ export default {
       editor.minder.importJson(this.importJson);
     }
     window.minder = window.km = editor.minder;
-    Vue.prototype.$minder = editor.minder;
-    Vue.prototype.$minderEditor = editor;
+    window.minderEditor = editor;
   },
   computed: {
     editMenuProps() {

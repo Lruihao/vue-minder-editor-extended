@@ -22,39 +22,60 @@ export default {
     name: "styleOpreation",
     computed: {
         disabled1() {
-            return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("clearstyle") === -1
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          return (
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("clearstyle") === -1
             );
         },
         disabled2() {
-            return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("copystyle") === -1
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          return (
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("copystyle") === -1
             );
         },
         disabled3() {
-            return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("pastestyle") === -1
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          return (
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("pastestyle") === -1
             );
         },
     },
     methods: {
         clearstyle() {
-            this.$minder.queryCommandState("clearstyle") === -1 ||
-                this.$minder.execCommand("clearstyle");
+            minder.queryCommandState("clearstyle") === -1 ||
+                minder.execCommand("clearstyle");
         },
         copystyle() {
-            this.$minder.queryCommandState("copystyle") === -1 ||
-                this.$minder.execCommand("copystyle");
+            minder.queryCommandState("copystyle") === -1 ||
+                minder.execCommand("copystyle");
         },
         pastestyle() {
-            this.$minder.queryCommandState("pastestyle") === -1 ||
-                this.$minder.execCommand("pastestyle");
+            minder.queryCommandState("pastestyle") === -1 ||
+                minder.execCommand("pastestyle");
         },
     },
 };

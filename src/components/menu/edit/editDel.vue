@@ -17,26 +17,32 @@ export default {
   name: 'edit_del',
   methods: {
     disabled(command) {
-      if (isDisableNode(this.$minder)) {
+      try {
+        if (!minder) return false;
+      } catch (e) {
+        // 如果window的还没挂载minder，先捕捉undefined异常
+        return false
+      }
+      if (isDisableNode(minder)) {
         return true;
       }
-      if (this.$minder) {
-        return this.$minder.queryCommandState && this.$minder.queryCommandState(command) === -1
+      if (minder) {
+        return minder.queryCommandState && minder.queryCommandState(command) === -1
       }
     },
     edit() {
-      this.$minder.queryCommandState('text') === -1 || this.editNode();
+      minder.queryCommandState('text') === -1 || this.editNode();
     },
     del() {
-      this.$minder.queryCommandState('RemoveNode') === -1 || this.$minder.execCommand('RemoveNode');
+      minder.queryCommandState('RemoveNode') === -1 || minder.execCommand('RemoveNode');
     },
     editNode() {
-      let editor = this.$minderEditor;
+      let editor = minderEditor;
       let receiverElement = editor.receiver.element;
       let fsm = editor.fsm;
       let receiver = editor.receiver;
 
-      receiverElement.innerText = this.$minder.queryCommandValue('text');
+      receiverElement.innerText = minder.queryCommandValue('text');
       fsm.jump('input', 'input-request');
       receiver.selectAll();
     }

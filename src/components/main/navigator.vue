@@ -81,23 +81,29 @@ export default {
     },
 
     zoomIn() {
-      this.$minder.execCommand("zoomIn");
+      minder.execCommand("zoomIn");
     },
 
     RestoreSize() {
-      this.$minder.execCommand("zoom", 100);
+      minder.execCommand("zoom", 100);
     },
 
     zoomOut() {
-      this.$minder.execCommand("zoomOut");
+      minder.execCommand("zoomOut");
     },
 
     hand() {
-      this.$minder.execCommand("hand");
+      minder.execCommand("hand");
     },
 
     getZoomRadio(value) {
-      var zoomStack = this.$minder && this.$minder.getOption && this.$minder.getOption("zoom");
+      try {
+        if (!minder) return false;
+      } catch (e) {
+        // 如果window的还没挂载minder，先捕捉undefined异常
+        return false
+      }
+      var zoomStack = minder && minder.getOption && minder.getOption("zoom");
       if (!zoomStack) {
         return;
       }
@@ -115,17 +121,13 @@ export default {
     },
 
     locateToOrigin() {
-      this.$minder.execCommand("camera", minder.getRoot(), 600);
+      minder.execCommand("camera", minder.getRoot(), 600);
     },
 
     toggleNavOpen() {
       var self = this;
       var isNavOpen = "";
       isNavOpen = !JSON.parse(self.getNavOpenState());
-      // self.setMemory({
-      //   key: "navigator-hidden",
-      //   value: isNavOpen,
-      // });
       setLocalStorage("navigator-hidden", isNavOpen);
       self.isNavOpen = isNavOpen;
       setTimeout(function () {
@@ -140,13 +142,13 @@ export default {
     },
 
     bind() {
-      this.$minder.on("layout layoutallfinish", this.updateContentView);
-      this.$minder.on("viewchange", this.updateVisibleView);
+      minder.on("layout layoutallfinish", this.updateContentView);
+      minder.on("viewchange", this.updateVisibleView);
     },
 
     unbind() {
-      this.$minder.off("layout layoutallfinish", this.updateContentView);
-      this.$minder.off("viewchange", this.updateVisibleView);
+      minder.off("layout layoutallfinish", this.updateContentView);
+      minder.off("viewchange", this.updateVisibleView);
     },
 
     getPathHandler(theme) {
@@ -178,7 +180,7 @@ export default {
 
     updateContentView() {
       var self = this;
-      var view = self.$minder.getRenderContainer().getBoundaryBox();
+      var view = minder.getRenderContainer().getBoundaryBox();
       self.contentView = view;
       var padding = 30;
       self.paper.setViewBox(
@@ -189,7 +191,7 @@ export default {
       );
       var nodePathData = [];
       var connectionThumbData = [];
-      self.$minder.getRoot().traverse(function (node) {
+      minder.getRoot().traverse(function (node) {
         var box = node.getLayoutBox();
         self.pathHandler(nodePathData, box.x, box.y, box.width, box.height);
         if (node.getConnection() && node.parent && node.parent.isExpanded()) {
@@ -215,7 +217,7 @@ export default {
     },
 
     updateVisibleView() {
-      this.visibleView = this.$minder.getViewDragger().getView();
+      this.visibleView = minder.getViewDragger().getView();
       this.visibleRect.setBox(this.visibleView.intersect(this.contentView));
     },
   },
@@ -223,8 +225,7 @@ export default {
   mounted() {
     var self = this;
     this.$nextTick(() => {
-      this.minder = self.$minder;
-      var minder = self.$minder;
+      this.minder = minder;
       // 以下部分是缩略图导航器
       self.$previewNavigator = this.$refs.navPreviewer;
 

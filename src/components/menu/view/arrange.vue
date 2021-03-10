@@ -12,12 +12,18 @@ export default {
     name: 'arrange',
     computed: {
         disabled() {
-            return this.$minder && this.$minder.queryCommandState && this.$minder.queryCommandState('resetlayout') === -1;
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+          return minder && minder.queryCommandState && minder.queryCommandState('resetlayout') === -1;
         }
     },
     methods: {
         resetlayout() {
-            this.$minder.queryCommandState('resetlayout') === -1 || this.$minder.execCommand('resetlayout')
+            minder.queryCommandState('resetlayout') === -1 || minder.execCommand('resetlayout')
         }
     }
 }

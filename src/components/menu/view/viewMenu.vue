@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-  .menu-container i {
+  .menu-container >>> i {
     display: inline-block;
     width: 20px;
     height: 20px;

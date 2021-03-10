@@ -29,7 +29,13 @@ export default {
     },
     computed: {
         disabled() {
-            return this.$minder && this.$minder.queryCommandState && this.$minder.queryCommandState('template') === -1
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+          return minder && minder.queryCommandState && minder.queryCommandState('template') === -1
         },
         templateList() {
             return kityminder.Minder.getTemplateList();
@@ -43,7 +49,7 @@ export default {
     methods: {
         handleCommand(command) {
           this.mold_index = command;
-          this.$minder.execCommand('template', Object.keys(this.templateList)[command]);
+          minder.execCommand('template', Object.keys(this.templateList)[command]);
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
 <div class="expand-group">
 
-  <el-button class="tab-icons expand" @click="expandAll"></el-button>
+  <el-button class="tab-icons expand" @click="expandAll"/>
   <el-row class="block-col-1">
     <el-col :span="24">
       <!-- <span class="demonstration">click 激活</span> -->
@@ -29,11 +29,11 @@ export default {
   name: 'expand',
   methods: {
     handleCommand(command) {
-      this.$minder.execCommand && this.$minder.execCommand('ExpandToLevel', command);
+      minder.execCommand && minder.execCommand('ExpandToLevel', command);
     },
 
     expandAll() {
-      this.$minder.execCommand && this.$minder.execCommand('ExpandToLevel', 9999);
+      minder.execCommand && minder.execCommand('ExpandToLevel', 9999);
     }
   }
 }

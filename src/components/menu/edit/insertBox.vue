@@ -21,7 +21,13 @@ export default {
   name: 'insertBox',
   methods: {
     disabled(command) {
-      let minder = this.$minder;
+      try {
+        if (!minder) return false;
+      } catch (e) {
+        // 如果window的还没挂载minder，先捕捉undefined异常
+        return false
+      }
+
       if (isDisableNode(minder)) {
         return true;
       }
@@ -31,15 +37,12 @@ export default {
       return false
     },
     appendChildNode() {
-      var minder = this.$minder;
       minder.queryCommandState('AppendChildNode') === -1 || minder.execCommand('AppendChildNode')
     },
     appendParentNode() {
-      var minder = this.$minder;
       minder.queryCommandState('AppendParentNode') === -1 || minder.execCommand('AppendParentNode')
     },
     appendSiblingNode() {
-      var minder = this.$minder;
       minder.queryCommandState('AppendSiblingNode') === -1 || minder.execCommand('AppendSiblingNode')
     }
   }

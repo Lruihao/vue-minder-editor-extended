@@ -6,13 +6,12 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const env = config.build.env
 
 const webpackConfig = merge(baseWebpackConfig, {
    mode: 'production',
-
+  // mode: "development",
   entry: './src/components/plugin.js',
   output: {
     path: config.build.assetsRoot,
@@ -29,7 +28,6 @@ const webpackConfig = merge(baseWebpackConfig, {
         test: /\.less$/,
         use: [
           'vue-style-loader',
-          // MiniCssExtractPlugin.loader,
           'css-loader',
           'less-loader',
           'postcss-loader'
@@ -39,7 +37,6 @@ const webpackConfig = merge(baseWebpackConfig, {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          // MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader'
         ]
@@ -48,18 +45,6 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   optimization: {
-    // splitChunks: {
-    //   cacheGroups: {
-    //     commons: {
-    //       test: /[\\/]node_modules[\\/]/,
-    //       name: 'vendors',
-    //       chunks: 'all'
-    //     }
-    //   }
-    // },
-    // runtimeChunk: {
-    //   name: 'runtime'
-    // }
   },
   plugins: [
     new webpack.ProgressPlugin(),
@@ -80,10 +65,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
-    // new MiniCssExtractPlugin({
-    //   filename: utils.assetsPath('css/[name].[hash].css'),
-    //   chunkFilename: utils.assetsPath('css/[id].[hash].css'),
-    // }),
     new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }

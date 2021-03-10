@@ -1,16 +1,16 @@
 <template>
-<div class="font-group">
-    <el-select v-model="fontFamilyDefaultValue" placeholder="字体" class="font-family-select" :disabled="disabledFont" @change="execCommandFontFamily">
-        <el-option v-for="item in fontFamilys" :label="item.name" :value="item.value" :key="item.id" :style="{'font-family':item.value}">
-        </el-option>
-    </el-select>
-    <el-select v-model="fontSizeDefaultValue" placeholder="字号" class="font-size-select" :disabled="disabledFontSize" @change="execCommandFontSize">
-        <el-option v-for="item in fontSizes" :label="item.label" :value="item.value" :key="item.id" :style="{'font-size':item.value+'px','height':2*item.value+'px', 'line-height':2*item.value+'px','padding':0}">
-        </el-option>
-    </el-select>
-    <span class="font-bold menu-btn tab-icons" @click="execCommandFontStyle('bold')" :class="{'selected':boldSelected}" :disabled="disabledBold"></span>
-    <span class="font-italic menu-btn tab-icons" @click="execCommandFontStyle('italic')" :class="{'selected':italicSelected}" :disabled="disabledItalic"></span>
-</div>
+  <div class="font-group">
+      <el-select v-model="fontFamilyDefaultValue" placeholder="字体" class="font-family-select" :disabled="disabledFont" @change="execCommandFontFamily">
+          <el-option v-for="item in fontFamilys" :label="item.name" :value="item.value" :key="item.id" :style="{'font-family':item.value}">
+          </el-option>
+      </el-select>
+      <el-select v-model="fontSizeDefaultValue" placeholder="字号" class="font-size-select" :disabled="disabledFontSize" @change="execCommandFontSize">
+          <el-option v-for="item in fontSizes" :label="item.label" :value="item.value" :key="item.id" :style="{'font-size':item.value+'px','height':2*item.value+'px', 'line-height':2*item.value+'px','padding':0}">
+          </el-option>
+      </el-select>
+      <span class="font-bold menu-btn tab-icons" @click="execCommandFontStyle('bold')" :class="{'selected':boldSelected}" :disabled="disabledBold"></span>
+      <span class="font-italic menu-btn tab-icons" @click="execCommandFontStyle('italic')" :class="{'selected':italicSelected}" :disabled="disabledItalic"></span>
+  </div>
 </template>
 
 <script>
@@ -122,60 +122,102 @@ export default {
 
     computed: {
         currentTheme() {
-            return this.$minder.getThemeItems();
+            return minder.getThemeItems();
         },
 
         // 直接定义model的计算型属性会时select异常，
         disabledFont() {
-            var currentFontFamily =
-              this.$minder &&
-              this.$minder.queryCommandValue &&
-              this.$minder.queryCommandValue("fontfamily");
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          var currentFontFamily =
+              minder &&
+              minder.queryCommandValue &&
+              minder.queryCommandValue("fontfamily");
             this.fontFamilyDefaultValue = currentFontFamily || "字体";
             return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("fontfamily") === -1
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("fontfamily") === -1
             );
         },
         disabledFontSize() {
-            this.fontSizeDefaultValue =
-                (this.$minder &&
-                  this.$minder.queryCommandValue &&
-                  this.$minder.queryCommandValue("fontsize")) ||
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          this.fontSizeDefaultValue =
+                (minder &&
+                  minder.queryCommandValue &&
+                  minder.queryCommandValue("fontsize")) ||
                 "字号";
             return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("fontsize") === -1
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("fontsize") === -1
             );
         },
         disabledBold() {
-            return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("bold") === -1
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          return (
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("bold") === -1
             );
         },
         disabledItalic() {
-            return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("italic") === -1
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          return (
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("italic") === -1
             );
         },
         boldSelected() {
-            return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("bold") == 1
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          return (
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("bold") == 1
             );
         },
         italicSelected() {
-            return (
-              this.$minder &&
-              this.$minder.queryCommandState &&
-              this.$minder.queryCommandState("italic") == 1
+          try {
+            if (!minder) return false;
+          } catch (e) {
+            // 如果window的还没挂载minder，先捕捉undefined异常
+            return false
+          }
+
+          return (
+              minder &&
+              minder.queryCommandState &&
+              minder.queryCommandState("italic") == 1
             );
         },
     },
@@ -184,16 +226,15 @@ export default {
             if (value == "字体") {
                 return;
             }
-            this.$minder.execCommand("fontfamily", value);
+            minder.execCommand("fontfamily", value);
         },
         execCommandFontSize(value) {
             if (typeof value !== "number") {
                 return;
             }
-            this.$minder.execCommand("fontsize", value);
+            minder.execCommand("fontsize", value);
         },
         execCommandFontStyle(style) {
-            var minder = this.$minder;
             switch (style) {
                 case "bold":
                     minder.queryCommandState("bold") === -1 || minder.execCommand("bold");
@@ -207,3 +248,9 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+ .font-group {
+   margin-left: 10px;
+ }
+</style>

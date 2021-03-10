@@ -44,10 +44,10 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.minder = this.$minder;
-      let minder = this.$minder;
+      this.minder = window.minder;
+      let minder = this.minder;
       let freshFuc = this.setPriorityView;
-      minder.on && minder.on('contentchange', function () {
+       minder.on && minder.on('contentchange', function () {
         // 异步执行，否则执行完，还会被重置
         setTimeout(function(){
           freshFuc();
@@ -58,10 +58,10 @@ export default {
   methods: {
     execCommand(index) {
       if (index) {
-        this.commandDisabled || this.$minder.execCommand('priority', index);
+        this.commandDisabled || this.minder.execCommand('priority', index);
         this.setPriorityView();
       } else {
-        this.commandDisabled || this.$minder.execCommand('priority');
+        this.commandDisabled || this.minder.execCommand('priority');
       }
     },
     setPriorityView() {

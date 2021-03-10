@@ -39,7 +39,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.minder = this.$minder;
+      this.minder = minder;
     })
   },
   methods: {

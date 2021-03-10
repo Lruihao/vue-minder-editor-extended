@@ -44,15 +44,16 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.minder = this.$minder;
+      this.minder = minder;
     })
   },
   methods: {
     execCommand(index) {
-      this.commandDisabled || this.$minder.execCommand('progress', index)
+      this.commandDisabled || minder.execCommand('progress', index)
     },
     classArray(index) {
-      var isActive = this.$minder && this.$minder.queryCommandValue && this.$minder.queryCommandValue('progress') == index;
+      let minder = this.minder;
+      var isActive = minder && minder.queryCommandValue && minder.queryCommandValue('progress') == index;
       var sequence = 'progress-' + index;
 
       // 用数组返回多个class

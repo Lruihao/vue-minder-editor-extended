@@ -17,17 +17,23 @@ export default {
   name: 'moveBox',
   methods: {
     disabled(command) {
-      if (isDisableNode(this.$minder)) {
+      try {
+        if (!minder) return false;
+      } catch (e) {
+        // 如果window的还没挂载minder，先捕捉undefined异常
+        return false
+      }
+      if (isDisableNode(minder)) {
         return true;
       }
       let bool = false;
-      if (this.$minder) {
-        bool = this.$minder.queryCommandState && this.$minder.queryCommandState(command) === -1
+      if (minder) {
+        bool = minder.queryCommandState && minder.queryCommandState(command) === -1
       }
       return bool;
     },
     execCommand(command) {
-      this.$minder.queryCommandState(command) === -1 || this.$minder.execCommand(command)
+      minder.queryCommandState(command) === -1 || minder.execCommand(command)
     },
   }
 }
