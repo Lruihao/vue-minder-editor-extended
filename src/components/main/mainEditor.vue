@@ -1,13 +1,16 @@
 <template>
-  <div class="mind-editor">
+  <div class="minder-container">
     <el-button class="save-btn" @click="save" type="primary">保存</el-button>
+    <navigator/>
   </div>
 </template>
 
 <script>
 import {editMenuProps, importJson} from "../props";
 import Vue from 'vue'
+import Navigator from "./navigator";
 export default {
+  components: {Navigator},
   props: {
     ...editMenuProps,
     importJson
@@ -41,7 +44,7 @@ export default {
   },
   methods: {
     save() {
-      this.$emit('save', this.$minder.exportJson());
+      this.$emit('save', minder.exportJson());
     }
   },
 }
@@ -52,9 +55,15 @@ export default {
 </style>
 
 <style scoped>
+
   .save-btn {
-    position: fixed;
+    position: absolute;
     right: 30px;
     bottom: 30px;
+  }
+
+  .minder-container {
+    position: relative;
+    height: 500px;
   }
 </style>

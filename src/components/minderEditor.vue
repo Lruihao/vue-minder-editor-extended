@@ -16,22 +16,19 @@
       :progress-enable="progressEnable"
       :import-json="importJson"
       @save="save"/>
-    <navigator/>
   </div>
 </template>
 
 <script>
 import headerMenu from './main/header'
 import mainEditor from './main/mainEditor'
-import navigator from './main/navigator'
 import {editMenuProps, importJson, moleProps, priorityProps, tagProps} from "./props";
 
 export default {
   name: 'minderEditor',
   components: {
     headerMenu,
-    mainEditor,
-    navigator
+    mainEditor
   },
   data() {
     return {
@@ -53,3 +50,6 @@ export default {
 }
 
 </script>
+
+<style scoped>
+</style>

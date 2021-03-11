@@ -1,32 +1,28 @@
 <template lang="html">
   <header>
-    <ul id="mind_tab">
-      <li :class="{selected:switchShow.showEditMenu}">
-        <a class="btn-showEditMenu" @click="showMenu">思维导图</a>
-      </li>
-      <li :class="{selected:switchShow.showViewMenu}">
-        <a  class="btn-showViewMenu" @click="showMenu">外观样式</a>
-      </li>
-    </ul>
-    <div id="mind_tab-content">
-      <div class="mind-tab-panel" v-show="switchShow.showEditMenu">
-        <edit-menu
-          :minder="minder"
-          :sequence-enable="sequenceEnable"
-          :tag-enable="tagEnable"
-          :progress-enable="progressEnable"
-          :priority-count="priorityCount"
-          :priority-prefix="priorityPrefix"
-          :priority-start-with-zero="priorityStartWithZero"
-          :tags="tags"
-        />
-      </div>
-      <div class="mind-tab-panel" v-show="switchShow.showViewMenu">
-        <view-menu
-          :minder="minder"
-          :default_mold="default_mold"/>
-      </div>
-    </div>
+    <el-tabs v-model="activeName" class="mind_tab-content">
+      <el-tab-pane label="思维导图" name="editMenu">
+        <div class="mind-tab-panel">
+          <edit-menu
+            :minder="minder"
+            :sequence-enable="sequenceEnable"
+            :tag-enable="tagEnable"
+            :progress-enable="progressEnable"
+            :priority-count="priorityCount"
+            :priority-prefix="priorityPrefix"
+            :priority-start-with-zero="priorityStartWithZero"
+            :tags="tags"
+          />
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="外观样式" name="viewMenu">
+        <div class="mind-tab-panel">
+          <view-menu
+            :minder="minder"
+            :default_mold="default_mold"/>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
   </header>
 </template>
 
@@ -40,8 +36,9 @@
       return {
         switchShow: {
           showEditMenu: true,
-          showViewMenu: false
-        }
+          showViewMenu: false,
+        },
+        activeName: 'editMenu'
       }
     },
     props: {
@@ -72,25 +69,16 @@
   @import "src/style/header";
 </style>
 
-<style>
+<style scoped>
 
-  /*.el-dropdown-menu {*/
-  /*    padding: 0 !important;*/
-  /*    margin: 0 !important;*/
-  /*    left: 40px !important;*/
-  /*}*/
+  .mind_tab-content >>> .tab-icons {
+    background-image: url("/static/minder/icons.png");
+    background-repeat: no-repeat;
+  }
 
-  /*.el-dropdown-menu__item {*/
-  /*      padding: 5px 0 5px 20px !important;*/
-  /*      height: 35px !important;*/
-  /*      line-height: 35px !important;*/
-  /*      margin: 0 !important;*/
-  /*}*/
+  .el-tabs >>> .el-tabs__header {
+    margin-bottom: 10px;
+  }
 
-  /*.el-dropdown-menu .el-dropdown-menu__item {*/
-  /*  padding: 0px !important;*/
-  /*  height: 40px !important;*/
-  /*  margin: 5px !important;*/
-  /*}*/
 
 </style>
