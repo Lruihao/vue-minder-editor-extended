@@ -6,6 +6,7 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const env = config.build.env
 
@@ -16,9 +17,9 @@ const webpackConfig = merge(baseWebpackConfig, {
   output: {
     path: config.build.assetsRoot,
     publicPath: '/dist/',
-    filename: utils.assetsPath('vue-minder-editor.js'),
+    filename: utils.assetsPath('vue-minder-editor-plus.js'),
     chunkFilename: utils.assetsPath('[name].[chunkhash].js'),
-    library: 'vueMinderEditorPlus',
+    library: 'VueMinderEditorPlus',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
@@ -70,6 +71,11 @@ const webpackConfig = merge(baseWebpackConfig, {
         ? { safe: true, map: { inline: false } }
         : { safe: true }
     }),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '../static'),
+      to: config.build.assetsSubDirectory,
+      ignore: ['.*']
+    }])
   ]
 })
 

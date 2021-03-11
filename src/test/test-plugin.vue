@@ -6,7 +6,7 @@
 
 <script>
 
-import minderEditor1 from '../../dist/static/vue-minder-editor-971f5'
+import minderEditor1 from '../../dist/static/vue-minder-editor-plus'
 
 import Vue from 'vue'
 Vue.use(minderEditor1);

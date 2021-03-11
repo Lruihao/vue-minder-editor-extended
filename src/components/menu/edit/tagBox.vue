@@ -49,6 +49,9 @@ export default {
       }
     },
     editResource(resourceName) {
+      if (this.commandDisabled) {
+        return;
+      }
       let origin = this.minder.queryCommandValue('resource');
       if (!resourceName || !/\S/.test(resourceName)) return;
       let index = origin.indexOf(resourceName);
@@ -80,7 +83,7 @@ export default {
  }
 </style>
 
-<style >
+<style scoped>
    .add-btn {
      height: 24px;
      width: 36px;

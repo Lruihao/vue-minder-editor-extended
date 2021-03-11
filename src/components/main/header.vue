@@ -68,6 +68,29 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
   @import "src/style/header";
+</style>
+
+<style>
+
+  /*.el-dropdown-menu {*/
+  /*    padding: 0 !important;*/
+  /*    margin: 0 !important;*/
+  /*    left: 40px !important;*/
+  /*}*/
+
+  /*.el-dropdown-menu__item {*/
+  /*      padding: 5px 0 5px 20px !important;*/
+  /*      height: 35px !important;*/
+  /*      line-height: 35px !important;*/
+  /*      margin: 0 !important;*/
+  /*}*/
+
+  /*.el-dropdown-menu .el-dropdown-menu__item {*/
+  /*  padding: 0px !important;*/
+  /*  height: 40px !important;*/
+  /*  margin: 5px !important;*/
+  /*}*/
+
 </style>
