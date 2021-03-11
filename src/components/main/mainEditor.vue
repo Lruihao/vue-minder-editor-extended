@@ -1,19 +1,18 @@
 <template>
-  <div class="minder-container">
+  <div class="minder-container" :style="{height: height + 'px'}">
     <el-button class="save-btn" @click="save" type="primary">保存</el-button>
     <navigator/>
   </div>
 </template>
 
 <script>
-import {editMenuProps, importJson} from "../props";
-import Vue from 'vue'
+import {editMenuProps, mainEditorProps} from "../props";
 import Navigator from "./navigator";
 export default {
   components: {Navigator},
   props: {
     ...editMenuProps,
-    importJson
+    ...mainEditorProps
   },
   data() {
     return {
@@ -64,6 +63,6 @@ export default {
 
   .minder-container {
     position: relative;
-    height: 500px;
+    /*height: 500px;*/
   }
 </style>

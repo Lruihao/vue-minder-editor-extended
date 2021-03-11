@@ -2,21 +2,27 @@
  * Api 列表
  */
 
-export let importJson = {
-  type: Object,
-  default() {
-    return {
-      "root": {
-        "data": {
-          "text": "test111"
+export let mainEditorProps = {
+  importJson: {
+    type: Object,
+    default() {
+      return {
+        "root": {
+          "data": {
+            "text": "test111"
+          },
+          "children": [
+            { "data": { "text": "地图" } },
+            { "data": { "text": "百科","expandState":"collapse"}}
+          ]
         },
-        "children": [
-          { "data": { "text": "地图" } },
-          { "data": { "text": "百科","expandState":"collapse"}}
-        ]
-      },
-      "template":"default"
+        "template":"default"
+      }
     }
+  },
+  height: {
+    type: Number,
+    default: 500,
   }
 }
 

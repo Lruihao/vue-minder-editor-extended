@@ -6,6 +6,7 @@
       :tag-enable="true"
       :sequence-enable="true"
       :tags="tags"
+      :height="500"
       @save="save"/>
   </div>
 </template>

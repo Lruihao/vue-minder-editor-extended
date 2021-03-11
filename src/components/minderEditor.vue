@@ -15,6 +15,7 @@
       :tag-enable="tagEnable"
       :progress-enable="progressEnable"
       :import-json="importJson"
+      :height="height"
       @save="save"/>
   </div>
 </template>
@@ -22,7 +23,7 @@
 <script>
 import headerMenu from './main/header'
 import mainEditor from './main/mainEditor'
-import {editMenuProps, importJson, moleProps, priorityProps, tagProps} from "./props";
+import {editMenuProps, mainEditorProps, moleProps, priorityProps, tagProps} from "./props";
 
 export default {
   name: 'minderEditor',
@@ -45,7 +46,7 @@ export default {
     ...priorityProps,
     ...tagProps,
     ...moleProps,
-    importJson
+    ...mainEditorProps
   },
 }
 
