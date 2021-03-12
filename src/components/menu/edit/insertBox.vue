@@ -53,7 +53,7 @@ export default {
         return false
       }
 
-      if (isDisableNode(minder) && command.indexOf("AppendParentNode") > 0) {
+      if (isDisableNode(minder) && command.indexOf("AppendParentNode") > -1) {
         return true;
       }
       if (minder && minder.queryCommandState) {

@@ -28,7 +28,9 @@ export default {
           },
           "children": [
             {
-              "data": { "text": "地图axxa" , resource: ["模块1"]}
+              "data": { "text": "地图axxa" ,
+                disable: true,
+                resource: ["模块1"]}
             },
             { "data": { "text": "百科aa","expandState":"collapse"}}
           ]

@@ -23,7 +23,7 @@
       <slot name="header"></slot>
     </template>
     <div>
-      <minder-editor/>
+      <minder-editor :import-json="importJson" @save="save"/>
     </div>
   </el-card>
 </template>
@@ -41,18 +41,45 @@ export default {
   name: "test-plugin",
   data() {
     return {
-      importJson: {
-        "root": {
-          "data": {
-            "text": "test222"
+    //   importJson: {
+    //     "root": {
+    //       "data": {
+    //         "text": "test222",
+    //         disable: true
+    //       },
+    //       "children": [
+    //         { "data": { "text": "地图aa" } },
+    //         { "data": { "text": "百科aa","expandState":"collapse"}}
+    //       ]
+    //     },
+    //     "template":"default"
+    //   }
+      // }
+        importJson: {
+          "root": {
+            "data": {
+              "text": "test2cc22",
+              "disable": true
+            },
+            "children": [
+              {
+                "data": {
+                  "text": "地图ccaxxa" ,
+                  disable: true,
+                  resource: ["模块1"]}
+              },
+              { "data": { "text": "百科aa","expandState":"collapse"}}
+            ]
           },
-          "children": [
-            { "data": { "text": "地图aa" } },
-            { "data": { "text": "百科aa","expandState":"collapse"}}
-          ]
+          "template":"default"
         },
-        "template":"default"
+        tags:  ['模块1','用例','前置条件','测试步骤', '预期结果','备注',]
       }
+
+  },
+  methods: {
+    save(data) {
+      console.log(data)
     }
   }
 }
