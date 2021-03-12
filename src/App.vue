@@ -8,7 +8,7 @@
 
 <script>
 
-import TestPlugin from "./test/test-plugin";
+// import TestPlugin from "./test/test-plugin";
 // import MsTest from "./test/ms-test";
 import DevTest from "./test/dev-test";
 
@@ -17,11 +17,13 @@ export default {
   components: {
     // MsTest,
     DevTest,
-    TestPlugin
+    // TestPlugin
   }
 }
 </script>
 
 <style>
+  /*没必要清楚默认样式，根据实际项目决定
   @import "./style/normalize.css";
+  */
 </style>
