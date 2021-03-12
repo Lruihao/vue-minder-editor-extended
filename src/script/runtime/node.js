@@ -46,7 +46,8 @@ define(function (require, exports, module) {
           }
         },
         enable: function () {
-          if (isDisableNode(minder)) {
+          if (isDisableNode(minder) &&
+            (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) ) {
             return false;
           }
           return minder.queryCommandState(command) != -1;

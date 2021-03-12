@@ -1,10 +1,10 @@
 <template>
 <div class="edit-del-group">
-  <div class="edit menu-btn" :disabled="disabled('text')" @click="edit" title="编辑">
+  <div class="edit menu-btn" :disabled="textDisabled" @click="edit" title="编辑">
     <i class="tab-icons"></i>
     <span>编辑</span>
   </div>
-  <div class="del menu-btn" :disabled="disabled('RemoveNode')" @click="del" title="删除">
+  <div class="del menu-btn" :disabled="removeNodeDisabled" @click="del" title="删除">
     <i class="tab-icons"></i>
     <span>删除</span>
   </div>
@@ -15,10 +15,29 @@
 import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'edit_del',
+  data() {
+    return {
+      minder: undefined
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.minder = minder;
+      // 点击节点，触发computed
+    })
+  },
+  computed: {
+    textDisabled() {
+      return this.isDisabled('text');
+    },
+    removeNodeDisabled() {
+      return this.isDisabled('RemoveNode');
+    },
+  },
   methods: {
-    disabled(command) {
+    isDisabled(command) {
       try {
-        if (!minder) return false;
+        if (!this.minder) return false;
       } catch (e) {
         // 如果window的还没挂载minder，先捕捉undefined异常
         return false
