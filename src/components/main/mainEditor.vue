@@ -28,6 +28,18 @@ export default {
     }
     window.minder = window.km = editor.minder;
     window.minderEditor = editor;
+
+    window.minder.on('preExecCommand', function (env) {
+      let selectNodes = env.minder._selectedNodes;
+      if (selectNodes) {
+        selectNodes.forEach((node) => {
+          if (!node.data.disable && node.parent != null) {
+            // 标记改节点为已修改
+            node.data.changed = true;
+          }
+        })
+      }
+    });
   },
   computed: {
     editMenuProps() {

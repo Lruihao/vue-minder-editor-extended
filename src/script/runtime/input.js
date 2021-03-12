@@ -119,6 +119,9 @@ define(function (require, exports, module) {
       if (!node) {
         return;
       }
+      if (node.data) {
+        node.data.changed = true;
+      }
       var textContainer = receiverElement;
       receiverElement.innerText = "";
       if (node.getData('font-weight') === 'bold') {
