@@ -9,7 +9,7 @@
 define(function (require, exports, module) {
 
   require('../tool/innertext');
-  var {isDisableNode} = require('../tool/utils');
+  var {isDisableNode, markChangeNode} = require('../tool/utils');
 
   var Debug = require('../tool/debug');
   var debug = new Debug('input');
@@ -119,9 +119,9 @@ define(function (require, exports, module) {
       if (!node) {
         return;
       }
-      if (node.data) {
-        node.data.changed = true;
-      }
+
+      markChangeNode(node);
+
       var textContainer = receiverElement;
       receiverElement.innerText = "";
       if (node.getData('font-weight') === 'bold') {

@@ -8,6 +8,7 @@
 <script>
 import {editMenuProps, mainEditorProps} from "../props";
 import Navigator from "./navigator";
+import {markChangeNode} from "../../script/tool/utils";
 export default {
   components: {Navigator},
   props: {
@@ -30,13 +31,10 @@ export default {
     window.minderEditor = editor;
 
     window.minder.on('preExecCommand', function (env) {
-      let selectNodes = env.minder._selectedNodes;
+      let selectNodes = env.minder.getSelectedNodes();
       if (selectNodes) {
         selectNodes.forEach((node) => {
-          if (!node.data.disable && node.parent != null) {
-            // 标记改节点为已修改
-            node.data.changed = true;
-          }
+            markChangeNode(node);
         })
       }
     });
