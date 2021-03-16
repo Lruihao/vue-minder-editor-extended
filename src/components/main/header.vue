@@ -72,7 +72,7 @@
 <style scoped>
 
   .mind_tab-content >>> .tab-icons {
-    background-image: url("/static/minder/icons.png");
+    background-image: url("../../assets/minder/icons.png");
     background-repeat: no-repeat;
   }
 

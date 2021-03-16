@@ -1,15 +1,17 @@
 <template>
   <div class="font-group">
-      <el-select v-model="fontFamilyDefaultValue" placeholder="字体" class="font-family-select" :disabled="disabledFont" @change="execCommandFontFamily">
-          <el-option v-for="item in fontFamilys" :label="item.name" :value="item.value" :key="item.id" :style="{'font-family':item.value}">
-          </el-option>
-      </el-select>
-      <el-select v-model="fontSizeDefaultValue" placeholder="字号" class="font-size-select" :disabled="disabledFontSize" @change="execCommandFontSize">
-          <el-option v-for="item in fontSizes" :label="item.label" :value="item.value" :key="item.id" :style="{'font-size':item.value+'px','height':2*item.value+'px', 'line-height':2*item.value+'px','padding':0}">
-          </el-option>
-      </el-select>
+    <el-select v-model="fontFamilyDefaultValue" placeholder="字体" class="font-family-select" :disabled="disabledFont" @change="execCommandFontFamily">
+        <el-option v-for="item in fontFamilys" :label="item.name" :value="item.value" :key="item.id" :style="{'font-family':item.value}">
+        </el-option>
+    </el-select>
+    <el-select v-model="fontSizeDefaultValue" placeholder="字号" class="font-size-select" :disabled="disabledFontSize" @change="execCommandFontSize">
+        <el-option v-for="item in fontSizes" :label="item.label" :value="item.value" :key="item.id" :style="{'font-size':item.value+'px','height':2*item.value+'px', 'line-height':2*item.value+'px','padding':0}">
+        </el-option>
+    </el-select>
+    <span class="font-btn">
       <span class="font-bold menu-btn tab-icons" @click="execCommandFontStyle('bold')" :class="{'selected':boldSelected}" :disabled="disabledBold"></span>
       <span class="font-italic menu-btn tab-icons" @click="execCommandFontStyle('italic')" :class="{'selected':italicSelected}" :disabled="disabledItalic"></span>
+    </span>
   </div>
 </template>
 
@@ -252,5 +254,9 @@ export default {
 <style scoped>
  .font-group {
    margin-left: 10px;
+ }
+
+ .font-btn {
+   margin-top: 2px;
  }
 </style>

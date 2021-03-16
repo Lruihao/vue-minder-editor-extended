@@ -78,3 +78,9 @@ export default {
   created() {}
 }
 </script>
+
+<style scoped>
+.progress-group li {
+  background-image: url("../../../assets/minder/iconprogress.png");
+}
+</style>

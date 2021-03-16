@@ -56,5 +56,8 @@ export default {
 </script>
 
 <style scoped>
-
+.mold-dropdown-list .mold-icons,.mold-icons {
+  background-image: url("../../../assets/minder/mold.png");
+  background-repeat: no-repeat;
+}
 </style>

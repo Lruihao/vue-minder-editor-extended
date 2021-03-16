@@ -199,9 +199,6 @@ header {
     }
   }
   .sequence-group {
-    li {
-      background-image: url("/static/minder/iconpriority.png");
-    }
     @for $i from 0 through 9 {
       .sequence-#{$i} {
         background-position: 0 -20px * (-1 + $i);
@@ -209,9 +206,6 @@ header {
     }
   }
   .progress-group {
-    li {
-      background-image: url("/static/minder/iconprogress.png");
-    }
     @for $i from 0 through 9 {
       .progress-#{$i} {
         background-position: 0 -20px * (-1 + $i);
@@ -221,10 +215,6 @@ header {
   .mold-group {
     width: 80px;
     @include flexcenter;
-    .mold-icons {
-      background-image: url("/static/minder/mold.png");
-      background-repeat: no-repeat;
-    }
     @for $i from 1 through 6 {
       .mold-#{$i} {
         background-position: (1-$i) * 50px 0;
