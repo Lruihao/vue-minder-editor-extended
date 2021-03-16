@@ -64,8 +64,9 @@ export default {
             "children": [
               {
                 "data": {
-                  "text": "地图ccaxxa" ,
+                  "text": "地图ccaxxaaa" ,
                   disable: true,
+                  allowDisabledTag: true,
                   resource: ["模块1"]}
               },
               { "data": { "text": "百科aa","expandState":"collapse"}}

@@ -31,6 +31,10 @@ export default {
       minder.on && minder.on('interactchange', function () {
         this.commandValue = minder.queryCommandValue('resource');
       });
+      let node = minder.getSelectedNode();
+      if (node && node.data.allowDisabledTag) {
+        return false;
+      }
       if (isDisableNode(minder)) {
         return true;
       }
