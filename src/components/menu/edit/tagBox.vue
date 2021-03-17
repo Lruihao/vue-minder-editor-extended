@@ -59,6 +59,15 @@ export default {
       let origin = this.minder.queryCommandValue('resource');
       if (!resourceName || !/\S/.test(resourceName)) return;
       let index = origin.indexOf(resourceName);
+      // 先删除排他的标签
+      if (this.distinctTags.indexOf(resourceName) > -1) {
+        for (let i = 0; i < origin.length; i++) {
+          if (this.distinctTags.indexOf(origin[i]) > -1) {
+            origin.splice(i, 1);
+            i--;
+          }
+        }
+      }
       if (index != -1) {
         origin.splice(index, 1);
       } else {

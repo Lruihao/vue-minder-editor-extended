@@ -12,7 +12,11 @@
       :start-with-zero="priorityStartWithZero"
     />
     <progress-box v-if="progressEnable"/>
-    <tag-box :tags="tags" v-if="tagEnable"/>
+    <tag-box
+      v-if="tagEnable"
+      :tags="tags"
+      :distinct-tags="distinctTags"
+    />
   </div>
 </template>
 

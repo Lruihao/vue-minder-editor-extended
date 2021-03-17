@@ -8,6 +8,7 @@
       :priority-prefix="priorityPrefix"
       :priority-start-with-zero="priorityStartWithZero"
       :tags="tags"
+      :distinct-tags="distinctTags"
       :default_mold="default_mold"
     />
     <main-editor

@@ -6,6 +6,7 @@
       :tag-enable="true"
       :sequence-enable="true"
       :tags="tags"
+      :distinct-tags="tags"
       :height="500"
       @save="save"/>
   </div>
@@ -38,7 +39,7 @@ export default {
         },
         "template":"default"
       },
-      tags:  ['模块1','用例','前置条件','测试步骤', '预期结果','备注',]
+      tags:  ['模块1','用例']
     }
   },
   methods: {

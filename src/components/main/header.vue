@@ -12,6 +12,7 @@
             :priority-prefix="priorityPrefix"
             :priority-start-with-zero="priorityStartWithZero"
             :tags="tags"
+            :distinct-tags="distinctTags"
           />
         </div>
       </el-tab-pane>
