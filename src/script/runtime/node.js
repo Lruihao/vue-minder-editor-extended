@@ -50,6 +50,10 @@ define(function (require, exports, module) {
             (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) ) {
             return false;
           }
+          let node = minder.getSelectedNode();
+          if (node && node.parent === null && command.indexOf("AppendSiblingNode") > -1) {
+            return false;
+          }
           return minder.queryCommandState(command) != -1;
         }
       });

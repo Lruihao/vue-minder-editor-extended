@@ -56,6 +56,10 @@ export default {
       if (isDisableNode(minder) && command.indexOf("AppendParentNode") > -1) {
         return true;
       }
+      let node = minder.getSelectedNode();
+      if (node && node.parent === null && command.indexOf("AppendSiblingNode") > -1) {
+        return true;
+      }
       if (minder && minder.queryCommandState) {
         return minder.queryCommandState(command) === -1;
       }
