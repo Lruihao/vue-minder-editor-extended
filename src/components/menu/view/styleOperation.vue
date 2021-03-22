@@ -1,15 +1,15 @@
 <template>
 <div class="style-group">
-    <div class="clear-style-btn menu-btn" @click="clearstyle" :disabled="disabled1">
+    <div class="clear-style-btn menu-btn" @click="clearstyle" :disabled="disabled">
         <span class="tab-icons"></span>
         <span class="label">清除样式</span>
     </div>
     <div class="copy-paste-panel" @click="copystyle">
-        <div class="copy-style menu-btn" :disabled="disabled2">
+        <div class="copy-style menu-btn" :disabled="disabled">
             <span class="tab-icons"></span>
             <span class="label">复制样式</span>
         </div>
-        <div class="paste-style menu-btn" @click="pastestyle" :disabled="disabled3">
+        <div class="paste-style menu-btn" @click="pastestyle" :disabled="disabled">
             <span class="tab-icons"></span>
             <span class="label">粘贴样式</span>
         </div>
@@ -20,48 +20,32 @@
 <script>
 export default {
     name: "styleOpreation",
+    data() {
+      return {
+        minder: undefined
+      }
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.minder = minder;
+      })
+    },
     computed: {
-        disabled1() {
+        disabled() {
           try {
-            if (!minder) return false;
+            if (!this.minder) {
+              return false;
+            }
           } catch (e) {
             // 如果window的还没挂载minder，先捕捉undefined异常
             return false
           }
 
-          return (
-              minder &&
-              minder.queryCommandState &&
-              minder.queryCommandState("clearstyle") === -1
-            );
-        },
-        disabled2() {
-          try {
-            if (!minder) return false;
-          } catch (e) {
-            // 如果window的还没挂载minder，先捕捉undefined异常
-            return false
+          let nodes = minder.getSelectedNodes();
+          if (nodes != null && nodes.length > 0) {
+            return false;
           }
-
-          return (
-              minder &&
-              minder.queryCommandState &&
-              minder.queryCommandState("copystyle") === -1
-            );
-        },
-        disabled3() {
-          try {
-            if (!minder) return false;
-          } catch (e) {
-            // 如果window的还没挂载minder，先捕捉undefined异常
-            return false
-          }
-
-          return (
-              minder &&
-              minder.queryCommandState &&
-              minder.queryCommandState("pastestyle") === -1
-            );
+          return true;
         },
     },
     methods: {
