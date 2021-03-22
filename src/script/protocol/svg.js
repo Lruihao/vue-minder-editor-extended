@@ -22,18 +22,20 @@ function exportSVG(minder) {
   el.innerHTML = svgXml;
   $svg = el.getElementsByTagName('svg');
 
-  $svg[0].setAttribute('width', width + padding * 2 | 0);
-  $svg[0].setAttribute('height', height + padding * 2 | 0);
-  $svg[0].setAttribute('style', 'font-family: Arial, "Microsoft Yahei",  "Heiti SC"; background: ' + minder.getStyle('background'));
+  let index = $svg.length - 1;
 
-  $svg[0].setAttribute('viewBox', [renderBox.x - padding | 0,
+  $svg[index].setAttribute('width', width + padding * 2 | 0);
+  $svg[index].setAttribute('height', height + padding * 2 | 0);
+  $svg[index].setAttribute('style', 'font-family: Arial, "Microsoft Yahei",  "Heiti SC"; background: ' + minder.getStyle('background'));
+
+  $svg[index].setAttribute('viewBox', [renderBox.x - padding | 0,
   renderBox.y - padding | 0,
   width + padding * 2 | 0,
   height + padding * 2 | 0
   ].join(' '));
 
   let div = document.createElement("div");
-  div.appendChild($svg[0]);
+  div.appendChild($svg[index]);
   svgXml = div.innerHTML;
   svgXml = svgXml.replace(/&nbsp;/g, '&#xa0;');
 

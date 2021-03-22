@@ -58,12 +58,14 @@ function getSVGInfo(minder) {
   el.innerHTML = svgXml;
   $svg = el.getElementsByTagName('svg');
 
-  $svg[0].setAttribute('width', renderBox.width + 1);
-  $svg[0].setAttribute('height', renderBox.height + 1);
-  $svg[0].setAttribute('style', 'font-family: Arial, "Microsoft Yahei","Heiti SC";');
+  let index = $svg.length - 1;
+
+  $svg[index].setAttribute('width', renderBox.width + 1);
+  $svg[index].setAttribute('height', renderBox.height + 1);
+  $svg[index].setAttribute('style', 'font-family: Arial, "Microsoft Yahei","Heiti SC";');
 
   let div = document.createElement("div");
-  div.appendChild($svg[0]);
+  div.appendChild($svg[index]);
   svgXml = div.innerHTML;
 
   // Dummy IE
