@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {isDisableNode} from "../../../script/tool/utils";
+import {isDisableNode, markDeleteNode} from "../../../script/tool/utils";
 export default {
   name: 'edit_del',
   data() {
@@ -53,6 +53,7 @@ export default {
       minder.queryCommandState('text') === -1 || this.editNode();
     },
     del() {
+      markDeleteNode(this.minder);
       minder.queryCommandState('RemoveNode') === -1 || minder.execCommand('RemoveNode');
     },
     editNode() {

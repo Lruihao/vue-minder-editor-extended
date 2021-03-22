@@ -22,3 +22,18 @@ export function markChangeNode(node) {
     }
   }
 }
+
+// 在父节点记录删除的节点
+export function markDeleteNode(minder) {
+  if (minder) {
+    let node = minder.getSelectedNode();
+    if (node && node.parent) {
+      let pData = node.parent.data;
+      if (!pData.deleteChild) {
+        pData.deleteChild = [];
+      }
+      pData.deleteChild.push(node.data);
+    }
+  }
+}
+

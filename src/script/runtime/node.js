@@ -6,7 +6,7 @@ define(function (require, exports, module) {
     var fsm = this.fsm;
 
     var main = hotbox.state('main');
-    var {isDisableNode} = require('../tool/utils');
+    var {isDisableNode, markDeleteNode} = require('../tool/utils');
 
     const buttons = [
       '前移:Alt+Up:ArrangeUp',
@@ -41,6 +41,9 @@ define(function (require, exports, module) {
             }
             minder.on('layoutallfinish', afterAppend);
           } else {
+            if (command.indexOf('RemoveNode') > -1) {
+              markDeleteNode(minder);
+            }
             minder.execCommand(command);
             fsm.jump('normal', 'command-executed');
           }
