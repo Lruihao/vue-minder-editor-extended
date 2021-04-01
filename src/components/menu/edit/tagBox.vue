@@ -12,7 +12,7 @@
 <script>
 
 import {tagProps} from "../../props";
-import {isDisableNode} from "../../../script/tool/utils";
+import {isDisableNode, isTagEnable} from "../../../script/tool/utils";
 
 export default {
   name: 'tagBox',
@@ -35,7 +35,7 @@ export default {
       if (node && node.data.allowDisabledTag) {
         return false;
       }
-      if (isDisableNode(minder)) {
+      if (isDisableNode(minder) && !isTagEnable(minder)) {
         return true;
       }
       return minder.queryCommandState && minder.queryCommandState('resource') === -1;

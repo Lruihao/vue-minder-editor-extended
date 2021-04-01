@@ -9,6 +9,17 @@ export function isDisableNode(minder) {
   return false;
 }
 
+export function isTagEnable(minder) {
+  let node = undefined;
+  if (minder && minder.getSelectedNode) {
+    node = minder.getSelectedNode();
+  }
+  if (node && node.data.tagEnable === true) {
+    return true;
+  }
+  return false;
+}
+
 export function markChangeNode(node) {
   if (node && node.data) {
     if (node.parent != null) {
