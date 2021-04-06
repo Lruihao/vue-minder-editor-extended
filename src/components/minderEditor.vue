@@ -17,6 +17,7 @@
       :progress-enable="progressEnable"
       :import-json="importJson"
       :height="height"
+      @afterMount="$emit('afterMount')"
       @save="save"/>
   </div>
 </template>

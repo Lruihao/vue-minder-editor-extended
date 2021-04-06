@@ -38,6 +38,7 @@ export default {
         })
       }
     });
+    this.$emit('afterMount');
   },
   computed: {
     editMenuProps() {

@@ -8,6 +8,7 @@
       :tags="tags"
       :distinct-tags="tags"
       :height="500"
+      @afterMount="afterMount()"
       @save="save"/>
   </div>
 </template>
@@ -45,10 +46,30 @@ export default {
       tags:  ['模块1','用例']
     }
   },
+  mounted() {
+
+  },
+
   methods: {
     save(data) {
       console.log(data);
-    }
+    },
+    afterMount() {
+      minder.on('selectionchange ', function (env) {
+        console.log('selectionchange');
+        console.log(env);
+        // let selectNodes = env.minder.getSelectedNodes();
+        // if (selectNodes) {
+        //   selectNodes.forEach((node) => {
+        //     markChangeNode(node);
+        //   })
+        // }
+      });
+      minder.on('contentchange', function (env) {
+        console.log('contentchange');
+        console.log(env);
+      });
+    },
   }
 }
 </script>
