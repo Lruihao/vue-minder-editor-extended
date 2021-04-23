@@ -60,7 +60,7 @@ export default {
         return;
       }
       if (this.tagEditCheck) {
-        if (!this.tagEditCheck()) {
+        if (!this.tagEditCheck(resourceName)) {
           return;
         }
       }
