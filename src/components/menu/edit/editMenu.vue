@@ -9,12 +9,15 @@
       v-if="sequenceEnable"
       :prefix="priorityPrefix"
       :priority-count="priorityCount"
+      :priority-disable-check="priorityDisableCheck"
       :start-with-zero="priorityStartWithZero"
     />
     <progress-box v-if="progressEnable"/>
     <tag-box
       v-if="tagEnable"
       :tags="tags"
+      :tag-disable-check="tagDisableCheck"
+      :tag-edit-check="tagEditCheck"
       :distinct-tags="distinctTags"
     />
   </div>

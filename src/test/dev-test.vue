@@ -8,6 +8,8 @@
       :tags="tags"
       :distinct-tags="tags"
       :height="500"
+      :tag-edit-check="test"
+      :priority-disable-check="test"
       @afterMount="afterMount()"
       @save="save"/>
   </div>
@@ -26,14 +28,14 @@ export default {
         "root": {
           "data": {
             "text": "test222",
-            "disable": true
+            // "disable": true
           },
           "children": [
             {
               "data": { "text": "地图axxaaaa",
-                disable: true,
-                tagEnable: true,
-                allowDisabledTag: true,
+                // disable: true,
+                // tagEnable: true,
+                // allowDisabledTag: true,
                 resource: ["模块1"]}
             },
             { "data": {
@@ -53,6 +55,11 @@ export default {
   methods: {
     save(data) {
       console.log(data);
+    },
+    test() {
+      // return () => {
+        return true
+      // };
     },
     afterMount() {
       minder.on('selectionchange ', function (env) {

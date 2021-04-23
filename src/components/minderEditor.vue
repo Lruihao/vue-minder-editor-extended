@@ -8,6 +8,9 @@
       :priority-prefix="priorityPrefix"
       :priority-start-with-zero="priorityStartWithZero"
       :tags="tags"
+      :tag-edit-check="tagEditCheck"
+      :tag-disable-check="tagDisableCheck"
+      :priority-disable-check="priorityDisableCheck"
       :distinct-tags="distinctTags"
       :default_mold="default_mold"
     />

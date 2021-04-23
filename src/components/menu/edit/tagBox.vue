@@ -38,6 +38,9 @@ export default {
       if (isDisableNode(minder) && !isTagEnable(minder)) {
         return true;
       }
+      if (this.tagDisableCheck) {
+        return this.tagDisableCheck();
+      }
       return minder.queryCommandState && minder.queryCommandState('resource') === -1;
     },
   },
@@ -55,6 +58,11 @@ export default {
     editResource(resourceName) {
       if (this.commandDisabled) {
         return;
+      }
+      if (this.tagEditCheck) {
+        if (!this.tagEditCheck()) {
+          return;
+        }
       }
       let origin = this.minder.queryCommandValue('resource');
       if (!resourceName || !/\S/.test(resourceName)) return;

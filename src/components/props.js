@@ -45,6 +45,7 @@ export let priorityProps = {
     type: String,
     default: 'P'
   },
+  priorityDisableCheck: Function
 }
 
 export let tagProps = {
@@ -61,7 +62,9 @@ export let tagProps = {
     default() {
       return []
     }
-  }
+  },
+  tagDisableCheck: Function,
+  tagEditCheck: Function
 }
 
 export let editMenuProps = {

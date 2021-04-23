@@ -39,6 +39,9 @@ export default {
       if (isDisableNode(minder)) {
         return true;
       }
+      if (this.priorityDisableCheck) {
+        return this.priorityDisableCheck();
+      }
       return minder.queryCommandState && minder.queryCommandState('priority') === -1;
     },
   },
