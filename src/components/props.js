@@ -84,7 +84,7 @@ export let editMenuProps = {
 
 export let moleProps = {
   // 默认样式
-  default_mold: {
+  defaultMold: {
     type: Number,
     default: 3
   }

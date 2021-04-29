@@ -2,7 +2,7 @@
 <div class="mold-group" :disabled="disabled">
     <el-row class="block-col-1">
         <el-col :span="24">
-            <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle mold-icons menu-btn" @command="handleCommand" :class="'mold-' + (mold_index + 1)">
+            <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle mold-icons menu-btn" @command="handleCommand" :class="'mold-' + (moldIndex + 1)">
                 <span class="el-dropdown-link ">
                     <i class="el-icon-caret-bottom el-icon--right"/>
                 </span>
@@ -24,7 +24,7 @@ export default {
     },
     data() {
       return {
-        mold_index: 0
+        moldIndex: 0
       }
     },
     computed: {
@@ -43,13 +43,14 @@ export default {
     },
     mounted() {
       this.$nextTick(() => {
-        this.handleCommand(this.default_mold);
+        this.handleCommand(this.defaultMold);
       })
     },
     methods: {
         handleCommand(command) {
-          this.mold_index = command;
+          this.moldIndex = command;
           minder.execCommand('template', Object.keys(this.templateList)[command]);
+          this.$emit('moldChange', command);
         }
     }
 }

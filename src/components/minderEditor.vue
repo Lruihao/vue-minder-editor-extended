@@ -12,7 +12,8 @@
       :tag-disable-check="tagDisableCheck"
       :priority-disable-check="priorityDisableCheck"
       :distinct-tags="distinctTags"
-      :default_mold="default_mold"
+      :default-mold="defaultMold"
+      @moldChange="handleMoldChange"
     />
     <main-editor
       :sequence-enable="sequenceEnable"
@@ -42,6 +43,9 @@ export default {
     }
   },
   methods: {
+    handleMoldChange(data) {
+      this.$emit('moldChange', data);
+    },
     save(data) {
       this.$emit('save', data);
     },

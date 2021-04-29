@@ -11,6 +11,8 @@
       :tag-edit-check="test"
       :priority-disable-check="test"
       @afterMount="afterMount()"
+      :default-mold="3"
+      @moldChange="handleMoldChange"
       @save="save"/>
   </div>
 </template>
@@ -60,6 +62,9 @@ export default {
       // return () => {
         return true
       // };
+    },
+    handleMoldChange(a) {
+      console.log(a);
     },
     afterMount() {
       minder.on('selectionchange ', function (env) {

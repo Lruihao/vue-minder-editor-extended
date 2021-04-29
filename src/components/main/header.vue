@@ -22,8 +22,9 @@
       <el-tab-pane label="外观样式" name="viewMenu">
         <div class="mind-tab-panel">
           <view-menu
+            @moldChange="handleMoldChange"
             :minder="minder"
-            :default_mold="default_mold"/>
+            :default-mold="defaultMold"/>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -57,6 +58,9 @@
       viewMenu
     },
     methods: {
+      handleMoldChange(data) {
+        this.$emit('moldChange', data);
+      },
       showMenu: function (e) {
         for (var variable in this.switchShow) {
           if (this.switchShow.hasOwnProperty(variable)) {

@@ -1,6 +1,6 @@
 <template>
 <div class="menu-container">
-  <mold :default_mold="default_mold"/>
+  <mold :default-mold="defaultMold" @moldChange="handleMoldChange"/>
 <!--  <theme/>-->
   <arrange/>
   <styleOperation/>
@@ -29,6 +29,11 @@ export default {
   props: {
     ...moleProps,
     minder: {}
+  },
+  methods: {
+    handleMoldChange(data) {
+      this.$emit('moldChange', data);
+    }
   }
 }
 
