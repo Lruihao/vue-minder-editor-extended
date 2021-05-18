@@ -50,9 +50,15 @@ export default {
       }
     },
     edit() {
+      if (this.textDisabled) {
+        return;
+      }
       minder.queryCommandState('text') === -1 || this.editNode();
     },
     del() {
+      if (this.removeNodeDisabled) {
+        return;
+      }
       markDeleteNode(this.minder);
       minder.queryCommandState('RemoveNode') === -1 || minder.execCommand('RemoveNode');
     },

@@ -35,7 +35,7 @@ export default {
           "children": [
             {
               "data": { "text": "地图axxaaaa",
-                // disable: true,
+                disable: true,
                 // tagEnable: true,
                 // allowDisabledTag: true,
                 resource: ["模块1"]}
