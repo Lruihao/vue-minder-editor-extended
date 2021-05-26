@@ -16,6 +16,7 @@
       @moldChange="handleMoldChange"
     />
     <main-editor
+      :disabled="disabled"
       :sequence-enable="sequenceEnable"
       :tag-enable="tagEnable"
       :progress-enable="progressEnable"

@@ -23,7 +23,8 @@ export let mainEditorProps = {
   height: {
     type: Number,
     default: 500,
-  }
+  },
+  disabled: Boolean
 }
 
 export let priorityProps = {
