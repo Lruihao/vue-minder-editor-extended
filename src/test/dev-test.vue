@@ -39,7 +39,15 @@ export default {
                 disable: true,
                 // tagEnable: true,
                 // allowDisabledTag: true,
-                resource: ["模块1"]}
+                resource: ["模块1"]},
+              "children": [
+                {
+                  "data": { "text": "地图axxaaaa",
+                    disable: true,
+                    // tagEnable: true,
+                    // allowDisabledTag: true,
+                    resource: ["模块1"]}
+                }]
             },
             { "data": {
               "text": "百科aa",
@@ -65,23 +73,40 @@ export default {
       // };
     },
     handleMoldChange(a) {
-      console.log(a);
+      // console.log(a);
     },
     afterMount() {
-      minder.on('selectionchange ', function (env) {
-        console.log('selectionchange');
-        console.log(env);
-        // let selectNodes = env.minder.getSelectedNodes();
-        // if (selectNodes) {
-        //   selectNodes.forEach((node) => {
-        //     markChangeNode(node);
-        //   })
-        // }
-      });
+      // minder.on('selectionchange ', function (env) {
+      //   console.log('selectionchange');
+      //   console.log(env);
+      //   // let selectNodes = env.minder.getSelectedNodes();
+      //   // if (selectNodes) {
+      //   //   selectNodes.forEach((node) => {
+      //   //     markChangeNode(node);
+      //   //   })
+      //   // }
+      // });
       minder.on('contentchange', function (env) {
         console.log('contentchange');
+        // console.log(env);
+        let selectNodes = env.minder.getSelectedNodes();
+        console.log(selectNodes);
+        console.log("=====");
+
+      });
+      // minder.on('afterExecCommand', function (env) {
+      //   console.log('afterExecCommand');
+      //   console.log(env);
+      // });
+      // minder.on('preExecCommand', function (env) {
+      //   console.log('preExecCommand');
+      //   console.log(env);
+      // });
+      minder.on('beforeExecCommand', function (env) {
+        console.log('beforeExecCommand');
         console.log(env);
       });
+
     },
   }
 }

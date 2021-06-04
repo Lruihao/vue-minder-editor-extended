@@ -134,6 +134,11 @@ define(function (require, exports, module) {
 
             if (MimeType.whichMimeType(textData) === 'application/km') {
               var nodes = decode(MimeType.getPureText(textData));
+              nodes.forEach(item => {
+                if (item.data) {
+                  item.data.id = null;
+                }
+              });
               var _node;
               sNodes.forEach(function (node) {
                 // 由于粘贴逻辑中为了排除子节点重新排序导致逆序，因此复制的时候倒过来
