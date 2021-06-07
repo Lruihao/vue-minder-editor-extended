@@ -9,14 +9,14 @@
 
 ## install
 ``` bash
-npm install vue-minder-editor --save
+npm install vue-minder-editor-plus --save
 ```
 
 ## Usage
 ```javascript
-import minderEditor from 'vue-minder-editor'
+import vueMinderEditor from 'vue-minder-editor-plus'
 import Vue from 'vue'
-Vue.use(minderEditor);
+Vue.use(vueMinderEditor)
 ```
 
 ## component
