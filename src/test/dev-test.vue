@@ -36,14 +36,15 @@ export default {
           "children": [
             {
               "data": { "text": "地图axxaaaa",
-                disable: true,
+                // disable: true,
+                expandState: "collapse",
                 // tagEnable: true,
                 // allowDisabledTag: true,
                 resource: ["模块1"]},
               "children": [
                 {
                   "data": { "text": "地图axxaaaa",
-                    disable: true,
+                    // disable: true,
                     // tagEnable: true,
                     // allowDisabledTag: true,
                     resource: ["模块1"]}
