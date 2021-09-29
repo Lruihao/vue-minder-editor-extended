@@ -261,22 +261,22 @@ export default {
       }
       // 主题切换事件
       minder.on("themechange", function (e) {
-        pathHandler = self.getPathHandler(e.theme);
+        this.pathHandler = self.getPathHandler(e.theme);
       });
 
       navigate();
 
       function navigate() {
         function moveView(center, duration) {
-          var box = self.visibleView;
+          let box = self.visibleView;
           center.x = -center.x;
           center.y = -center.y;
-          var viewMatrix = minder.getPaper().getViewPortMatrix();
+          let viewMatrix = minder.getPaper().getViewPortMatrix();
           box = viewMatrix.transformBox(box);
-          var targetPosition = center.offset(box.width / 2, box.height / 2);
+          let targetPosition = center.offset(box.width / 2, box.height / 2);
           minder.getViewDragger().moveTo(targetPosition, duration);
         }
-        var dragging = false;
+        let dragging = false;
         self.paper.on("mousedown", function (e) {
           dragging = true;
           moveView(e.getPosition("top"), 200);
@@ -287,10 +287,11 @@ export default {
             moveView(e.getPosition("top"));
           }
         });
-        document.onkeyup = function () {
+
+        self.paper.on("mouseup", function (e) {
           dragging = false;
           self.$previewNavigator && self.$previewNavigator.classList.remove("grab");
-        };
+        });
       }
     })
   },
