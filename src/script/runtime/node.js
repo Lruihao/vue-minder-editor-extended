@@ -45,7 +45,7 @@ define(function (require, exports, module) {
               markDeleteNode(minder);
             }
             minder.execCommand(command);
-            fsm.jump('normal', 'command-executed');
+            //fsm.jump('normal', 'command-executed');
           }
         },
         enable: function () {

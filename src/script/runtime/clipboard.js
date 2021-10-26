@@ -137,6 +137,7 @@ define(function (require, exports, module) {
               nodes.forEach(item => {
                 if (item.data) {
                   item.data.id = null;
+                  item.data.changed = true;
                 }
               });
               var _node;
