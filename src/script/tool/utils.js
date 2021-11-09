@@ -44,9 +44,17 @@ export function markDeleteNode(minder) {
         if (!pData.deleteChild) {
           pData.deleteChild = [];
         }
-        pData.deleteChild.push(node.data);
+        _markDeleteNode(node, pData.deleteChild);
       }
     });
   }
 }
 
+function _markDeleteNode(node, deleteChild) {
+  deleteChild.push(node.data);
+  if (node.children) {
+    node.children.forEach(child => {
+      _markDeleteNode(child, deleteChild);
+    });
+  }
+}
