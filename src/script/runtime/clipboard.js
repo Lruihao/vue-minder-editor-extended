@@ -4,6 +4,9 @@ define(function (require, exports, module) {
     var minder = this.minder;
     var Data = window.kityminder.data;
 
+    var {markDeleteNode} = require('../tool/utils');
+
+
     if (!minder.supportClipboardEvent || kity.Browser.gecko) {
       return;
     };
@@ -94,6 +97,7 @@ define(function (require, exports, module) {
             break;
           }
           case 'normal': {
+            markDeleteNode(minder);
             var nodes = minder.getSelectedNodes();
             if (nodes.length) {
               clipBoardEvent.clipboardData.setData('text/plain', encode(nodes));
@@ -137,6 +141,7 @@ define(function (require, exports, module) {
               nodes.forEach(item => {
                 if (item.data) {
                   item.data.id = null;
+                  item.data.contextChanged = true;
                   item.data.changed = true;
                 }
               });

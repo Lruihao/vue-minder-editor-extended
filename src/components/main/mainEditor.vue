@@ -32,7 +32,8 @@ export default {
 
     window.minder.on('preExecCommand', function (env) {
       let selectNodes = env.minder.getSelectedNodes();
-      let notChangeCommands = new Set(['camera', 'copy', 'expand', 'expandToLevel', 'hand', 'layout', 'template', 'theme', 'zoom', 'zoomIn', 'zoomOut'])
+      let notChangeCommands = new Set(['camera', 'copy', 'expand', 'expandToLevel', 'hand',
+        'layout', 'template', 'theme', 'zoom', 'zoomIn', 'zoomOut', 'append', 'appendchildnode', 'appendsiblingnode'])
       if (selectNodes && !notChangeCommands.has(env.commandName.toLocaleLowerCase())) {
         selectNodes.forEach((node) => {
             markChangeNode(node);
