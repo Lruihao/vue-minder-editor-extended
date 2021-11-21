@@ -14,7 +14,7 @@
 
 <script>
 import {priorityProps} from "../../props";
-import {isDisableNode} from "../../../script/tool/utils";
+import {isDisableNode, setPriorityView} from "../../../script/tool/utils";
 
 export default {
   name: 'sequenceBox',
@@ -53,7 +53,7 @@ export default {
        minder.on && minder.on('contentchange', function () {
         // 异步执行，否则执行完，还会被重置
         setTimeout(function(){
-          freshFuc();
+          freshFuc(this.priorityStartWithZero, this.priorityPrefix);
         },0)
       });
     })
@@ -68,30 +68,7 @@ export default {
       }
     },
     setPriorityView() {
-      //手动将优先级前面加上P显示
-      let items = document.getElementsByTagName('text');
-      if (items) {
-        for (let i = 0; i < items.length; i++) {
-          let item = items[i];
-          if (this.isPriority(item)) {
-            let content = item.innerHTML;
-            if (content.indexOf(this.priorityPrefix) < 0) {
-              if (this.priorityStartWithZero) {
-                content = parseInt(content) - 1 + '';
-              }
-              item.innerHTML = this.priorityPrefix + content;
-            }
-          }
-        }
-      }
-    },
-    isPriority(e) {
-      if (e.getAttribute('text-rendering') === 'geometricPrecision'
-        && e.getAttribute('text-anchor') === 'middle'
-      ) {
-        return true;
-      }
-      return false;
+      setPriorityView(this.priorityStartWithZero, this.priorityPrefix);
     }
   },
 }

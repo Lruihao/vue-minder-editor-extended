@@ -58,3 +58,31 @@ function _markDeleteNode(node, deleteChild) {
     });
   }
 }
+
+export function isPriority(e) {
+  if (e.getAttribute('text-rendering') === 'geometricPrecision'
+    && e.getAttribute('text-anchor') === 'middle'
+  ) {
+    return true;
+  }
+  return false;
+}
+
+export function setPriorityView(priorityStartWithZero, priorityPrefix) {
+  //手动将优先级前面加上P显示
+  let items = document.getElementsByTagName('text');
+  if (items) {
+    for (let i = 0; i < items.length; i++) {
+      let item = items[i];
+      if (isPriority(item)) {
+        let content = item.innerHTML;
+        if (content.indexOf(priorityPrefix) < 0) {
+          if (priorityStartWithZero) {
+            content = parseInt(content) - 1 + '';
+          }
+          item.innerHTML = priorityPrefix + content;
+        }
+      }
+    }
+  }
+}

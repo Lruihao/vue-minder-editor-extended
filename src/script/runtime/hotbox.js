@@ -42,6 +42,7 @@ define(function (require, exports, module) {
     });
 
     this.hotbox = hotbox;
+    minder.hotbox = hotbox;
   }
 
   return module.exports = HotboxRuntime;

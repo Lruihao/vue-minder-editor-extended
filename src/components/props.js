@@ -46,7 +46,8 @@ export let priorityProps = {
     type: String,
     default: 'P'
   },
-  priorityDisableCheck: Function
+  priorityDisableCheck: Function,
+  operators: []
 }
 
 export let tagProps = {

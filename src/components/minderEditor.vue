@@ -22,6 +22,9 @@
       :progress-enable="progressEnable"
       :import-json="importJson"
       :height="height"
+      :priority-count="priorityCount"
+      :priority-prefix="priorityPrefix"
+      :priority-start-with-zero="priorityStartWithZero"
       @afterMount="$emit('afterMount')"
       @save="save"/>
   </div>

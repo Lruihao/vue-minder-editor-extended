@@ -20,17 +20,7 @@ define(function (require, exports, module) {
       }
     });
 
-    var priority = hotbox.state('priority');
-    '123456789'.replace(/./g, function (p) {
-      priority.button({
-        position: 'ring',
-        label: 'P' + p,
-        key: p,
-        action: function () {
-          minder.execCommand('Priority', p);
-        }
-      });
-    });
+    let priority = hotbox.state('priority')
 
     priority.button({
       position: 'center',
@@ -47,6 +37,7 @@ define(function (require, exports, module) {
       key: 'esc',
       next: 'back'
     });
+
   }
   return module.exports = PriorityRuntime;
 });

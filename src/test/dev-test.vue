@@ -9,6 +9,7 @@
       :disabled="true"
       :distinct-tags="tags"
       :height="500"
+      :priority-count="4"
       :tag-edit-check="test"
       :priority-disable-check="test"
       @afterMount="afterMount()"
@@ -70,7 +71,7 @@ export default {
     },
     test() {
       // return () => {
-        return true
+        return false
       // };
     },
     handleMoldChange(a) {
@@ -108,7 +109,27 @@ export default {
         console.log(env);
       });
 
+      this.addHotBox();
+
     },
+    addHotBox() {
+
+      let hotbox = window.minder.hotbox;
+      let main = hotbox.state('main');
+      main.button({
+        position: 'ring',
+        label: 'Test',
+        key: '/',
+        action: function () {
+          alert("test")
+        },
+        enable: function () {
+          return true;
+        },
+        beforeShow: function () {
+        }
+      })
+    }
   }
 }
 </script>

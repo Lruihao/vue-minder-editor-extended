@@ -6,14 +6,15 @@
 </template>
 
 <script>
-import {editMenuProps, mainEditorProps} from "../props";
+  import {editMenuProps, mainEditorProps, priorityProps} from "../props";
 import Navigator from "./navigator";
 import {markChangeNode} from "../../script/tool/utils";
 export default {
   components: {Navigator},
   props: {
     ...editMenuProps,
-    ...mainEditorProps
+    ...mainEditorProps,
+    ...priorityProps
   },
   data() {
     return {
@@ -40,6 +41,7 @@ export default {
         })
       }
     });
+    this.handlePriorityButton();
     this.$emit('afterMount');
   },
   computed: {
@@ -57,6 +59,27 @@ export default {
   methods: {
     save() {
       this.$emit('save', minder.exportJson());
+    },
+    handlePriorityButton() {
+      let priorityPrefix = this.priorityPrefix;
+      let priorityStartWithZero = this.priorityStartWithZero;
+      let start = priorityStartWithZero ? 0 : 1;
+      let res = '';
+      for (let i = 0; i < this.priorityCount; i++) {
+        res += start++;
+      }
+      let priority = window.minder.hotbox.state('priority');
+      res.replace(/./g, function (p) {
+        priority.button({
+          position: 'ring',
+          label: priorityPrefix + p,
+          key: p,
+          action: function () {
+            let pVal = parseInt(p);
+            minder.execCommand('Priority', priorityStartWithZero ? (pVal + 1) : pVal);
+          }
+        });
+      });
     }
   },
 }
