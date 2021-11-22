@@ -9,6 +9,17 @@ export function isDisableNode(minder) {
   return false;
 }
 
+export function isDeleteDisableNode(minder) {
+  let node = undefined;
+  if (minder && minder.getSelectedNode) {
+    node = minder.getSelectedNode();
+  }
+  if (node && node.data.disable === true && !node.data.allowDelete) {
+    return true;
+  }
+  return false;
+}
+
 export function isTagEnable(minder) {
   let node = undefined;
   if (minder && minder.getSelectedNode) {

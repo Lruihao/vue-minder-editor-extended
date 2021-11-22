@@ -37,7 +37,7 @@ export default {
           "children": [
             {
               "data": { "text": "地图axxaaaa",
-                // disable: true,
+                disable: true,
                 expandState: "collapse",
                 // tagEnable: true,
                 // allowDisabledTag: true,
@@ -45,10 +45,11 @@ export default {
               "children": [
                 {
                   "data": { "text": "地图axxaaaa",
-                    // disable: true,
+                    disable: true,
+                    allowDelete: true,
                     // tagEnable: true,
                     // allowDisabledTag: true,
-                    resource: ["模块1"]}
+                    resource: ["模块12"]}
                 }]
             },
             { "data": {

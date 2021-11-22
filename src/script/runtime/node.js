@@ -6,7 +6,7 @@ define(function (require, exports, module) {
     var fsm = this.fsm;
 
     var main = hotbox.state('main');
-    var {isDisableNode, markDeleteNode} = require('../tool/utils');
+    var {isDisableNode, markDeleteNode, isDeleteDisableNode} = require('../tool/utils');
 
     const buttons = [
       '前移:Alt+Up:ArrangeUp',
@@ -49,9 +49,16 @@ define(function (require, exports, module) {
           }
         },
         enable: function () {
-          if (isDisableNode(minder) &&
-            (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) ) {
-            return false;
+          if (command.indexOf("RemoveNode") > -1) {
+            if (isDeleteDisableNode(minder) &&
+              (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) ) {
+              return false;
+            }
+          } else {
+            if (isDisableNode(minder) &&
+              (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) ) {
+              return false;
+            }
           }
           let node = minder.getSelectedNode();
           if (node && node.parent === null && command.indexOf("AppendSiblingNode") > -1) {

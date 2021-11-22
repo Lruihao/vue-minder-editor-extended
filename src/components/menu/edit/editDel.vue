@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {isDisableNode, markDeleteNode} from "../../../script/tool/utils";
+import {isDeleteDisableNode, isDisableNode, markDeleteNode} from "../../../script/tool/utils";
 export default {
   name: 'edit_del',
   data() {
@@ -42,7 +42,9 @@ export default {
         // 如果window的还没挂载minder，先捕捉undefined异常
         return false
       }
-      if (isDisableNode(minder)) {
+      if (command === 'RemoveNode') {
+        if (isDeleteDisableNode(minder)) return true;
+      } else if (isDisableNode(minder)) {
         return true;
       }
       if (minder) {
