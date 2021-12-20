@@ -82,6 +82,10 @@ export let editMenuProps = {
     type: Boolean,
     default: true
   },
+  moveEnable: {
+    type: Boolean,
+    default: true
+  },
 }
 
 export let moleProps = {

@@ -15,6 +15,7 @@
 import {isDisableNode} from "../../../script/tool/utils";
 export default {
   name: 'moveBox',
+  props: ['moveEnable'],
   data() {
     return {
       minder: undefined
@@ -22,9 +23,11 @@ export default {
   },
   computed: {
     arrangeUpDisabled() {
+      if (!this.moveEnable) return true;
       return this.isDisabled('ArrangeUp');
     },
     arrangeDownDisabled() {
+      if (!this.moveEnable) return true;
       return this.isDisabled('ArrangeDown');
     },
   },

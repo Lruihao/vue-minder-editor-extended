@@ -54,11 +54,12 @@ define(function (require, exports, module) {
               (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) ) {
               return false;
             }
-          } else {
-            if (isDisableNode(minder) &&
-              (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) ) {
+          } else if(command.indexOf("ArrangeUp") < 0 || command.indexOf("ArrangeDown") < 0) {
+            if (!minder.moveEnable) {
               return false;
             }
+          } else if (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) {
+            if (isDisableNode(minder)) return false;
           }
           let node = minder.getSelectedNode();
           if (node && node.parent === null && command.indexOf("AppendSiblingNode") > -1) {

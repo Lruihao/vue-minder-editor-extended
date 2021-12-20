@@ -6,6 +6,7 @@
       :tag-enable="true"
       :sequence-enable="true"
       :tags="tags"
+      :move-enable="true"
       :disabled="true"
       :distinct-tags="tags"
       :height="500"

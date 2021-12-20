@@ -3,7 +3,7 @@
     <expand/>
     <selection/>
     <insert-box/>
-    <move-box/>
+    <move-box :move-enable="moveEnable"/>
     <edit-del/>
     <sequence-box
       v-if="sequenceEnable"

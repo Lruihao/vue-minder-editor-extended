@@ -5,6 +5,7 @@
         <div class="mind-tab-panel">
           <edit-menu
             :minder="minder"
+            :move-enable="moveEnable"
             :sequence-enable="sequenceEnable"
             :tag-enable="tagEnable"
             :progress-enable="progressEnable"

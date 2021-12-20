@@ -30,6 +30,7 @@ export default {
     }
     window.minder = window.km = editor.minder;
     window.minderEditor = editor;
+    window.minder.moveEnable = this.moveEnable;
 
     window.minder.on('preExecCommand', function (env) {
       let selectNodes = env.minder.getSelectedNodes();
@@ -49,10 +50,12 @@ export default {
       let sequenceEnable = this.sequenceEnable;
       let tagEnable = this.tagEnable;
       let progressEnable = this.progressEnable;
+      let moveEnable = this.moveEnable;
       return {
         sequenceEnable,
         tagEnable,
-        progressEnable
+        progressEnable,
+        moveEnable
       }
     }
   },
@@ -69,6 +72,27 @@ export default {
         res += start++;
       }
       let priority = window.minder.hotbox.state('priority');
+      res.replace(/./g, function (p) {
+        priority.button({
+          position: 'ring',
+          label: priorityPrefix + p,
+          key: p,
+          action: function () {
+            let pVal = parseInt(p);
+            minder.execCommand('Priority', priorityStartWithZero ? (pVal + 1) : pVal);
+          }
+        });
+      });
+    },
+    handleMoveButton() {
+      let priorityPrefix = this.priorityPrefix;
+      let priorityStartWithZero = this.priorityStartWithZero;
+      let start = priorityStartWithZero ? 0 : 1;
+      let res = '';
+      for (let i = 0; i < this.priorityCount; i++) {
+        res += start++;
+      }
+      let main = window.minder.hotbox.state('main');
       res.replace(/./g, function (p) {
         priority.button({
           position: 'ring',
