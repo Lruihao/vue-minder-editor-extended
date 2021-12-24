@@ -97,3 +97,20 @@ export function setPriorityView(priorityStartWithZero, priorityPrefix) {
     }
   }
 }
+
+/**
+ * 将节点及其子节点id置为null，changed 标记为true
+ * @param node
+ */
+export function resetNodes(nodes) {
+  if (nodes) {
+    nodes.forEach(item => {
+      if (item.data) {
+        item.data.id = null;
+        item.data.contextChanged = true;
+        item.data.changed = true;
+        resetNodes(item.children);
+      }
+    });
+  }
+}
