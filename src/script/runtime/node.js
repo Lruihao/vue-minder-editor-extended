@@ -54,7 +54,7 @@ define(function (require, exports, module) {
               (command.indexOf("AppendChildNode") < 0 && command.indexOf("AppendSiblingNode") < 0) ) {
               return false;
             }
-          } else if(command.indexOf("ArrangeUp") < 0 || command.indexOf("ArrangeDown") < 0) {
+          } else if(command.indexOf("ArrangeUp") > 0 || command.indexOf("ArrangeDown") > 0) {
             if (!minder.moveEnable) {
               return false;
             }
