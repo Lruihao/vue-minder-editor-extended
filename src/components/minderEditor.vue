@@ -24,6 +24,7 @@
       :progress-enable="progressEnable"
       :import-json="importJson"
       :height="height"
+      :tags="tags"
       :priority-count="priorityCount"
       :priority-prefix="priorityPrefix"
       :priority-start-with-zero="priorityStartWithZero"

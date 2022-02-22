@@ -20,19 +20,7 @@ define(function (require, exports, module) {
       }
     });
 
-    var tag = hotbox.state('tag');
-    let tags = ['前置条件', '测试步骤', '预期结果', '备注']
-
-    tags.forEach(item => {
-      tag.button({
-        position: 'ring',
-        label: item,
-        key: item,
-        action: function () {
-          minder.execCommand('Tag', item);
-        }
-      });
-    })
+    let tag = hotbox.state('tag');
 
     tag.button({
       position: 'center',

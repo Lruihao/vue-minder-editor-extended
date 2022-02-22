@@ -5,7 +5,6 @@
             size="small"
             :color="getResourceColor(item)"
             @click="editResource(item)">{{item}}</el-tag>
-<!--  <el-button class="add-btn" icon="el-icon-plus"></el-button>-->
 </div>
 </template>
 

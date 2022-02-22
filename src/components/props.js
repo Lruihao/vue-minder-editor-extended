@@ -55,7 +55,7 @@ export let tagProps = {
     // 自定义标签
     type: Array,
     default() {
-      return ['模块', '用例','前置条件','测试步骤','预期结果', '备注',]
+      return []
     }
   },
   distinctTags: {

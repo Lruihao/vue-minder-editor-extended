@@ -14,7 +14,8 @@ export default {
   props: {
     ...editMenuProps,
     ...mainEditorProps,
-    ...priorityProps
+    ...priorityProps,
+    tags: Array
   },
   data() {
     return {
@@ -43,6 +44,7 @@ export default {
       }
     });
     this.handlePriorityButton();
+    this.handleTagButton();
     this.$emit('afterMount');
   },
   computed: {
@@ -84,6 +86,19 @@ export default {
         });
       });
     },
+    handleTagButton() {
+      let tag = window.minder.hotbox.state('tag');
+      this.tags.forEach((item) => {
+        tag.button({
+          position: 'ring',
+          label: item,
+          key: item,
+          action: function () {
+            minder.execCommand('resource', item);
+          }
+        });
+      });
+    },
     handleMoveButton() {
       let priorityPrefix = this.priorityPrefix;
       let priorityStartWithZero = this.priorityStartWithZero;
@@ -92,7 +107,6 @@ export default {
       for (let i = 0; i < this.priorityCount; i++) {
         res += start++;
       }
-      let main = window.minder.hotbox.state('main');
       res.replace(/./g, function (p) {
         priority.button({
           position: 'ring',
