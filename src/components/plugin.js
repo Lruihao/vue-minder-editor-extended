@@ -1,7 +1,7 @@
 
 import mindEditor from './minderEditor'
 require('../../node_modules/@7polo/kity/dist/kity.js')
-require('../../node_modules/hotbox/hotbox.js')
+require('../../node_modules/hotbox-minder/hotbox.js')
 require('../../node_modules/@7polo/kityminder-core/dist/kityminder.core.js')
 require('../script/expose-editor.js')
 

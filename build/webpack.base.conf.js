@@ -43,7 +43,7 @@ module.exports = {
         resolve('node_modules/element-ui/packages'),
         resolve('node_modules/element-ui/src'),
         resolve('node_modules/element-ui/src'),
-        resolve('node_modules/hotbox/src'),
+        resolve('node_modules/hotbox-minder/src'),
         resolve('node_modules/@7polo/kity/src'),
         resolve('node_modules/@7polo/kityminder-core/src'),
       ]
