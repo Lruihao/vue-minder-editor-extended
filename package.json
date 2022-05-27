@@ -1,6 +1,6 @@
 {
   "name": "vue-minder-editor-plus",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "description": "A Vue2 project",
   "author": "AgAngle <1323481023@qq.com>",
   "scripts": {
@@ -13,10 +13,10 @@
   },
   "main": "dist/static/vue-minder-editor-plus.js",
   "dependencies": {
+    "@7polo/kity": "^2.0.8",
+    "@7polo/kityminder-core": "^1.4.53",
     "element-ui": "^2.12.0",
     "hotbox": "github:fex-team/hotbox",
-    "kity": "^2.0.4",
-    "kityminder-core": "^1.4.50",
     "vue": "^2.6.10"
   },
   "devDependencies": {
