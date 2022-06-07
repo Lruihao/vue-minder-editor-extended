@@ -172,6 +172,8 @@ define(function (require, exports, module) {
             break;
           }
         }
+        // 触发命令监听
+        minder.execCommand('paste');
       }
     }
 
