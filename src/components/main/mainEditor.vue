@@ -42,7 +42,14 @@ export default {
             markChangeNode(node);
         })
       }
+      if (env.commandName === 'movetoparent') {
+        setTimeout(() => {
+          let targetNode = minder.getSelectedNode();
+          targetNode.parent.renderTree();
+        }, 100);
+      }
     });
+
     this.handlePriorityButton();
     this.handleTagButton();
     this.$emit('afterMount');
