@@ -12,8 +12,17 @@ export let mainEditorProps = {
             "text": "test111"
           },
           "children": [
-            { "data": { "text": "地图" } },
-            { "data": { "text": "百科","expandState":"collapse"}}
+            {
+              "data": {
+                  "text": "地图"
+              }
+            },
+            {
+              "data": {
+                "text": "百科",
+                "expandState":"collapse"
+              }
+            }
           ]
         },
         "template":"default"
@@ -59,7 +68,7 @@ export let tagProps = {
     }
   },
   distinctTags: {
-    // 自定义标签
+    // 个别标签二选一
     type: Array,
     default() {
       return []
