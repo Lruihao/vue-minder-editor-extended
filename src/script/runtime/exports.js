@@ -24,7 +24,7 @@ define(function (require, exports, module) {
     var main = hotbox.state('main');
     main.button({
       position: 'top',
-      label: t('commons.export'),
+      label: t('minder.commons.export'),
       key: 'E',
       enable: canExp,
       next: 'exp'
@@ -42,7 +42,7 @@ define(function (require, exports, module) {
 
     exp.button({
       position: 'center',
-      label: t('commons.cancel'),
+      label: t('minder.commons.cancel'),
       key: 'esc',
       next: 'back'
     });

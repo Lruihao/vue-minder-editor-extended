@@ -1,6 +1,6 @@
 <template>
   <div class="minder-container" :style="{height: height + 'px'}">
-    <el-button :disabled="disabled" class="save-btn" @click="save" type="primary">{{t('main.main.save')}}</el-button>
+    <el-button :disabled="disabled" class="save-btn" @click="save" type="primary">{{t('minder.main.main.save')}}</el-button>
     <navigator/>
   </div>
 </template>

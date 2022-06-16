@@ -1,12 +1,12 @@
 <template>
   <div class="font-group">
-    <el-select v-model="fontFamilyDefaultValue" :placeholder="t('menu.font.font')" class="font-family-select"
+    <el-select v-model="fontFamilyDefaultValue" :placeholder="t('minder.menu.font.font')" class="font-family-select"
                :disabled="disabledFont" @change="execCommandFontFamily">
       <el-option v-for="item in fontFamilys" :label="item.name" :value="item.value" :key="item.id"
                  :style="{'font-family':item.value}">
       </el-option>
     </el-select>
-    <el-select v-model="fontSizeDefaultValue" :placeholder="t('menu.font.size')" class="font-size-select"
+    <el-select v-model="fontSizeDefaultValue" :placeholder="t('minder.menu.font.size')" class="font-size-select"
                :disabled="disabledFontSize" @change="execCommandFontSize">
       <el-option v-for="item in fontSizes" :label="item.label" :value="item.value" :key="item.id"
                  :style="{'font-size':item.value+'px','height':2*item.value+'px', 'line-height':2*item.value+'px','padding':0}">
@@ -125,8 +125,8 @@ export default {
           label: 48,
         },
       ],
-      fontFamilyDefaultValue: this.t('menu.font.font'),
-      fontSizeDefaultValue: this.t('menu.font.size'),
+      fontFamilyDefaultValue: this.t('minder.menu.font.font'),
+      fontSizeDefaultValue: this.t('minder.menu.font.size'),
     };
   },
   mixins: [Locale],
@@ -148,7 +148,7 @@ export default {
         minder &&
         minder.queryCommandValue &&
         minder.queryCommandValue('fontfamily');
-      this.fontFamilyDefaultValue = currentFontFamily || this.t('menu.font.font');
+      this.fontFamilyDefaultValue = currentFontFamily || this.t('minder.menu.font.font');
       return (
         minder &&
         minder.queryCommandState &&
@@ -167,7 +167,7 @@ export default {
         (minder &&
           minder.queryCommandValue &&
           minder.queryCommandValue("fontsize")) ||
-        this.t('menu.font.size');
+        this.t('minder.menu.font.size');
       return (
         minder &&
         minder.queryCommandState &&
@@ -233,7 +233,7 @@ export default {
   },
   methods: {
     execCommandFontFamily(value) {
-      if (value == this.t('menu.font.font')) {
+      if (value == this.t('minder.menu.font.font')) {
         return;
       }
       minder.execCommand("fontfamily", value);

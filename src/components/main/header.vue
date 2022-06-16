@@ -1,7 +1,7 @@
 <template lang="html">
   <header>
     <el-tabs v-model="activeName" class="mind_tab-content">
-      <el-tab-pane :label="t('main.header.minder')" name="editMenu">
+      <el-tab-pane :label="t('minder.main.header.minder')" name="editMenu">
         <div class="mind-tab-panel">
           <edit-menu
             :minder="minder"
@@ -20,7 +20,7 @@
           />
         </div>
       </el-tab-pane>
-      <el-tab-pane :label="t('main.header.style')" name="viewMenu">
+      <el-tab-pane :label="t('minder.main.header.style')" name="viewMenu">
         <div class="mind-tab-panel">
           <view-menu
             @moldChange="handleMoldChange"

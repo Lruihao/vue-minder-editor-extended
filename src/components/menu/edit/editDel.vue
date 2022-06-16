@@ -3,13 +3,13 @@
   <div class="edit menu-btn" :disabled="textDisabled" @click="edit">
     <i class="tab-icons"></i>
     <span>
-      {{t('commons.edit')}}
+      {{t('minder.commons.edit')}}
     </span>
   </div>
   <div class="del menu-btn" :disabled="removeNodeDisabled" @click="del">
     <i class="tab-icons"></i>
     <span>
-       {{t('commons.delete')}}
+       {{t('minder.commons.delete')}}
     </span>
   </div>
 </div>

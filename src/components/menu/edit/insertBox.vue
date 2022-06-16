@@ -2,15 +2,15 @@
 <div class="insert-group">
   <div class="insert-child-box menu-btn" :disabled="appendChildNodeDisabled" @click="execCommand('AppendChildNode')">
     <i class="tab-icons"></i>
-    <span>{{t('menu.insert.down')}}</span>
+    <span>{{t('minder.menu.insert.down')}}</span>
   </div>
   <div class="insert-parent-box menu-btn" :disabled="appendParentNodeDisabled" @click="execCommand('AppendParentNode')">
     <i class="tab-icons"></i>
-    <span>{{t('menu.insert.up')}}</span>
+    <span>{{t('minder.menu.insert.up')}}</span>
   </div>
   <div class="insert-sibling-box menu-btn" :disabled="appendSiblingNodeDisabled" @click="execCommand('AppendSiblingNode')">
     <i class="tab-icons"></i>
-    <span>{{t('menu.insert.same')}}</span>
+    <span>{{t('minder.menu.insert.same')}}</span>
   </div>
 </div>
 </template>

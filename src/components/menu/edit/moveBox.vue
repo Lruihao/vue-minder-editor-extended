@@ -2,11 +2,11 @@
 <div class="move-group ">
   <div class="move-up menu-btn" :disabled="arrangeUpDisabled" @click="execCommand('ArrangeUp')">
     <i class="tab-icons"></i>
-    <span>{{t('menu.move.up')}}</span>
+    <span>{{t('minder.menu.move.up')}}</span>
   </div>
   <div class="move-down menu-btn" :disabled="arrangeDownDisabled" @click="execCommand('ArrangeDown')">
     <i class="tab-icons"></i>
-    <span>{{t('menu.move.down')}}</span>
+    <span>{{t('minder.menu.move.down')}}</span>
   </div>
 </div>
 </template>

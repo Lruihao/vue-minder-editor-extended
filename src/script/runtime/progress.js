@@ -10,7 +10,7 @@ define(function (require, exports, module) {
 
     main.button({
       position: 'top',
-      label: t('menu.progress.progress'),
+      label: t('minder.menu.progress.progress'),
       key: 'G',
       next: 'progress',
       enable: function () {
@@ -35,7 +35,7 @@ define(function (require, exports, module) {
 
     progress.button({
       position: 'center',
-      label: t('commons.remove'),
+      label: t('minder.commons.remove'),
       key: 'Del',
       action: function () {
         minder.execCommand('Progress', 0);
@@ -44,7 +44,7 @@ define(function (require, exports, module) {
 
     progress.button({
       position: 'top',
-      label: t('commons.return'),
+      label: t('minder.commons.return'),
       key: 'esc',
       next: 'back'
     });

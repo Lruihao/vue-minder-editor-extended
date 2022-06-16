@@ -6,24 +6,24 @@
     <el-col :span="24">
       <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle menu-btn" @command="handleCommand">
         <span class="el-dropdown-link">
-          {{t('menu.selection.all')}}
+          {{t('minder.menu.selection.all')}}
           <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown" class="selection-dropdown-list">
           <el-dropdown-item class="selection-1 dropdown-item" command="1">
-            {{t('menu.selection.invert')}}
+            {{t('minder.menu.selection.invert')}}
           </el-dropdown-item>
           <el-dropdown-item class="selection-2 dropdown-item" command="2">
-            {{t('menu.selection.sibling')}}
+            {{t('minder.menu.selection.sibling')}}
           </el-dropdown-item>
           <el-dropdown-item class="selection-3 dropdown-item" command="3">
-            {{t('menu.selection.same')}}
+            {{t('minder.menu.selection.same')}}
           </el-dropdown-item>
           <el-dropdown-item class="selection-4 dropdown-item" command="4">
-            {{t('menu.selection.path')}}
+            {{t('minder.menu.selection.path')}}
           </el-dropdown-item>
           <el-dropdown-item class="selection-5 dropdown-item" command="5">
-            {{t('menu.selection.subtree')}}
+            {{t('minder.menu.selection.subtree')}}
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>

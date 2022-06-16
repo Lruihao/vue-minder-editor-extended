@@ -10,7 +10,7 @@ define(function (require, exports, module) {
 
     main.button({
       position: 'top',
-      label: t('main.tag'),
+      label: t('minder.main.tag'),
       key: 'H',
       next: 'tag',
       enable: function () {
@@ -25,7 +25,7 @@ define(function (require, exports, module) {
 
     tag.button({
       position: 'center',
-      label: t('commons.remove'),
+      label: t('minder.commons.remove'),
       key: 'Del',
       action: function () {
         minder.execCommand('Tag', 0);
@@ -34,7 +34,7 @@ define(function (require, exports, module) {
 
     tag.button({
       position: 'top',
-      label: t('commons.return'),
+      label: t('minder.commons.return'),
       key: 'esc',
       next: 'back'
     });

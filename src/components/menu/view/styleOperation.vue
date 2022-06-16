@@ -3,20 +3,20 @@
     <div class="clear-style-btn menu-btn" @click="clearstyle" :disabled="disabled">
       <span class="tab-icons"></span>
       <span class="label">
-          {{ t('menu.style.clear') }}
+          {{ t('minder.menu.style.clear') }}
         </span>
     </div>
     <div class="copy-paste-panel" @click="copystyle">
       <div class="copy-style menu-btn" :disabled="disabled">
         <span class="tab-icons"></span>
         <span class="label">
-              {{ t('menu.style.copy') }}
+              {{ t('minder.menu.style.copy') }}
             </span>
       </div>
       <div class="paste-style menu-btn" @click="pastestyle" :disabled="disabled">
         <span class="tab-icons"></span>
         <span class="label">
-              {{ t('menu.style.paste') }}
+              {{ t('minder.menu.style.paste') }}
             </span>
       </div>
     </div>

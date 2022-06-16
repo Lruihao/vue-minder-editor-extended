@@ -67,13 +67,13 @@ export default {
     title(index) {
       switch (index) {
         case 0:
-          return this.t('menu.progress.remove_progress');
+          return this.t('minder.menu.progress.remove_progress');
         case 1:
-          return this.t('menu.progress.prepare');
+          return this.t('minder.menu.progress.prepare');
         case 9:
-          return this.t('menu.progress.complete_all');
+          return this.t('minder.menu.progress.complete_all');
         default:
-          return this.t('menu.progress.complete') + (index - 1) + '/8';
+          return this.t('minder.menu.progress.complete') + (index - 1) + '/8';
       }
     }
   },

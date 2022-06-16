@@ -188,7 +188,7 @@ define(function (require, exports, module) {
     var main = hotbox.state('main');
     main.button({
       position: 'bottom',
-      label: t('main.history.undo'),
+      label: t('minder.main.history.undo'),
       key: 'Ctrl + Z',
       enable: function() {
           if (isDisableNode(minder)) {
@@ -201,7 +201,7 @@ define(function (require, exports, module) {
     });
     main.button({
       position: 'bottom',
-      label: t('main.history.redo'),
+      label: t('minder.main.history.redo'),
       key: 'Ctrl + Y',
       enable: function() {
         if (isDisableNode(minder)) {

@@ -96,7 +96,7 @@ define(function (require, exports, module) {
     function setupHotbox() {
       hotbox.state('main').button({
         position: 'center',
-        label: t('commons.edit'),
+        label: t('minder.commons.edit'),
         key: 'F2',
         enable: function () {
           if (isDisableNode(minder)) {
