@@ -1,15 +1,16 @@
+
 define(function (require, exports, module) {
 
   function TagRuntime() {
     var minder = this.minder;
     var hotbox = this.hotbox;
     var {isDisableNode, isTagEnable} = require('../tool/utils');
-
+    var {t} = require("../../locale");
     var main = hotbox.state('main');
 
     main.button({
       position: 'top',
-      label: '标签',
+      label: t('main.tag'),
       key: 'H',
       next: 'tag',
       enable: function () {
@@ -24,7 +25,7 @@ define(function (require, exports, module) {
 
     tag.button({
       position: 'center',
-      label: '移除',
+      label: t('commons.remove'),
       key: 'Del',
       action: function () {
         minder.execCommand('Tag', 0);
@@ -33,7 +34,7 @@ define(function (require, exports, module) {
 
     tag.button({
       position: 'top',
-      label: '返回',
+      label: t('commons.return'),
       key: 'esc',
       next: 'back'
     });

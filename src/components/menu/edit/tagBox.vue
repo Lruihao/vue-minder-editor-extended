@@ -10,11 +10,13 @@
 
 <script>
 
-import {tagProps} from "../../props";
+import {tagProps} from "../../../props";
 import {isDisableNode, isTagEnable} from "../../../script/tool/utils";
+import Locale from '/src/mixins/locale';
 
 export default {
   name: 'tagBox',
+  mixins: [Locale],
   props: {
     ...tagProps
   },

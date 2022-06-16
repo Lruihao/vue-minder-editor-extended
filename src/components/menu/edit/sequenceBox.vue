@@ -13,11 +13,13 @@
 </template>
 
 <script>
-import {priorityProps} from "../../props";
+import {priorityProps} from "../../../props";
 import {isDisableNode, setPriorityView} from "../../../script/tool/utils";
+import Locale from '/src/mixins/locale';
 
 export default {
   name: 'sequenceBox',
+  mixins: [Locale],
   props: {
     ...priorityProps
   },

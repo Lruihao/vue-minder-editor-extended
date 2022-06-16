@@ -4,17 +4,18 @@ define(function (require, exports, module) {
     var minder = this.minder;
     var hotbox = this.hotbox;
     var fsm = this.fsm;
+    var {t} = require("../../locale");
 
     var main = hotbox.state('main');
     var {isDisableNode, markDeleteNode, isDeleteDisableNode} = require('../tool/utils');
 
     const buttons = [
-      '前移:Alt+Up:ArrangeUp',
-      '下级:Tab|Insert:AppendChildNode',
-      '同级:Enter:AppendSiblingNode',
-      '后移:Alt+Down:ArrangeDown',
-      '删除:Delete|Backspace:RemoveNode',
-      '上级:Shift+Tab|Shift+Insert:AppendParentNode'
+      t('menu.move.forward') + ':Alt+Up:ArrangeUp',
+      t('menu.insert._down') + ':Tab|Insert:AppendChildNode',
+      t('menu.insert._same') + ':Enter:AppendSiblingNode',
+      t('menu.move.backward') + ':Alt+Down:ArrangeDown',
+      t('commons.delete') + ':Delete|Backspace:RemoveNode',
+      t('menu.insert._up') + ':Shift+Tab|Shift+Insert:AppendParentNode'
     ];
 
     var AppendLock = 0;
@@ -31,7 +32,7 @@ define(function (require, exports, module) {
         action: function () {
           if (command.indexOf('Append') === 0) {
             AppendLock++;
-            minder.execCommand(command, '分支主题');
+            minder.execCommand(command, t('main.subject.branch'));
 
             function afterAppend() {
               if (!--AppendLock) {
@@ -85,9 +86,9 @@ define(function (require, exports, module) {
       },
       beforeShow: function () {
         if (!minder.queryCommandState('expand')) {
-          this.$button.children[0].innerHTML = '展开';
+          this.$button.children[0].innerHTML = t('menu.expand.expand');
         } else {
-          this.$button.children[0].innerHTML = '收起';
+          this.$button.children[0].innerHTML = t('menu.expand.folding');
         }
       }
     })

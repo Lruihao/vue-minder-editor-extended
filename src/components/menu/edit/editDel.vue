@@ -1,20 +1,26 @@
 <template>
 <div class="edit-del-group">
-  <div class="edit menu-btn" :disabled="textDisabled" @click="edit" title="编辑">
+  <div class="edit menu-btn" :disabled="textDisabled" @click="edit">
     <i class="tab-icons"></i>
-    <span>编辑</span>
+    <span>
+      {{t('commons.edit')}}
+    </span>
   </div>
-  <div class="del menu-btn" :disabled="removeNodeDisabled" @click="del" title="删除">
+  <div class="del menu-btn" :disabled="removeNodeDisabled" @click="del">
     <i class="tab-icons"></i>
-    <span>删除</span>
+    <span>
+       {{t('commons.delete')}}
+    </span>
   </div>
 </div>
 </template>
 
 <script>
 import {isDeleteDisableNode, isDisableNode, markDeleteNode} from "../../../script/tool/utils";
+import Locale from '/src/mixins/locale';
 export default {
   name: 'edit_del',
+  mixins: [Locale],
   data() {
     return {
       minder: undefined

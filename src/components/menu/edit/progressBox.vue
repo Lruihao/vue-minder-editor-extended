@@ -10,8 +10,10 @@
 
 <script>
 import {isDisableNode} from "../../../script/tool/utils";
+import Locale from '/src/mixins/locale';
 export default {
   name: 'progressBox',
+  mixins: [Locale],
   data() {
     return {
       minder: {},
@@ -65,13 +67,13 @@ export default {
     title(index) {
       switch (index) {
         case 0:
-          return '移除进度';
+          return this.t('menu.progress.remove_progress');
         case 1:
-          return '未开始';
+          return this.t('menu.progress.prepare');
         case 9:
-          return '全部完成';
+          return this.t('menu.progress.complete_all');
         default:
-          return '完成' + (index - 1) + '/8';
+          return this.t('menu.progress.complete') + (index - 1) + '/8';
       }
     }
   },

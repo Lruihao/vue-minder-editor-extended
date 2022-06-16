@@ -36,10 +36,12 @@
 <script>
 import headerMenu from './main/header'
 import mainEditor from './main/mainEditor'
-import {editMenuProps, mainEditorProps, moleProps, priorityProps, tagProps} from "./props";
+import {editMenuProps, mainEditorProps, moleProps, priorityProps, tagProps} from "../props";
+import Locale from '/src/mixins/locale';
 
 export default {
   name: 'minderEditor',
+  mixins: [Locale],
   components: {
     headerMenu,
     mainEditor

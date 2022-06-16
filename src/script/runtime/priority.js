@@ -4,12 +4,13 @@ define(function (require, exports, module) {
     var minder = this.minder;
     var hotbox = this.hotbox;
     var {isDisableNode} = require('../tool/utils');
+    var {t} = require("../../locale");
 
     var main = hotbox.state('main');
 
     main.button({
       position: 'top',
-      label: '优先级',
+      label: t('main.priority'),
       key: 'P',
       next: 'priority',
       enable: function () {
@@ -24,7 +25,7 @@ define(function (require, exports, module) {
 
     priority.button({
       position: 'center',
-      label: '移除',
+      label: t('commons.remove'),
       key: 'Del',
       action: function () {
         minder.execCommand('Priority', 0);
@@ -33,7 +34,7 @@ define(function (require, exports, module) {
 
     priority.button({
       position: 'top',
-      label: '返回',
+      label: t('commons.return'),
       key: 'esc',
       next: 'back'
     });

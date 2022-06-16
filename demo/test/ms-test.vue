@@ -39,9 +39,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import minderEditor from "../components/plugin";
-Vue.use(minderEditor) //开发测试
 
 export default {
   name: "ms-test",

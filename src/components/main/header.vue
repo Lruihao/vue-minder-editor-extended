@@ -1,7 +1,7 @@
 <template lang="html">
   <header>
     <el-tabs v-model="activeName" class="mind_tab-content">
-      <el-tab-pane label="思维导图" name="editMenu">
+      <el-tab-pane :label="t('main.header.minder')" name="editMenu">
         <div class="mind-tab-panel">
           <edit-menu
             :minder="minder"
@@ -20,7 +20,7 @@
           />
         </div>
       </el-tab-pane>
-      <el-tab-pane label="外观样式" name="viewMenu">
+      <el-tab-pane :label="t('main.header.style')" name="viewMenu">
         <div class="mind-tab-panel">
           <view-menu
             @moldChange="handleMoldChange"
@@ -35,9 +35,11 @@
 <script>
   import editMenu from '../menu/edit/editMenu'
   import viewMenu from '../menu/view/viewMenu'
-  import {editMenuProps, moleProps, priorityProps, tagProps} from "../props";
+  import Locale from '/src/mixins/locale';
+  import {editMenuProps, moleProps, priorityProps, tagProps} from "../../props";
   export default {
     name: 'headerVue',
+    mixins: [Locale],
     data() {
       return {
         switchShow: {

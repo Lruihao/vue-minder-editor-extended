@@ -1,7 +1,7 @@
 <template>
 <div class="navigator">
   <div class="nav-bar">
-    <div class="nav-btn zoom-in" @click="zoomIn" title="放大" :class="{ 'active' : zoomRadioIn }">
+    <div class="nav-btn zoom-in" @click="zoomIn" :title="t('main.navigator.amplification')" :class="{ 'active' : zoomRadioIn }">
       <div class="icon"></div>
     </div>
     <div class="zoom-pan" ref="zoomPan">
@@ -11,16 +11,16 @@
                  'transition': 'transform 200ms'
                  }"></div>
     </div>
-    <div class="nav-btn zoom-out" @click="zoomOut" title="缩小" :class="{ 'active' : zoomRadioOut }">
+    <div class="nav-btn zoom-out" @click="zoomOut" :title="t('main.navigator.narrow')" :class="{ 'active' : zoomRadioOut }">
       <div class="icon"></div>
     </div>
-    <div class="nav-btn hand" @click="hand" title="拖拽" :class="{ 'active' : enableHand }">
+    <div class="nav-btn hand" @click="hand" :title="t('main.navigator.drag')" :class="{ 'active' : enableHand }">
       <div class="icon"></div>
     </div>
-    <div class="nav-btn camera" @click="locateToOrigin" title="定位根节点">
+    <div class="nav-btn camera" @click="locateToOrigin" :title="t('main.navigator.locating_root')">
       <div class="icon"></div>
     </div>
-    <div class="nav-btn nav-trigger" :class="{'active' : isNavOpen}" @click="toggleNavOpen" title="导航器">
+    <div class="nav-btn nav-trigger" :class="{'active' : isNavOpen}" @click="toggleNavOpen" :title="t('main.navigator.navigator')">
       <div class="icon"></div>
     </div>
   </div>
@@ -29,9 +29,11 @@
 </template>
 
 <script>
-import {getLocalStorage, setLocalStorage} from '../../script/store'
+import {getLocalStorage, setLocalStorage} from '../../script/store';
+import Locale from '/src/mixins/locale';
 export default {
   name: "navigator",
+  mixins: [Locale],
   data() {
     return {
       zoom: 100,

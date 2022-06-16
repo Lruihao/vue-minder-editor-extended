@@ -8,6 +8,7 @@
  */
 define(function (require, exports, module) {
   var Minder = require('../minder');
+  var {t} = require("../../locale");
 
   function MinderRuntime() {
 
@@ -21,7 +22,7 @@ define(function (require, exports, module) {
     minder.renderTo(this.selector);
     minder.setTheme(null);
     minder.select(minder.getRoot(), true);
-    minder.execCommand('text', '中心主题');
+    minder.execCommand('text', t('main.subject.central'));
 
     // 导出给其它 Runtime 使用
     this.minder = minder;

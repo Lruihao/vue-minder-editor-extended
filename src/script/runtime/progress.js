@@ -4,12 +4,13 @@ define(function (require, exports, module) {
     var minder = this.minder;
     var hotbox = this.hotbox;
     var {isDisableNode} = require('../tool/utils');
+    var {t} = require("../../locale");
 
     var main = hotbox.state('main');
 
     main.button({
       position: 'top',
-      label: '进度',
+      label: t('menu.progress.progress'),
       key: 'G',
       next: 'progress',
       enable: function () {
@@ -34,7 +35,7 @@ define(function (require, exports, module) {
 
     progress.button({
       position: 'center',
-      label: '移除',
+      label: t('commons.remove'),
       key: 'Del',
       action: function () {
         minder.execCommand('Progress', 0);
@@ -43,7 +44,7 @@ define(function (require, exports, module) {
 
     progress.button({
       position: 'top',
-      label: '返回',
+      label: t('commons.return'),
       key: 'esc',
       next: 'back'
     });

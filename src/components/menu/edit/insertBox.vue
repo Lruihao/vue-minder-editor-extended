@@ -2,23 +2,25 @@
 <div class="insert-group">
   <div class="insert-child-box menu-btn" :disabled="appendChildNodeDisabled" @click="execCommand('AppendChildNode')">
     <i class="tab-icons"></i>
-    <span>插入下级主题</span>
+    <span>{{t('menu.insert.down')}}</span>
   </div>
   <div class="insert-parent-box menu-btn" :disabled="appendParentNodeDisabled" @click="execCommand('AppendParentNode')">
     <i class="tab-icons"></i>
-    <span>插入上级主题</span>
+    <span>{{t('menu.insert.up')}}</span>
   </div>
   <div class="insert-sibling-box menu-btn" :disabled="appendSiblingNodeDisabled" @click="execCommand('AppendSiblingNode')">
     <i class="tab-icons"></i>
-    <span>插入同级主题</span>
+    <span>{{t('menu.insert.same')}}</span>
   </div>
 </div>
 </template>
 
 <script>
 import {isDisableNode} from "../../../script/tool/utils";
+import Locale from '/src/mixins/locale';
 export default {
   name: 'insertBox',
+  mixins: [Locale],
   data() {
     return {
       minder: undefined

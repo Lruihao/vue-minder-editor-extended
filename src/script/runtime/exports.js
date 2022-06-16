@@ -1,3 +1,4 @@
+
 define(function (require, exports, module) {
   var png = require("../protocol/png");
   var svg = require("../protocol/svg");
@@ -5,6 +6,7 @@ define(function (require, exports, module) {
   var plain = require("../protocol/plain");
   var md = require("../protocol/markdown");
   var mm = require("../protocol/freemind");
+  var {t} = require("../../locale");
 
   function ExportRuntime() {
     var minder = this.minder;
@@ -18,10 +20,11 @@ define(function (require, exports, module) {
       {label: '.mm', key: 'f', cmd: exportFreeMind}
     ];
 
+
     var main = hotbox.state('main');
     main.button({
       position: 'top',
-      label: '导出',
+      label: t('commons.export'),
       key: 'E',
       enable: canExp,
       next: 'exp'
@@ -39,7 +42,7 @@ define(function (require, exports, module) {
 
     exp.button({
       position: 'center',
-      label: '取消',
+      label: t('commons.cancel'),
       key: 'esc',
       next: 'back'
     });

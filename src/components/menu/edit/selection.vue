@@ -6,15 +6,25 @@
     <el-col :span="24">
       <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle menu-btn" @command="handleCommand">
         <span class="el-dropdown-link">
-          全选
+          {{t('menu.selection.all')}}
           <i class="el-icon-caret-bottom el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown" class="selection-dropdown-list">
-          <el-dropdown-item class="selection-1 dropdown-item" command="1">反选</el-dropdown-item>
-          <el-dropdown-item class="selection-2 dropdown-item" command="2">选择兄弟节点</el-dropdown-item>
-          <el-dropdown-item class="selection-3 dropdown-item" command="3">选择同级节点</el-dropdown-item>
-          <el-dropdown-item class="selection-4 dropdown-item" command="4">选择路径</el-dropdown-item>
-          <el-dropdown-item class="selection-5 dropdown-item" command="5">选择子树</el-dropdown-item>
+          <el-dropdown-item class="selection-1 dropdown-item" command="1">
+            {{t('menu.selection.invert')}}
+          </el-dropdown-item>
+          <el-dropdown-item class="selection-2 dropdown-item" command="2">
+            {{t('menu.selection.sibling')}}
+          </el-dropdown-item>
+          <el-dropdown-item class="selection-3 dropdown-item" command="3">
+            {{t('menu.selection.same')}}
+          </el-dropdown-item>
+          <el-dropdown-item class="selection-4 dropdown-item" command="4">
+            {{t('menu.selection.path')}}
+          </el-dropdown-item>
+          <el-dropdown-item class="selection-5 dropdown-item" command="5">
+            {{t('menu.selection.subtree')}}
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-col>
@@ -23,8 +33,10 @@
 </template>
 
 <script>
+import Locale from '/src/mixins/locale';
 export default {
   name: 'selection',
+  mixins: [Locale],
   methods: {
     selectAll() {
       let selection = [];

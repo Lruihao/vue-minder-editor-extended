@@ -13,6 +13,7 @@ define(function (require, exports, module) {
 
   var Debug = require('../tool/debug');
   var debug = new Debug('input');
+  var {t} = require("../../locale");
 
   function InputRuntime() {
     var fsm = this.fsm;
@@ -95,7 +96,7 @@ define(function (require, exports, module) {
     function setupHotbox() {
       hotbox.state('main').button({
         position: 'center',
-        label: '编辑',
+        label: t('commons.edit'),
         key: 'F2',
         enable: function () {
           if (isDisableNode(minder)) {

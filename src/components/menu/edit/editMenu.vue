@@ -32,10 +32,12 @@ import progressBox from './progressBox'
 import expand from './expand'
 import selection from './selection'
 import TagBox from "./tagBox";
-import {editMenuProps, priorityProps, tagProps} from "../../props";
+import {editMenuProps, priorityProps, tagProps} from "../../../props";
+import Locale from '/src/mixins/locale';
 
 export default {
   name: 'editMenu',
+  mixins: [Locale],
   components: {
     TagBox,
     insertBox,

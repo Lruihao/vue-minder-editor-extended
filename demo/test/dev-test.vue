@@ -21,9 +21,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import minderEditor from "../components/plugin";
-Vue.use(minderEditor) //开发测试
 
 export default {
   name: "dev-test",
@@ -59,18 +56,16 @@ export default {
               },
               children: [
                 {
-                  data: {
-                    text: 'child11',
-                    // disable: true,
-                    resource: ['模块2']
-                  },
-                },
-                {
-                  data: {
-                    text: 'child12',
+
+                  "data": { "text": "地图axxaaaa",
+                    disable: true,
+                    allowDelete: true,
+                    // tagEnable: true,
+                    // allowDisabledTag: true,
+                    resource: ["模块12"],
+                    priority: 3
                   }
-                }
-              ]
+                }]
             },
             {
               data: {

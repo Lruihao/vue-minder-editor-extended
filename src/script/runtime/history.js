@@ -4,6 +4,7 @@ define(function (require, exports, module) {
     var minder = this.minder;
     var hotbox = this.hotbox;
     var {isDisableNode} = require('../tool/utils');
+    var {t} = require("../../locale");
 
     var MAX_HISTORY = 100;
 
@@ -187,7 +188,7 @@ define(function (require, exports, module) {
     var main = hotbox.state('main');
     main.button({
       position: 'bottom',
-      label: '撤销',
+      label: t('main.history.undo'),
       key: 'Ctrl + Z',
       enable: function() {
           if (isDisableNode(minder)) {
@@ -200,7 +201,7 @@ define(function (require, exports, module) {
     });
     main.button({
       position: 'bottom',
-      label: '重做',
+      label: t('main.history.redo'),
       key: 'Ctrl + Y',
       enable: function() {
         if (isDisableNode(minder)) {

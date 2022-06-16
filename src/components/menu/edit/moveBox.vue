@@ -2,19 +2,21 @@
 <div class="move-group ">
   <div class="move-up menu-btn" :disabled="arrangeUpDisabled" @click="execCommand('ArrangeUp')">
     <i class="tab-icons"></i>
-    <span>上移</span>
+    <span>{{t('menu.move.up')}}</span>
   </div>
   <div class="move-down menu-btn" :disabled="arrangeDownDisabled" @click="execCommand('ArrangeDown')">
     <i class="tab-icons"></i>
-    <span>下移</span>
+    <span>{{t('menu.move.down')}}</span>
   </div>
 </div>
 </template>
 
 <script>
 import {isDisableNode} from "../../../script/tool/utils";
+import Locale from '/src/mixins/locale';
 export default {
   name: 'moveBox',
+  mixins: [Locale],
   props: ['moveEnable'],
   data() {
     return {

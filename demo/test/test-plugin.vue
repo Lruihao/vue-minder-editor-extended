@@ -30,13 +30,6 @@
 
 <script>
 
-import minderEditor1 from '../../dist/static/vue-minder-editor-plus'
-
-import Vue from 'vue'
-Vue.use(minderEditor1);
-
-console.log(minderEditor1);
-
 export default {
   name: "test-plugin",
   data() {

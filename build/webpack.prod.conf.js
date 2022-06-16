@@ -13,7 +13,7 @@ const env = config.build.env
 const webpackConfig = merge(baseWebpackConfig, {
    mode: 'production',
   // mode: "development",
-  entry: './src/components/plugin.js',
+  entry: './src/index.js',
   output: {
     path: config.build.assetsRoot,
     publicPath: '/dist/',

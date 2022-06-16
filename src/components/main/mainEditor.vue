@@ -1,16 +1,18 @@
 <template>
   <div class="minder-container" :style="{height: height + 'px'}">
-    <el-button :disabled="disabled" class="save-btn" @click="save" type="primary">保存</el-button>
+    <el-button :disabled="disabled" class="save-btn" @click="save" type="primary">{{t('main.main.save')}}</el-button>
     <navigator/>
   </div>
 </template>
 
 <script>
-  import {editMenuProps, mainEditorProps, priorityProps} from "../props";
+  import {editMenuProps, mainEditorProps, priorityProps} from "../../props";
 import Navigator from "./navigator";
 import {markChangeNode} from "../../script/tool/utils";
+import Locale from '/src/mixins/locale';
 export default {
   components: {Navigator},
+  mixins: [Locale],
   props: {
     ...editMenuProps,
     ...mainEditorProps,
