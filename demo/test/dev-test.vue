@@ -1,5 +1,15 @@
 <template>
   <div>
+
+    <el-select v-model="lang">
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="$t(item.label)"
+        :value="item.value">
+      </el-option>
+    </el-select>
+
     <minder-editor
       :import-json="importJson"
       :progress-enable="true"
@@ -77,10 +87,23 @@ export default {
       },
       tags:  ['模块1','模块2', '模块11'],
       distinctTags:  ['模块1','模块11'],
+      options: [{
+        value: 'en_US',
+        label: 'en_US'
+      }, {
+        value: 'zh_CN',
+        label: 'zh_CN'
+      }, {
+        value: 'zh_TW',
+        label: 'zh_TW'
+      }],
+      lang: 'zh_CN'
     }
   },
-  mounted() {
-
+  watch: {
+    lang() {
+      this.$setLang(this.lang);
+    }
   },
 
   methods: {
