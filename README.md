@@ -104,6 +104,49 @@ export default {
 # License
     BSD-3-Clause License
 ```
+## 国际化
+```
+// 方式一
+import locale from '/src/locale/lang/en-US'
+Vue.use(vueMinderEditorPlus, {
+  locale
+});
+
+// 方式二
+import lang from '/src/locale/lang/en-US'
+import locale from '/src/locale'
+locale.use(lang)
+Vue.use(vueMinderEditorPlus);
+
+// 方式三
+import Vue from 'vue';
+import VueI18n from 'vue-i18n';
+import enLocale from 'vue-minder-editor-plus/src/locale/lang/en-US';
+import zhLocale from 'vue-minder-editor-plus/src/locale/lang/zh-CN';
+import vueMinderEditor from 'vue-minder-editor-plus';
+
+const messages = {
+  en: {
+    message: 'hello',
+    ...enLocale
+  },
+  zh: {
+    message: '你好',
+    ...zhLocale
+  }
+}
+
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+  locale: 'en', // set locale
+  messages, // set locale messages
+})
+
+Vue.use(vueMinderEditor, {
+  i18n: (key, value) => i18n.t(key, value)
+});
+```
 
 ## Props
 > 以下配置部分为 kityminder-core 扩展的功能，kityminder-core 本身的 minder 对象提供了丰富的功能，使用该组件时可通过 window.minder 对象获取 minder 对象具体的使用方法，可以参考它的文档扩展 [kityminder-core wiki](https://github.com/fex-team/kityminder-core/wiki)
