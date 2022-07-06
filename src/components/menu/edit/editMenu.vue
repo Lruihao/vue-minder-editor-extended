@@ -10,7 +10,7 @@
       :prefix="priorityPrefix"
       :priority-count="priorityCount"
       :priority-disable-check="priorityDisableCheck"
-      :start-with-zero="priorityStartWithZero"
+      :priority-start-with-zero="priorityStartWithZero"
     />
     <progress-box v-if="progressEnable"/>
     <tag-box

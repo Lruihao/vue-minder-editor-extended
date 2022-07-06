@@ -23,6 +23,7 @@
       :priority-count="4"
       :tag-edit-check="test"
       :priority-disable-check="test"
+      :priority-start-with-zero="true"
       @afterMount="afterMount()"
       :default-mold="3"
       @moldChange="handleMoldChange"
@@ -111,7 +112,7 @@ export default {
       console.log(data);
     },
     test() {
-      return true;
+      return false;
     },
     handleMoldChange(a) {
       // console.log(a);
