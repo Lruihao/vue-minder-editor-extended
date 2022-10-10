@@ -43,7 +43,7 @@ export default {
         root: {
           data: {
             // 文本内容
-            text: 'vue-mindereditor',
+            text: 'vue-minder-editor-extended',
             // 标签
             resource: ['模块1'],
             // 是否禁止修改

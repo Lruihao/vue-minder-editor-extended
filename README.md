@@ -6,13 +6,13 @@
 ## install
 
 ``` bash
-npm install vue-mindereditor --save
+npm install vue-minder-editor-extended --save
 ```
 
 ## Usage
 
 ```javascript
-import vueMinderEditor from 'vue-mindereditor'
+import vueMinderEditor from 'vue-minder-editor-extended'
 import Vue from 'vue'
 Vue.use(vueMinderEditor)
 ```
@@ -27,7 +27,7 @@ Vue.use(vueMinderEditor)
 </template>
 
 <script>
-import minderEditor from '../../dist/static/js/vueMinderEditor'
+import minderEditor from '../../dist/static/vue-minder-editor-extended'
 import vue from 'vue'
 vue.use(minderEditor);
 export default {
@@ -39,7 +39,7 @@ export default {
           root: {
             data: {
               // 文本内容
-              text: 'vue-mindereditor',
+              text: 'vue-minder-editor-extended',
               // 标签
               resource: ['模块1'],
               // 是否禁止修改
@@ -96,6 +96,7 @@ export default {
 ## Build Setup
 
 ``` bash
+# npm install -g node-gyp
 # install npm dependencies
     npm install
 
@@ -114,7 +115,7 @@ export default {
 ```
 // 方式一
 import locale from '/src/locale/lang/en-US'
-Vue.use(vueMinderEditorPlus, {
+Vue.use(vueMinderEditorExtended, {
   locale
 });
 
@@ -122,14 +123,14 @@ Vue.use(vueMinderEditorPlus, {
 import lang from '/src/locale/lang/en-US'
 import locale from '/src/locale'
 locale.use(lang)
-Vue.use(vueMinderEditorPlus);
+Vue.use(vueMinderEditorExtended);
 
 // 方式三
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import enLocale from 'vue-mindereditor/src/locale/lang/en-US';
-import zhLocale from 'vue-mindereditor/src/locale/lang/zh-CN';
-import vueMinderEditor from 'vue-mindereditor';
+import enLocale from 'vue-minder-editor-extended/src/locale/lang/en-US';
+import zhLocale from 'vue-minder-editor-extended/src/locale/lang/zh-CN';
+import vueMinderEditor from 'vue-minder-editor-extended';
 
 const messages = {
   en: {

@@ -14,7 +14,7 @@ const install = function (Vue, options = {}) {
 }
 
 const plugin = {
-  name: "vueMinderEditorPlus",
+  name: "vueMinderEditorExtended",
   version: PackageJSON.version,
   locale: locale.use,
   i18n: locale.i18n,
