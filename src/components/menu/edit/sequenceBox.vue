@@ -1,14 +1,14 @@
 ﻿<template>
   <div :disabled="commandDisabled">
-
     <el-button type="info" class="delete-btn" icon="el-icon-delete" @click="execCommand(null)" circle></el-button>
-
-    <el-button type="info" class="priority-btn"
-               v-for="(item, index) in (priorityCount + 1)"
-               :key="item"
-               v-if="index != 0"
-               :class="'priority-btn_' + index"
-               @click="execCommand(index)" size="mini">{{priorityPrefix}}{{ priorityStartWithZero ? index - 1 : index }}</el-button>
+    <el-button
+      type="info"
+      class="priority-btn"
+      v-for="(item, index) in priorityCount"
+      :key="index"
+      :class="'priority-btn_' + item"
+      @click="execCommand(item)" size="mini"
+    >{{priorityPrefix}}{{ priorityStartWithZero ? index : item }}</el-button>
   </div>
 </template>
 
