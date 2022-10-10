@@ -7,7 +7,7 @@
     <edit-del/>
     <sequence-box
       v-if="sequenceEnable"
-      :prefix="priorityPrefix"
+      :priority-prefix="priorityPrefix"
       :priority-count="priorityCount"
       :priority-disable-check="priorityDisableCheck"
       :priority-start-with-zero="priorityStartWithZero"

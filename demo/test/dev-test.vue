@@ -23,6 +23,7 @@
       :priority-count="4"
       :tag-edit-check="test"
       :priority-disable-check="test"
+      :priority-prefix="priorityPrefix"
       :priority-start-with-zero="true"
       @afterMount="afterMount()"
       :default-mold="3"
@@ -42,7 +43,7 @@ export default {
         root: {
           data: {
             // 文本内容
-            text: 'vue-minder-editor-plus',
+            text: 'vue-mindereditor',
             // 标签
             resource: ['模块1'],
             // 是否禁止修改
@@ -98,7 +99,8 @@ export default {
         value: 'zh_TW',
         label: 'zh_TW'
       }],
-      lang: 'zh_CN'
+      lang: 'zh_CN',
+      priorityPrefix: 'P'
     }
   },
   watch: {
