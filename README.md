@@ -112,7 +112,7 @@ export default {
 
 ## 国际化
 
-```
+```vue
 // 方式一
 import locale from '/src/locale/lang/en-US'
 Vue.use(vueMinderEditorExtended, {
@@ -161,30 +161,30 @@ Vue.use(vueMinderEditor, {
 
 ### 基础配置
 
-#### importJson <br>
+#### importJson
 
-type Object <br>
-Default: null
+type Object  
+default: null
 
 需要脑图解析的 js 对象，参数详情可参考上文 demo，或者调用 minder.exportJson() 查看具体参数
 
-#### height <br>
+#### height
 
-type: Number <br>
+type: Number  
 default: 500
 
 显示高度，默认 500px
 
-#### disabled <br>
+#### disabled
 
-type: Boolean <br>
+type: Boolean  
 default: null
 
 是否禁止编辑
 
 #### defaultMold
 
-type: Number <br>
+type: Number  
 default: 3
 
 外观设置中样式的默认值
@@ -193,57 +193,65 @@ default: 3
 
 #### sequenceEnable
 
-type: Boolean <br>
+type: Boolean  
 default: true
 
 是否优先级功能
 
 #### tagEnable
 
-type: Boolean <br>
+type: Boolean  
 default: true
 
 是否启用标签功能
 
 #### progressEnable
 
-type: Boolean <br>
+type: Boolean  
 default: true
 
 是否启用完成进度功能
 
 #### moveEnable
 
-type: Boolean <br>
+type: Boolean  
 default: true
 
 是否启用上移下移功能
 
 ### 优先级配置
 
-#### priorityCount <br>
+#### priorities
 
-type Number <br>
-Default: 4
+type: Array  
+default: []
+
+优先级选项，当改参数不为空时 `priorityCount`, `priorityStartWithZero`, `priorityPrefix` 不生效
+
+#### priorityCount
+
+type Number  
+default: 4
 
 优先级最大显示数量，最多支持显示 9 个级别
 
-#### priorityStartWithZero <br>
+#### priorityStartWithZero
 
-type: Boolean <br>
+type: Boolean  
 default: true
 
 优先级是否从 0 开始
 
 #### priorityPrefix
 
-type: String <br>
+type: String  
 default: 'P'
+
 优先级显示的前缀
 
 #### priorityDisableCheck
 
-type: Function <br>
+type: Function  
 default: null
 
 优先级设置的回调函数，如果返回 false 则无法设置优先级
@@ -252,28 +260,28 @@ default: null
 
 #### tags
 
-type: Array <br>
+type: Array  
 default: []
 
 标签选项
 
 #### distinctTags
 
-type: Array <br>
+type: Array  
 default: []
 
-定义排他标签，比如 ['tag1','tag2'] ,则 tag1 不能和 tag2 共存
+定义排他标签，比如 ['tag1','tag2'], 则 tag1 不能和 tag2 共存
 
 #### tagDisableCheck
 
-type: Function <br>
+type: Function  
 default: null
 
 菜单栏是否允许打标签的回调函数，返回 false 则不允许打标签
 
 #### tagEditCheck
 
-type: Function <br>
+type: Function  
 default: null
 
 打标签时的回调函数，返回 false 则打标签不成功

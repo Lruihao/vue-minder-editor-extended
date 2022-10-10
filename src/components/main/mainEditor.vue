@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import {editMenuProps, mainEditorProps, priorityProps} from "../../props";
+import {editMenuProps, mainEditorProps, priorityProps} from "../../props";
 import Navigator from "./navigator";
 import {markChangeNode} from "../../script/tool/utils";
 import Locale from '/src/mixins/locale';

@@ -23,6 +23,7 @@
       :priority-count="4"
       :tag-edit-check="test"
       :priority-disable-check="test"
+      :priorities="priorities"
       :priority-prefix="priorityPrefix"
       :priority-start-with-zero="true"
       @afterMount="afterMount()"
@@ -100,7 +101,8 @@ export default {
         label: 'zh_TW'
       }],
       lang: 'zh_CN',
-      priorityPrefix: 'P'
+      priorityPrefix: 'P',
+      priorities: ['高', '中', '低']
     }
   },
   watch: {

@@ -37,6 +37,13 @@ export let mainEditorProps = {
 }
 
 export let priorityProps = {
+  priorities: {
+    // 自定义优先级
+    type: Array,
+    default() {
+      return []
+    }
+  },
   priorityCount: {
     type: Number,
     default: 4,

@@ -10,6 +10,7 @@
             :tag-enable="tagEnable"
             :progress-enable="progressEnable"
             :priority-count="priorityCount"
+            :priorities="priorities"
             :priority-prefix="priorityPrefix"
             :tag-edit-check="tagEditCheck"
             :tag-disable-check="tagDisableCheck"

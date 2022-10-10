@@ -1,20 +1,32 @@
 ﻿<template>
   <div :disabled="commandDisabled">
     <el-button type="info" class="delete-btn" icon="el-icon-delete" @click="execCommand(null)" circle></el-button>
-    <el-button
-      type="info"
-      class="priority-btn"
-      v-for="(item, index) in priorityCount"
-      :key="index"
-      :class="'priority-btn_' + item"
-      @click="execCommand(item)" size="mini"
-    >{{priorityPrefix}}{{ priorityStartWithZero ? index : item }}</el-button>
+    <template v-if="priorities.length">
+      <el-button
+        type="info"
+        class="priority-btn"
+        v-for="(priority, index) in priorities"
+        :key="index"
+        :class="'priority-btn_' + (index + 1)"
+        @click="execCommand(index + 1, priority)" size="mini"
+      >{{ priority }}</el-button>
+    </template>
+    <template v-else>
+      <el-button
+        type="info"
+        class="priority-btn"
+        v-for="(item, index) in priorityCount"
+        :key="index"
+        :class="'priority-btn_' + item"
+        @click="execCommand(item)" size="mini"
+      >{{ priorityPrefix }}{{ priorityStartWithZero ? index : item }}</el-button>
+    </template>
   </div>
 </template>
 
 <script>
-import {priorityProps} from "../../../props";
-import {isDisableNode, setPriorityView} from "../../../script/tool/utils";
+import { priorityProps } from "../../../props";
+import { isDisableNode, setPriorityView, setPriorityViewSpecial } from "../../../script/tool/utils";
 import Locale from '/src/mixins/locale';
 
 export default {
@@ -25,7 +37,8 @@ export default {
   },
   data() {
     return {
-      minder: undefined
+      minder: undefined,
+      priority: '' // special priority e.g. '高'
     }
   },
   computed: {
@@ -61,22 +74,29 @@ export default {
     })
   },
   methods: {
-    execCommand(index) {
+    /**
+     * @param {Number} index 优先级数字
+     * @param {String} [priority] 优先级文本
+     */
+    execCommand(index, priority) {
       if (index) {
         this.commandDisabled || this.minder.execCommand('priority', index);
+        this.priority = priority;
         this.setPriorityView();
       } else {
         this.commandDisabled || this.minder.execCommand('priority');
       }
     },
     setPriorityView() {
+      if (this.priority) {
+        return setPriorityViewSpecial(this.priority, this.priorities);
+      }
       setPriorityView(this.priorityStartWithZero, this.priorityPrefix);
     }
   },
 }
 </script>
 <style scoped>
-
   .delete-btn {
     height: 23px;
     width: 23px;
