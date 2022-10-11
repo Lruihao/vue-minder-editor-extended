@@ -8,7 +8,7 @@
         v-for="(priority, index) in priorities"
         :key="index"
         :class="'priority-btn_' + (index + 1)"
-        @click="execCommand(index + 1, true)" size="mini"
+        @click="execCommand(index + 1)" size="mini"
       >{{ priority }}</el-button>
     </template>
     <template v-else>
@@ -37,8 +37,7 @@ export default {
   },
   data() {
     return {
-      minder: undefined,
-      prioritySpecial: false
+      minder: void 0
     }
   },
   computed: {
@@ -59,6 +58,9 @@ export default {
       }
       return minder.queryCommandState && minder.queryCommandState('priority') === -1;
     },
+    prioritySpecial() {
+      return this.priorities.length > 0
+    }
   },
   mounted() {
     this.$nextTick(() => {
@@ -76,12 +78,10 @@ export default {
   methods: {
     /**
      * @param {Number} index 优先级数字
-     * @param {String} [special=false] 是否特定优先级
      */
-    execCommand(index, special = false) {
+    execCommand(index) {
       if (index) {
         this.commandDisabled || this.minder.execCommand('priority', index);
-        this.prioritySpecial = special;
         this.setPriorityView();
       } else {
         this.commandDisabled || this.minder.execCommand('priority');

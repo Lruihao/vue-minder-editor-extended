@@ -65,6 +65,7 @@ export default {
                 text: 'child1',
                 // disable: true,
                 expandState: 'collapse',
+                priority: 2,
                 resource: ['模块2']
               },
               children: [
@@ -82,7 +83,8 @@ export default {
             },
             {
               data: {
-                text: 'child2'
+                text: 'child2',
+                priority: 1
               }
             }
           ]
