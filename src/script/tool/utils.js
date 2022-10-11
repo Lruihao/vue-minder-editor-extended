@@ -98,18 +98,17 @@ export function setPriorityView(priorityStartWithZero, priorityPrefix) {
 
 /**
  * 手动将特定优先级显示到脑图中
- * @param {String} priority 特定优先级
  * @param {Array} priorities 特定优先级集合
  */
-export function setPriorityViewSpecial(priority, priorities) {
+export function setPriorityViewSpecial(priorities) {
   let items = document.getElementsByTagName('text');
   if (items) {
     for (let i = 0; i < items.length; i++) {
       let item = items[i];
       if (isPriority(item)) {
         let content = item.innerHTML;
-        if (!priorities.includes(content)) {
-          item.innerHTML = priority;
+        if (priorities[content - 1]) {
+          item.innerHTML = priorities[content - 1];
         }
       }
     }

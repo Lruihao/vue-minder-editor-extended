@@ -82,7 +82,7 @@ export default {
             },
             {
               data: {
-                text: 'child2',
+                text: 'child2'
               }
             }
           ]
