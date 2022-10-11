@@ -226,7 +226,7 @@ default: true
 type: Array  
 default: []
 
-优先级选项，当改参数不为空时 `priorityCount`, `priorityStartWithZero`, `priorityPrefix` 不生效
+优先级选项，当该参数不为空时 `priorityCount`, `priorityStartWithZero`, `priorityPrefix` 不生效
 
 #### priorityCount
 
@@ -254,7 +254,7 @@ default: 'P'
 type: Function  
 default: null
 
-优先级设置的回调函数，如果返回 false 则无法设置优先级
+优先级设置的回调函数，如果返回 `true` 则无法设置优先级
 
 ### 标签配置
 
@@ -270,18 +270,18 @@ default: []
 type: Array  
 default: []
 
-定义排他标签，比如 ['tag1','tag2'], 则 tag1 不能和 tag2 共存
+定义排他标签，比如 ['tag1','tag2'], 则 `tag1` 不能和 `tag2` 共存
 
 #### tagDisableCheck
 
 type: Function  
 default: null
 
-菜单栏是否允许打标签的回调函数，返回 false 则不允许打标签
+菜单栏是否允许打标签的回调函数，返回 `false` 则不允许打标签
 
 #### tagEditCheck
 
 type: Function  
 default: null
 
-打标签时的回调函数，返回 false 则打标签不成功
+打标签时的回调函数，返回 `false` 则打标签不成功
