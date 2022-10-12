@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import {editMenuProps, mainEditorProps, priorityProps} from "../../props";
+import { editMenuProps, mainEditorProps, priorityProps } from "../../props";
 import Navigator from "./navigator";
-import {markChangeNode} from "../../script/tool/utils";
+import { markChangeNode, setPriorityView, setPriorityViewSpecial } from "../../script/tool/utils";
 import Locale from '/src/mixins/locale';
 export default {
   components: {Navigator},
@@ -68,29 +68,41 @@ export default {
         progressEnable,
         moveEnable
       }
+    },
+    prioritySpecial() {
+      return this.priorities.length > 0
     }
   },
   methods: {
     save() {
       this.$emit('save', minder.exportJson());
     },
+    setPriorityView() {
+      if (this.prioritySpecial) {
+        return setPriorityViewSpecial(this.priorities);
+      }
+      setPriorityView(this.priorityStartWithZero, this.priorityPrefix);
+    },
     handlePriorityButton() {
       let priorityPrefix = this.priorityPrefix;
-      let priorityStartWithZero = this.priorityStartWithZero;
+      let priorityStartWithZero = this.prioritySpecial ? false : this.priorityStartWithZero;
       let start = priorityStartWithZero ? 0 : 1;
       let res = '';
-      for (let i = 0; i < this.priorityCount; i++) {
+      let priorityCount = this.priorities.length || this.priorityCount;
+      for (let i = 0; i < priorityCount; i++) {
         res += start++;
       }
       let priority = window.minder.hotbox.state('priority');
-      res.replace(/./g, function (p) {
+      res.replace(/./g, (p) => {
+        const pVal = Number(p);
+        const label = this.prioritySpecial ? this.priorities[pVal - 1] : (priorityPrefix + p);
         priority.button({
           position: 'ring',
-          label: priorityPrefix + p,
+          label: label,
           key: p,
-          action: function () {
-            let pVal = parseInt(p);
+          action: () => {
             minder.execCommand('Priority', priorityStartWithZero ? (pVal + 1) : pVal);
+            this.setPriorityView();
           }
         });
       });
@@ -104,26 +116,6 @@ export default {
           key: item,
           action: function () {
             minder.execCommand('resource', item);
-          }
-        });
-      });
-    },
-    handleMoveButton() {
-      let priorityPrefix = this.priorityPrefix;
-      let priorityStartWithZero = this.priorityStartWithZero;
-      let start = priorityStartWithZero ? 0 : 1;
-      let res = '';
-      for (let i = 0; i < this.priorityCount; i++) {
-        res += start++;
-      }
-      res.replace(/./g, function (p) {
-        priority.button({
-          position: 'ring',
-          label: priorityPrefix + p,
-          key: p,
-          action: function () {
-            let pVal = parseInt(p);
-            minder.execCommand('Priority', priorityStartWithZero ? (pVal + 1) : pVal);
           }
         });
       });
