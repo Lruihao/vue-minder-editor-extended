@@ -277,7 +277,7 @@ default: []
 type: Function  
 default: null
 
-菜单栏是否允许打标签的回调函数，返回 `false` 则不允许打标签
+菜单栏是否允许打标签的回调函数，返回 `true` 则不允许打标签
 
 #### tagEditCheck
 
