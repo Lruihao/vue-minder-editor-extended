@@ -4,6 +4,7 @@
   "description": "基于 Vue2 的脑图编辑组件",
   "author": "Lruihao (https://lruihao.cn)",
   "original": "AgAngle <1323481023@qq.com>",
+  "license": "BSD 3-Clause",
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
@@ -104,6 +105,11 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
+  ],
+  "keywords": [
+    "vue",
+    "minder",
+    "editor"
   ],
   "repository": {
     "type": "git",
