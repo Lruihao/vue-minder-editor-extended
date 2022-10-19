@@ -1,5 +1,5 @@
 <template>
-<div class="move-group ">
+<div class="move-group" v-if="moveEnable">
   <div class="move-up menu-btn" :disabled="arrangeUpDisabled" @click="execCommand('ArrangeUp')">
     <i class="tab-icons"></i>
     <span>{{t('minder.menu.move.up')}}</span>
@@ -25,11 +25,9 @@ export default {
   },
   computed: {
     arrangeUpDisabled() {
-      if (!this.moveEnable) return true;
       return this.isDisabled('ArrangeUp');
     },
     arrangeDownDisabled() {
-      if (!this.moveEnable) return true;
       return this.isDisabled('ArrangeDown');
     },
   },
