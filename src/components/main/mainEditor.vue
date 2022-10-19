@@ -35,6 +35,17 @@ export default {
     window.minderEditor = editor;
     window.minder.moveEnable = this.moveEnable;
 
+    window.minder.on('beforeExecCommand', function (event) {
+      // 是否允许删除
+      const allowDelete = event.minder.getSelectedNodes().every(function (node) {
+        return node.data.allowDelete !== false;
+      });
+      if (event.commandName === 'removenode' && !allowDelete) {
+        event.stopPropagationImmediately();
+        return false;
+      }
+    });
+
     window.minder.on('preExecCommand', function (env) {
       let selectNodes = env.minder.getSelectedNodes();
       let notChangeCommands = new Set(['camera', 'copy', 'expand', 'expandToLevel', 'hand',
