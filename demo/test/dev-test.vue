@@ -155,6 +155,15 @@ export default {
         console.log(env);
       });
 
+      // const hotboxEl = window.minder.hotbox.$container
+      // const hotboxMainEl = hotboxEl.querySelector('.state.main .ring')
+      // const children = hotboxMainEl.querySelectorAll('.button')
+      // for (const child of children) {
+      //   if (['前移', '下级', '同级', '后移', '后移', '删除', '上级'].includes(child.querySelector('.label').innerHTML)) {
+      //     hotboxMainEl.removeChild(child)
+      //   }
+      // }
+      
       this.addHotBox();
 
     },
