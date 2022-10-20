@@ -44,6 +44,11 @@ export default {
         event.stopPropagationImmediately();
         return false;
       }
+      // 禁止移动快捷键
+      if (event.minder.moveEnable === false && ['arrangeup', 'arrangedown'].includes(event.commandName)) {
+        event.stopPropagationImmediately();
+        return false;
+      }
     });
 
     window.minder.on('preExecCommand', function (env) {
