@@ -63,6 +63,10 @@ export default {
       }
     });
 
+    minder.on('afterExecCommand', (event) => {
+      this.setPriorityView();
+    });
+
     this.handlePriorityButton();
     this.handleTagButton();
     this.$emit('afterMount');
@@ -113,7 +117,6 @@ export default {
           key: p,
           action: () => {
             minder.execCommand('Priority', priorityStartWithZero ? (pVal + 1) : pVal);
-            this.setPriorityView();
           }
         });
       });

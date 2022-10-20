@@ -82,7 +82,6 @@ export default {
     execCommand(index) {
       if (index) {
         this.commandDisabled || this.minder.execCommand('priority', index);
-        this.setPriorityView();
       } else {
         this.commandDisabled || this.minder.execCommand('priority');
       }
