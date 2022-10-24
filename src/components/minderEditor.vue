@@ -30,6 +30,8 @@
       :priority-count="priorityCount"
       :priority-prefix="priorityPrefix"
       :priority-start-with-zero="priorityStartWithZero"
+      :priority-disable-check="priorityDisableCheck"
+      :tag-edit-check="tagEditCheck"
       @afterMount="$emit('afterMount')"
       @save="save"/>
   </div>

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { editMenuProps, mainEditorProps, priorityProps } from "../../props";
+import { editMenuProps, mainEditorProps, priorityProps, tagProps } from "../../props";
 import Navigator from "./navigator";
 import { markChangeNode, setPriorityView, setPriorityViewSpecial } from "../../script/tool/utils";
 import Locale from '/src/mixins/locale';
@@ -17,6 +17,7 @@ export default {
     ...editMenuProps,
     ...mainEditorProps,
     ...priorityProps,
+    ...tagProps,
     tags: Array
   },
   data() {
@@ -122,6 +123,12 @@ export default {
           key: p,
           action: () => {
             minder.execCommand('Priority', priorityStartWithZero ? (pVal + 1) : pVal);
+          },
+          enable: () => {
+            if (this.priorityDisableCheck) {
+              return !this.priorityDisableCheck();
+            }
+            return true;
           }
         });
       });
@@ -135,6 +142,12 @@ export default {
           key: item,
           action: function () {
             minder.execCommand('resource', item);
+          },
+          enable: () => {
+            if (this.tagEditCheck) {
+              return this.tagEditCheck(item);
+            }
+            return true;
           }
         });
       });
