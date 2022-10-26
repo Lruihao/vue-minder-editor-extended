@@ -1260,6 +1260,22 @@ _p[13] = {
                 });
                 return this;
             },
+            /**
+             * @patch 2022.10.26 @Lruihao 修复缺少 once 侦听指定事件一次
+             * @param {*} name 
+             * @param {*} callback 
+             */
+            once: function(name, callback) {
+                var km = this;
+                name.split(/\s+/).forEach(function(n) {
+                    const tmpCallback = () => {
+                      callback();
+                      km.off(n.toLowerCase(), tmpCallback)
+                    };
+                    km._listen(n.toLowerCase(), tmpCallback);
+                });
+                return this;
+            },
             off: function(name, callback) {
                 var types = name.split(/\s+/);
                 var i, j, callbacks, removeIndex;

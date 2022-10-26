@@ -155,6 +155,10 @@ export default {
         console.log(env);
       });
 
+      minder.once('beforeExecCommand', function (env) {
+        console.log('beforeExecCommand once');
+      });
+
       // const hotboxEl = window.minder.hotbox.$container
       // const hotboxMainEl = hotboxEl.querySelector('.state.main .ring')
       // const children = hotboxMainEl.querySelectorAll('.button')
