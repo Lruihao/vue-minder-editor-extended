@@ -1262,14 +1262,14 @@ _p[13] = {
             },
             /**
              * @patch 2022.10.26 @Lruihao 修复缺少 once 侦听指定事件一次
-             * @param {*} name 
-             * @param {*} callback 
+             * @param {String} name 
+             * @param {Function} callback 
              */
             once: function(name, callback) {
                 var km = this;
                 name.split(/\s+/).forEach(function(n) {
-                    const tmpCallback = () => {
-                      callback();
+                    const tmpCallback = (e) => {
+                      callback(e);
                       km.off(n.toLowerCase(), tmpCallback)
                     };
                     km._listen(n.toLowerCase(), tmpCallback);

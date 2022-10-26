@@ -157,6 +157,7 @@ export default {
 
       minder.once('beforeExecCommand', function (env) {
         console.log('beforeExecCommand once');
+        console.log(env);
       });
 
       // const hotboxEl = window.minder.hotbox.$container
