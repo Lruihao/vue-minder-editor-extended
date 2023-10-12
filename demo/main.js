@@ -3,6 +3,8 @@ import App from './App';
 import 'element-ui/lib/theme-chalk/index.css';
 import ElementUI from 'element-ui';
 import vueMinderEditorExtended from "../src/index"
+// 使用打包后的文件
+// import vueMinderEditorExtended from "../dist/static/vue-minder-editor-extended";
 Vue.config.productionTip = true;
 
 // 方式一
