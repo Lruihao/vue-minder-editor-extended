@@ -3,8 +3,7 @@ import * as locale from "./locale";
 import PackageJSON from "../package.json"
 require('@7polo/kity/dist/kity.js');
 require('hotbox-minder/hotbox.js');
-// require('@7polo/kityminder-core');
-require('./script/patch/kityminder.core'); // Fix: 修复缺少 afterExecCommand hook
+require('@7polo/kityminder-core');
 require('./script/expose-editor.js');
 
 
