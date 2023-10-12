@@ -97,7 +97,7 @@ export default {
 ``` bash
 # npm install -g node-gyp
 # install npm dependencies
-    npm install && npx patch-package
+    npm install
 
 # serve with hot reload at localhost:8088
     npm run dev
