@@ -12,7 +12,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "pub": "npm run build && npm publish",
-    "postinstall": "patch-package"
+    "patch": "patch-package && cp node_modules/@7polo/kityminder-core/dist/kityminder.core.js src/script/patch/kityminder.core.js"
   },
   "main": "dist/static/vue-minder-editor-extended.js",
   "dependencies": {
@@ -20,7 +20,6 @@
     "@7polo/kityminder-core": "^1.4.54",
     "element-ui": "^2.12.0",
     "hotbox-minder": "^1.0.15",
-    "patch-package": "^8.0.0",
     "vue": "2.6.14",
     "vue-i18n": "^8.15.3"
   },
@@ -72,6 +71,7 @@
     "opn": "^4.0.2",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "ora": "^1.2.0",
+    "patch-package": "^8.0.0",
     "phantomjs-prebuilt": "^2.1.14",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
