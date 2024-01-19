@@ -1,5 +1,5 @@
 define(function (require, exports, module) {
-  var runtimes = [];
+  const runtimes = [];
 
   function assemble(runtime) {
     runtimes.push(runtime);
@@ -7,9 +7,9 @@ define(function (require, exports, module) {
 
   function KMEditor(selector, editMenuProps) {
     this.selector = selector;
-    for (var i = 0; i < runtimes.length; i++) {
-      if (typeof runtimes[i] == 'function' && isEnable(editMenuProps, runtimes[i])) {
-        runtimes[i].call(this, this);
+    for (const runtime of runtimes) {
+      if (typeof runtime == 'function' && isEnable(editMenuProps, runtime)) {
+        runtime.call(this, this);
       }
     }
   }
@@ -17,11 +17,11 @@ define(function (require, exports, module) {
   function isEnable(editMenuProps, runtime) {
     switch (runtime.name) {
       case "PriorityRuntime":
-        return editMenuProps.sequenceEnable != true ? false : true;
+        return !!editMenuProps.sequenceEnable;
       case "TagRuntime":
-        return editMenuProps.tagEnable != true ? false : true;
+        return !!editMenuProps.tagEnable;
       case "ProgressRuntime":
-        return editMenuProps.progressEnable != true ? false : true;
+        return !!editMenuProps.progressEnable;
       default:
         return true
     }
