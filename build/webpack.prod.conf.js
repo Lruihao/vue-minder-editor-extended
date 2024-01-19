@@ -6,7 +6,7 @@ const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const env = config.build.env
 
@@ -21,19 +21,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('[name].[chunkhash].js'),
     library: 'vueMinderEditorExtended',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
   },
   module: {
     rules: [
-      {
-        test: /\.less$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'less-loader',
-          'postcss-loader'
-        ]
-      },
       {
         test: /\.css$/,
         use: [
@@ -45,6 +36,9 @@ const webpackConfig = merge(baseWebpackConfig, {
     ]
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
+  performance: {
+    hints: false, // 关闭性能提示
+  },
   optimization: {
   },
   plugins: [
@@ -71,11 +65,9 @@ const webpackConfig = merge(baseWebpackConfig, {
         ? { safe: true, map: { inline: false } }
         : { safe: true }
     }),
-    // new CopyWebpackPlugin([{
-    //   from: path.resolve(__dirname, '../static'),
-    //   to: config.build.assetsSubDirectory,
-    //   ignore: ['.*']
-    // }])
+    new MiniCssExtractPlugin({
+      filename: 'focus.index.[contenthash:8].css'
+    }),
   ]
 })
 

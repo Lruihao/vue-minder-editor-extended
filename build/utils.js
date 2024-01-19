@@ -1,6 +1,6 @@
 var path = require('path')
 var config = require('../config')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const packageConfig = require('../package.json')
 
 exports.assetsPath = function (_path) {
@@ -51,10 +51,7 @@ exports.cssLoaders = function (options) {
     }
 
     if (options.extract) {
-      return ExtractTextPlugin.extract({
-        use: loaders,
-        fallback: 'vue-style-loader'
-      })
+      return [MiniCssExtractPlugin.loader].concat(loaders)
     } else {
       return ['vue-style-loader'].concat(loaders)
     }
@@ -63,13 +60,7 @@ exports.cssLoaders = function (options) {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
-    sass: generateLoaders('sass', {
-      indentedSyntax: true
-    }),
     scss: generateLoaders('sass'),
-    stylus: generateLoaders('stylus'),
-    styl: generateLoaders('stylus')
   }
 }
 
