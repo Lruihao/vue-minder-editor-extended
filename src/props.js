@@ -5,29 +5,6 @@
 export let mainEditorProps = {
   importJson: {
     type: Object,
-    default() {
-      return {
-        "root": {
-          "data": {
-            "text": "test111"
-          },
-          "children": [
-            {
-              "data": {
-                  "text": "地图"
-              }
-            },
-            {
-              "data": {
-                "text": "百科",
-                "expandState":"collapse"
-              }
-            }
-          ]
-        },
-        "template":"default"
-      }
-    }
   },
   height: {
     type: Number,

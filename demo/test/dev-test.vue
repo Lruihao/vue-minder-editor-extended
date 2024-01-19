@@ -168,7 +168,7 @@ export default {
       //     hotboxMainEl.removeChild(child)
       //   }
       // }
-      
+
       this.addHotBox();
 
     },
