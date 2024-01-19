@@ -1,34 +1,33 @@
 require('./check-versions')()
 
-var config = require('../config')
+const config = require('../config')
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
 
-var opn = require('opn')
-var path = require('path')
-var os = require('os')
-var express = require('express')
-var webpack = require('webpack')
-var proxyMiddleware = require('http-proxy-middleware')
-var webpackConfig = require('./webpack.dev.conf')
+const opn = require('opn')
+const path = require('path')
+const os = require('os')
+const express = require('express')
+const webpack = require('webpack')
+const proxyMiddleware = require('http-proxy-middleware')
+const webpackConfig = require('./webpack.dev.conf')
+const port = process.env.PORT || config.dev.port
+const autoOpenBrowser = !!config.dev.autoOpenBrowser
+const proxyTable = config.dev.proxyTable
+const app = express()
+const compiler = webpack(webpackConfig)
+const chalk = require('chalk')
 
-var port = process.env.PORT || config.dev.port
-var autoOpenBrowser = !!config.dev.autoOpenBrowser
-var proxyTable = config.dev.proxyTable
-
-var app = express()
-var compiler = webpack(webpackConfig)
-
-var devMiddleware = require('webpack-dev-middleware')(compiler, {
+const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true
 })
 
-var hotMiddleware = require('webpack-hot-middleware')(compiler, {
+const hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: () => {}
 })
-compiler.plugin('compilation', function (compilation) {
+compiler.hooks.compilation.tap('WebpackTranslationPlugin', (compilation) => {
   compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
     hotMiddleware.publish({ action: 'reload' })
     if (typeof cb == "function") {
@@ -38,7 +37,7 @@ compiler.plugin('compilation', function (compilation) {
 })
 
 Object.keys(proxyTable).forEach(function (context) {
-  var options = proxyTable[context]
+  let options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
   }
@@ -49,33 +48,35 @@ app.use(require('connect-history-api-fallback')())
 app.use(devMiddleware)
 app.use(hotMiddleware)
 
-var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+const staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
-var lacalhost = ''
+let networkIP = ''
 try {
-  var network = os.networkInterfaces()
-  localhost = network[Object.keys(network)[0]][1].address
+  networkIP = os.networkInterfaces().en0[1].address
 } catch (e) {
-  localhost = 'localhost';
+  networkIP = '';
 }
-var uri = 'http://' + localhost + ':' + port
 
-var _resolve
-var readyPromise = new Promise(resolve => {
+let _resolve
+const readyPromise = new Promise(resolve => {
   _resolve = resolve
 })
 
-console.log('> 正在启动本地服务...')
+const localhostURL = `http://localhost:${port}`
+const networkURL = `http://${networkIP}:${port}`
+console.log(chalk.green('> 正在启动本地服务...'))
 devMiddleware.waitUntilValid(() => {
-  console.log('> 监听端口为 ' + uri + '\n')
+  console.log('\n  App running at:')
+  console.log(`  - Local:   ${chalk.cyan(localhostURL)}`)
+  console.log(`  - Network: ${chalk.cyan(networkURL)}\n`)
   if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-    opn(uri)
+    opn(networkURL)
   }
   _resolve()
 })
 
-var server = app.listen(port)
+const server = app.listen(port)
 
 module.exports = {
   ready: readyPromise,
