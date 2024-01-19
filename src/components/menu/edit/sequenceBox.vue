@@ -103,10 +103,6 @@ export default {
     padding: 2px !important;
   }
 
-  .el-button >>> .el-icon-delete {
-    font-size: 4px;
-  }
-
   .el-button+.el-button {
     margin-left: 0px;
   }
