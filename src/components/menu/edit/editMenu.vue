@@ -1,10 +1,10 @@
-<template lang="html">
+<template>
   <div class="menu-container">
-    <expand/>
-    <selection/>
-    <insert-box/>
-    <move-box :move-enable="moveEnable"/>
-    <edit-del/>
+    <expand />
+    <selection />
+    <insert-box />
+    <move-box :move-enable="moveEnable" />
+    <edit-del />
     <sequence-box
       v-if="sequenceEnable"
       :priorities="priorities"
@@ -13,14 +13,14 @@
       :priority-disable-check="priorityDisableCheck"
       :priority-start-with-zero="priorityStartWithZero"
     />
-    <progress-box v-if="progressEnable"/>
+    <progress-box v-if="progressEnable" />
     <tag-box
       v-if="tagEnable"
       :tags="tags"
       :tag-disable-check="tagDisableCheck"
       :tag-edit-check="tagEditCheck"
       :distinct-tags="distinctTags"
-    />
+     />
   </div>
 </template>
 

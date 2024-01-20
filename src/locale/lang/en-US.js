@@ -55,7 +55,7 @@ export default {
       },
       font: {
         font: 'Font',
-        size: 'Font size'
+        size: 'Size'
       },
       style: {
         clear: 'Clear style',

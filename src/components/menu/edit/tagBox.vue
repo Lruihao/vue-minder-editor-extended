@@ -1,11 +1,13 @@
 <template>
-<div :disabled="commandDisabled">
-    <el-tag v-for="(item, index) in tags"
-            :key="item"
-            size="small"
-            :color="getResourceColor(item)"
-            @click="editResource(item)">{{item}}</el-tag>
-</div>
+  <div class="tag-group" :disabled="commandDisabled">
+      <el-tag 
+        v-for="item in tags"
+        :key="item"
+        size="small"
+        :color="getResourceColor(item)"
+        @click="editResource(item)"
+      >{{item}}</el-tag>
+  </div>
 </template>
 
 <script>
@@ -89,27 +91,12 @@ export default {
 </script>
 
 <style scoped>
-
- .el-tag {
-   margin-right: 4px;
-   border: 0px;
-   color: black;
- }
-
- .el-tag:hover {
-   cursor: pointer;
- }
-
- .el-tag:first-child {
-   margin-left: 4px;
- }
-</style>
-
-<style scoped>
-   .add-btn {
-     height: 24px;
-     width: 36px;
-     padding: 0px !important;
-     border-style: dashed !important;
-   }
+.tag-group {
+  gap: 4px;
+}
+.el-tag {
+  border: 0px;
+  color: black;
+  cursor: pointer;
+}
 </style>

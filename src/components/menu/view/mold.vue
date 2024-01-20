@@ -1,19 +1,21 @@
 <template>
   <div class="mold-group" :disabled="disabled">
-    <el-row class="block-col-1">
-      <el-col :span="24">
-        <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle mold-icons menu-btn"
-                     @command="handleCommand" :class="'mold-' + (moldIndex + 1)">
-                <span class="el-dropdown-link ">
-                    <i class="el-icon-caret-bottom el-icon--right"/>
-                </span>
-          <el-dropdown-menu slot="dropdown" class="mold-dropdown-list">
-            <el-dropdown-item v-for="(item, index) in 6" :key="item" class="dropdown-item mold-icons"
-                              :class="'mold-' + item" :command="index"/>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </el-col>
-    </el-row>
+    <el-dropdown 
+      trigger="click" 
+      :hide-on-click="true"
+      class="dropdown-toggle mold-icons menu-btn"
+      @command="handleCommand" :class="'mold-' + (moldIndex + 1)"
+    >
+      <span class="el-dropdown-link"><i class="el-icon-caret-bottom" /></span>
+      <el-dropdown-menu slot="dropdown" class="mold-dropdown-list">
+        <el-dropdown-item 
+          v-for="(item, index) in 6"
+          :key="item"
+          class="dropdown-item mold-icons"
+          :class="'mold-' + item" :command="index"
+        />
+      </el-dropdown-menu>
+    </el-dropdown>
   </div>
 </template>
 

@@ -2,9 +2,7 @@
   <div class="arrange-group">
     <div class="arrange menu-btn" @click="resetlayout" :disabled="disabled">
       <span class="tab-icons"></span>
-      <span class="label">
-          {{ t('minder.menu.arrange.arrange_layout') }}
-        </span>
+      <span class="label">{{ t('minder.menu.arrange.arrange_layout') }}</span>
     </div>
   </div>
 </template>

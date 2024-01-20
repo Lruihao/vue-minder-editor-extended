@@ -1,9 +1,14 @@
 <template>
   <div class="progress-group">
-    <ul>
-      <ul :disabled="commandDisabled">
-        <li v-for="(item, index) in items" class="menu-btn" :class="classArray(index)" @click="execCommand(index)" :title="title(index)"></li>
-      </ul>
+    <ul :disabled="commandDisabled">
+      <li
+        v-for="(item, index) in items"
+        :key="index"
+        :class="classArray(index)" 
+        :title="title(index)"
+        class="menu-btn"
+        @click="execCommand(index)" 
+      />
     </ul>
   </div>
 </template>
@@ -80,9 +85,3 @@ export default {
   created() {}
 }
 </script>
-
-<style scoped>
-.progress-group li {
-  background-image: url("../../../assets/minder/iconprogress.png");
-}
-</style>

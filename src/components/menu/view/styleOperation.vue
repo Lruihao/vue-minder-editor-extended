@@ -2,22 +2,16 @@
   <div class="style-group">
     <div class="clear-style-btn menu-btn" @click="clearstyle" :disabled="disabled">
       <span class="tab-icons"></span>
-      <span class="label">
-          {{ t('minder.menu.style.clear') }}
-        </span>
+      <span class="label">{{ t('minder.menu.style.clear') }}</span>
     </div>
     <div class="copy-paste-panel" @click="copystyle">
       <div class="copy-style menu-btn" :disabled="disabled">
         <span class="tab-icons"></span>
-        <span class="label">
-              {{ t('minder.menu.style.copy') }}
-            </span>
+        <span class="label">{{ t('minder.menu.style.copy') }}</span>
       </div>
       <div class="paste-style menu-btn" @click="pastestyle" :disabled="disabled">
         <span class="tab-icons"></span>
-        <span class="label">
-              {{ t('minder.menu.style.paste') }}
-            </span>
+        <span class="label">{{ t('minder.menu.style.paste') }}</span>
       </div>
     </div>
   </div>

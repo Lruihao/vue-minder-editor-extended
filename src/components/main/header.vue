@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <header>
     <el-tabs v-model="activeName" class="mind_tab-content">
       <el-tab-pane :label="t('minder.main.header.minder')" name="editMenu">
@@ -77,20 +77,6 @@
   }
 </script>
 
-<style lang="scss" >
-  @import "src/style/header";
-</style>
-
-<style scoped>
-
-  .mind_tab-content >>> .tab-icons {
-    background-image: url("../../assets/minder/icons.png");
-    background-repeat: no-repeat;
-  }
-
-  .el-tabs >>> .el-tabs__header {
-    margin-bottom: 10px;
-  }
-
-
+<style lang="scss">
+@import "src/style/header";
 </style>
