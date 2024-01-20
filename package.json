@@ -81,8 +81,6 @@
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.21.0",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
     "text-loader": "0.0.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^0.5.8",
