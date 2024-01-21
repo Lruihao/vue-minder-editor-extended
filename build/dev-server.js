@@ -71,7 +71,7 @@ devMiddleware.waitUntilValid(() => {
   console.log(`  - Local:   ${chalk.cyan(localhostURL)}`)
   console.log(`  - Network: ${chalk.cyan(networkURL)}\n`)
   if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
-    opn(networkURL)
+    opn(localhostURL)
   }
   _resolve()
 })
