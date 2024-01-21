@@ -1,9 +1,8 @@
-# Vue-MindEditor based on fex-team/kityminder-core
+# Vue Minder Editor
 
-> 该项目是参考 [vue-minder-editor-plus](https://github.com/AgAngle/vue-minder-editor-plus)，[vue-mindeditor](https://github.com/fudax/vue-mindeditor) 以及 [kityminder-editor](https://github.com/fex-team/kityminder-editor)
-> 源码，基于 [kityminder-core](https://github.com/fex-team/kityminder-core) 实现
+基于 [kityminder-core](https://github.com/fex-team/kityminder-core) 实现的 Vue2 脑图编辑器组件。
 
-## install
+## Install
 
 ``` bash
 npm install vue-minder-editor-extended --save
@@ -11,13 +10,15 @@ npm install vue-minder-editor-extended --save
 
 ## Usage
 
+注册组件：
+
 ```javascript
 import vueMinderEditor from 'vue-minder-editor-extended'
 import Vue from 'vue'
 Vue.use(vueMinderEditor)
 ```
 
-## component
+使用组件：
 
 ```html
 <template>
@@ -92,23 +93,6 @@ export default {
 </script>
 ```
 
-## Build Setup
-
-``` bash
-# npm install -g node-gyp
-# install npm dependencies
-    npm install && npm run patch
-
-# serve with hot reload at localhost:8088
-    npm run dev
-
-# build for plugin with minification
-    npm run build
-
-# License
-    BSD-3-Clause License
-```
-
 ## 国际化
 
 ```vue
@@ -154,133 +138,116 @@ Vue.use(vueMinderEditor, {
 });
 ```
 
+## 主题
+
+允许使用的主题及其配置项可以使用 `window.kityminder.Minder.getThemeList()` 查询。
+
+```js
+// 注册主题
+window.kityminder.Theme.register('my-minder-theme', minderThemeItems)
+// 设置主题
+window.minder.setTheme('my-minder-theme')
+// 或者
+window.minder.execCommand('theme', 'my-minder-theme')
+```
+
 ## Props
 
-> 以下配置部分为 kityminder-core 扩展的功能，kityminder-core 本身的 minder 对象提供了丰富的功能，使用该组件时可通过 window.minder 对象获取 minder 对象具体的使用方法，可以参考它的文档扩展 [kityminder-core wiki](https://github.com/fex-team/kityminder-core/wiki)
+> 以下配置部分为 kityminder-core 扩展的功能，kityminder-core 本身的 minder 对象提供了丰富的功能，使用该组件时可通过 `window.minder` 对象获取 minder 对象具体的使用方法，可以参考它的文档扩展 [kityminder-core wiki](https://github.com/fex-team/kityminder-core/wiki) 以及 [#API](#api) 章节补充。
 
 ### 基础配置
 
-#### importJson
-
-- type: Object
-- default: null
-
-需要脑图解析的 js 对象，参数详情可参考上文 demo，或者调用 minder.exportJson() 查看具体参数
-
-#### height
-
-- type: Number
-- default: 500
-
-显示高度，默认 500px
-
-#### disabled
-
-- type: Boolean
-- default: null
-
-是否禁止编辑
-
-#### defaultMold
-
-- type: Number
-- default: 3
-
-外观设置中样式的默认值
+| Name        | Description                                                                                  | Type    | Default |
+| ----------- | -------------------------------------------------------------------------------------------- | ------- | ------- |
+| importJson  | 需要脑图解析的 js 对象，参数详情可参考上文 demo，或者调用 `minder.exportJson()` 查看具体参数 | Object  | null    |
+| height      | 显示高度，默认 500px                                                                         | Number  | 500     |
+| disabled    | 是否禁止编辑                                                                                 | Boolean | null    |
+| defaultMold | 外观设置中样式的默认值                                                                       | Number  | 3       |
 
 ### 启用配置
 
-#### sequenceEnable
-
-- type: Boolean
-- default: true
-
-是否优先级功能
-
-#### tagEnable
-
-- type: Boolean
-- default: true
-
-是否启用标签功能
-
-#### progressEnable
-
-- type: Boolean
-- default: true
-
-是否启用完成进度功能
-
-#### moveEnable
-
-- type: Boolean
-- default: true
-
-是否启用上移下移功能
+| Name           | Description          | Type    | Default |
+| -------------- | -------------------- | ------- | ------- |
+| sequenceEnable | 是否启用优先级功能   | Boolean | true    |
+| tagEnable      | 是否启用标签功能     | Boolean | true    |
+| progressEnable | 是否启用完成进度功能 | Boolean | true    |
+| moveEnable     | 是否启用上移下移功能 | Boolean | true    |
 
 ### 优先级配置
 
-#### priorities
-
-- type: Array
-- default: []
-
-优先级选项，当该参数不为空时 `priorityCount`, `priorityStartWithZero`, `priorityPrefix` 不生效
-
-#### priorityCount
-
-- type: Number
-- default: 4
-
-优先级最大显示数量，最多支持显示 9 个级别
-
-#### priorityStartWithZero
-
-- type: Boolean
-- default: true
-
-优先级是否从 0 开始
-
-#### priorityPrefix
-
-- type: String
-- default: 'P'
-
-优先级显示的前缀
-
-#### priorityDisableCheck
-
-- type: Function
-- default: null
-
-优先级设置的回调函数，如果返回 `true` 则无法设置优先级
+| Name                  | Description                                                                                    | Type     | Default |
+| --------------------- | ---------------------------------------------------------------------------------------------- | -------- | ------- |
+| priorities            | 优先级选项，当该参数不为空时 `priorityCount`, `priorityStartWithZero`, `priorityPrefix` 不生效 | Array    | []      |
+| priorityCount         | 优先级最大显示数量，最多支持显示 9 个级别                                                      | Number   | 4       |
+| priorityStartWithZero | 优先级是否从 0 开始                                                                            | Boolean  | true    |
+| priorityPrefix        | 优先级显示的前缀                                                                               | String   | 'P'     |
+| priorityDisableCheck  | 优先级设置的回调函数，如果返回 `true` 则无法设置优先级                                         | Function | null    |
 
 ### 标签配置
 
-#### tags
+| Name            | Description                                                               | Type     | Default |
+| --------------- | ------------------------------------------------------------------------- | -------- | ------- |
+| tags            | 标签选项                                                                  | Array    | []      |
+| distinctTags    | 定义排他标签，比如 ['tag1','tag2'], 则 `tag1` 不能和 `tag2` 共存          | Array    | []      |
+| tagDisableCheck | 菜单栏是否允许打标签的回调函数，返回 `true` 则不允许打标签                | Function | null    |
+| tagEditCheck    | 打标签时的回调函数，返回 `false` 则打标签不成功，参数为当前节点的标签数组 | Function | null    |
 
-- type: Array
-- default: []
+## Slots
 
-标签选项
+暂未实现
 
-#### distinctTags
+| Name | Description |
+| ---- | ----------- |
+| -    | -           |
 
-- type: Array
-- default: []
+## API
 
-定义排他标签，比如 ['tag1','tag2'], 则 `tag1` 不能和 `tag2` 共存
+补充 [kityminder-core wiki](https://github.com/fex-team/kityminder-core/wiki) 中未说明的 API 文档。
 
-#### tagDisableCheck
+### minder
 
-- type: Function
-- default: null
+更多请查看 `window.minder` 对象或者 `window.km` 对象
 
-菜单栏是否允许打标签的回调函数，返回 `true` 则不允许打标签
+- window.minder.getTheme() 获取当前主题
+- window.minder.getThemeItems() 获取当前主题的所有样式
 
-#### tagEditCheck
+### kityminder
 
-- type: Function
-- default: null
+更多请查看 `window.kityminder` 对象
 
-打标签时的回调函数，返回 `false` 则打标签不成功
+- window.kityminder.Minder.getThemeList() 获取所有主题及主题配置项
+
+### minderEditor
+
+更多请查看 `window.minderEditor` 对象
+
+### kity
+
+更多请查看 `window.kity` 对象
+
+### HotBox
+
+更多请查看 `window.HotBox` 对象
+
+## Build Setup
+
+``` bash
+# npm install -g node-gyp
+# install npm dependencies
+npm install
+
+# serve with hot reload at localhost:8088
+npm run dev
+
+# build for plugin with minification
+npm run build
+
+# License
+BSD-3-Clause License
+```
+
+## 参考
+
+- [vue-minder-editor-plus](https://github.com/AgAngle/vue-minder-editor-plus)
+- [vue-mindeditor](https://github.com/fudax/vue-mindeditor)
+- [kityminder-editor](https://github.com/fex-team/kityminder-editor)
