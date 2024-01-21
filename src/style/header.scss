@@ -2,6 +2,9 @@
 @import "dropdown-list.scss";
 header {
   font-size: 12px;
+  * {
+    box-sizing: content-box;
+  }
   & > ul {
     display: flex;
     align-items: center;
@@ -49,6 +52,7 @@ header {
   padding-block: 6px;
   .menu-container {
     display: flex;
+    min-height: 52px;
     & > div {
       display: flex;
       overflow: hidden;
@@ -71,6 +75,7 @@ header {
       button {
         border: none;
         outline: none;
+        padding: 10px 20px;
       }
       span {
         font-size: 12px;
@@ -209,7 +214,7 @@ header {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 4px;
+      gap: 4px;
       li {
         width: 20px;
         height: 20px;
@@ -323,7 +328,7 @@ header {
     .font-italic {
       display: inline-block;
       width: 20px;
-      height: 20px;
+      height: 16px;
       margin: 0 3px;
     }
     .font-bold {

@@ -3,7 +3,7 @@
       <el-tag 
         v-for="item in tags"
         :key="item"
-        size="small"
+        size="mini"
         :color="getResourceColor(item)"
         @click="editResource(item)"
       >{{item}}</el-tag>

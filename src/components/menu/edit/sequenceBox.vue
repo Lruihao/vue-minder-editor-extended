@@ -98,6 +98,7 @@ export default {
 <style scoped>
 .sequence-group {
   max-width: 126px;
+  padding-block: 2px !important;
   gap: 4px;
 }
 .delete-btn {
