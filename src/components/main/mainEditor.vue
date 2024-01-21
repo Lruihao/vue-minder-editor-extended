@@ -1,7 +1,12 @@
 <template>
   <div class="minder-container" :style="{height: height + 'px'}">
-    <el-button :disabled="disabled" class="save-btn" @click="save" type="primary">{{t('minder.main.main.save')}}</el-button>
-    <navigator/>
+    <el-button
+      class="save-btn"
+      type="primary"
+      :disabled="disabled"
+      @click="save"
+    >{{ t('minder.main.main.save') }}</el-button>
+    <navigator />
   </div>
 </template>
 
@@ -160,16 +165,13 @@ export default {
   @import "../../style/editor.scss";
 </style>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.minder-container {
+  position: relative;
   .save-btn {
     position: absolute;
-    right: 30px;
-    bottom: 30px;
+    top: 20px;
+    right: 20px;
   }
-
-  .minder-container {
-    position: relative;
-    /*height: 500px;*/
-  }
+}
 </style>
