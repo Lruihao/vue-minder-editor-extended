@@ -18,6 +18,8 @@
       @moldChange="handleMoldChange"
     />
     <main-editor
+      :theme="theme"
+      :registerTheme="registerTheme"
       :disabled="disabled"
       :sequence-enable="sequenceEnable"
       :tag-enable="tagEnable"

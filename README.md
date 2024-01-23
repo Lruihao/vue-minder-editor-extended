@@ -140,13 +140,15 @@ Vue.use(vueMinderEditor, {
 
 ## 主题
 
-允许使用的主题及其配置项可以使用 `window.kityminder.Minder.getThemeList()` 查询。
+> Vue Minder Editor 组件已支持初始化时设置主题及注册主题，默认主题为 fresh-blue。
+
+如需手动注册设置主题，允许使用的主题及其配置项可以使用 `window.kityminder.Minder.getThemeList()` 查询。
 
 ```js
 // 注册主题
 window.kityminder.Theme.register('my-minder-theme', minderThemeItems)
 // 设置主题
-window.minder.setTheme('my-minder-theme')
+window.minder.useTheme('my-minder-theme')
 // 或者
 window.minder.execCommand('theme', 'my-minder-theme')
 ```
@@ -157,12 +159,13 @@ window.minder.execCommand('theme', 'my-minder-theme')
 
 ### 基础配置
 
-| Name        | Description                                                                                  | Type    | Default |
-| ----------- | -------------------------------------------------------------------------------------------- | ------- | ------- |
-| importJson  | 需要脑图解析的 js 对象，参数详情可参考上文 demo，或者调用 `minder.exportJson()` 查看具体参数 | Object  | null    |
-| height      | 显示高度，默认 500px                                                                         | Number  | 500     |
-| disabled    | 是否禁止编辑                                                                                 | Boolean | null    |
-| defaultMold | 外观设置中样式的默认值                                                                       | Number  | 3       |
+| Name        | Description                                                                                  | Type    | Default    |
+| ----------- | -------------------------------------------------------------------------------------------- | ------- | ---------- |
+| importJson  | 需要脑图解析的 js 对象，参数详情可参考上文 demo，或者调用 `minder.exportJson()` 查看具体参数 | Object  | null       |
+| height      | 显示高度，默认 500px                                                                         | Number  | 500        |
+| theme       | 设置初始化主题，可选值使用 `window.kityminder.Minder.getThemeList()` 查询                    | String  | fresh-blue |
+| disabled    | 是否禁止编辑                                                                                 | Boolean | null       |
+| defaultMold | 外观设置中样式的默认值                                                                       | Number  | 3          |
 
 ### 启用配置
 
@@ -208,8 +211,17 @@ window.minder.execCommand('theme', 'my-minder-theme')
 
 更多请查看 `window.minder` 对象或者 `window.km` 对象
 
+- window.minder.setTheme() 设置主题
+- window.minder.useTheme() 设置主题 (同 setTheme)
 - window.minder.getTheme() 获取当前主题
 - window.minder.getThemeItems() 获取当前主题的所有样式
+- window.minder.execCommand(command, params) 执行命令
+
+execCommand 函数可用命令：
+
+| Name  | Description | Params |
+| ----- | ----------- | ------ |
+| theme | 设置主题    | String |
 
 ### kityminder
 

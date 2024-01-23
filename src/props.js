@@ -10,6 +10,18 @@ export let mainEditorProps = {
     type: Number,
     default: 500,
   },
+  // classic, classic-compact, snow, snow-compact, fresh-red, fresh-red-compat,
+  // fresh-soil, fresh-soil-compat, fresh-green, fresh-green-compat,
+  // fresh-blue, fresh-blue-compat, fresh-purple, fresh-purple-compat,
+  // fresh-pink, fresh-pink-compat, fish, wire, tianpan, tianpan-compact
+  theme: {
+    type: String,
+    default: 'fresh-blue',
+  },
+  // 注册主题
+  registerTheme: {
+    type: Object,
+  },
   disabled: Boolean
 }
 

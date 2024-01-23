@@ -23,7 +23,6 @@ export default {
     ...mainEditorProps,
     ...priorityProps,
     ...tagProps,
-    tags: Array
   },
   data() {
     return {
@@ -40,6 +39,14 @@ export default {
     window.minder = window.km = editor.minder;
     window.minderEditor = editor;
     window.minder.moveEnable = this.moveEnable;
+    // 注册主题
+    let theme = this.theme;
+    if (this.registerTheme) {
+      window.kityminder.Theme.register('custom-theme', this.registerTheme);
+      theme = 'custom-theme';
+    }
+    // 设置主题
+    window.minder.useTheme(theme);
 
     window.minder.on('beforeExecCommand', function (event) {
       // 是否允许删除
