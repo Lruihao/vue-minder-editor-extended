@@ -1,10 +1,14 @@
 <template>
   <div class="menu-container">
-    <mold :default-mold="defaultMold" @moldChange="handleMoldChange"/>
-    <!--  <theme/>-->
-    <arrange/>
-    <styleOperation/>
-    <fontOperation/>
+    <mold
+      :default-mold="defaultMold"
+      @moldChange="handleMoldChange"
+    />
+    <theme />
+    <arrange />
+    <styleOperation />
+    <fontOperation />
+    <slot name="view-menu" />
   </div>
 
 </template>
@@ -42,9 +46,4 @@ export default {
 </script>
 
 <style scoped>
-.menu-container >>> i {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-}
 </style>

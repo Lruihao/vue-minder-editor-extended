@@ -18,7 +18,11 @@
             :priority-start-with-zero="priorityStartWithZero"
             :tags="tags"
             :distinct-tags="distinctTags"
-          />
+          >
+            <template slot="edit-menu">
+              <slot name="edit-menu" />
+            </template>
+          </edit-menu>
         </div>
       </el-tab-pane>
       <el-tab-pane :label="t('minder.main.header.style')" name="viewMenu">
@@ -26,7 +30,12 @@
           <view-menu
             @moldChange="handleMoldChange"
             :minder="minder"
-            :default-mold="defaultMold"/>
+            :default-mold="defaultMold"
+          >
+            <template slot="view-menu">
+              <slot name="view-menu" />
+            </template>
+          </view-menu>
         </div>
       </el-tab-pane>
     </el-tabs>

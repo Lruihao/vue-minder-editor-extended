@@ -197,11 +197,11 @@ window.minder.execCommand('theme', 'my-minder-theme')
 
 ## Slots
 
-暂未实现
-
-| Name | Description |
-| ---- | ----------- |
-| -    | -           |
+| Name      | Description                       |
+| --------- | --------------------------------- |
+| -         | 在脑图区域自定义额外内容          |
+| edit-menu | 在思维导图 tab 最后自定义额外内容 |
+| view-menu | 在外观样式 tab 最后自定义额外内容 |
 
 ## API
 

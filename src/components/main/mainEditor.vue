@@ -7,6 +7,7 @@
       @click="save"
     >{{ t('minder.main.main.save') }}</el-button>
     <navigator />
+    <slot name="default" />
   </div>
 </template>
 

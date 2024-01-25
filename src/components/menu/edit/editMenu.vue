@@ -21,6 +21,7 @@
       :tag-edit-check="tagEditCheck"
       :distinct-tags="distinctTags"
      />
+     <slot name="edit-menu" />
   </div>
 </template>
 

@@ -16,7 +16,14 @@
       :distinct-tags="distinctTags"
       :default-mold="defaultMold"
       @moldChange="handleMoldChange"
-    />
+    >
+      <template slot="edit-menu">
+        <slot name="edit-menu" />
+      </template>
+      <template slot="view-menu">
+        <slot name="view-menu" />
+      </template>
+    </header-menu>
     <main-editor
       :theme="theme"
       :registerTheme="registerTheme"
@@ -35,7 +42,12 @@
       :priority-disable-check="priorityDisableCheck"
       :tag-edit-check="tagEditCheck"
       @afterMount="$emit('afterMount')"
-      @save="save"/>
+      @save="save"
+    >
+      <template slot="default">
+        <slot name="default" />
+      </template>
+    </main-editor>
   </div>
 </template>
 

@@ -30,7 +30,16 @@
       @afterMount="afterMount()"
       :default-mold="3"
       @moldChange="handleMoldChange"
-      @save="save"/>
+      @save="save"
+    >
+      <template slot="edit-menu">
+        <div>edit-menu 插槽自定义内容</div>
+      </template>
+      <template slot="view-menu">
+        <div>view-menu 插槽自定义内容</div>
+      </template>
+      <div>默认插槽内容</div>
+    </minder-editor>
   </div>
 </template>
 
@@ -165,7 +174,8 @@ export default {
       console.log(data);
     },
     test() {
-      return false;
+      console.log('check 回调方法执行')
+      return true;
     },
     handleMoldChange(a) {
       // console.log(a);
