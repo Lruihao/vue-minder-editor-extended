@@ -76,6 +76,7 @@ export default {
                 // disable: true,
                 expandState: 'collapse',
                 priority: 2,
+                progress: 9,
                 resource: ['模块2']
               },
               children: [

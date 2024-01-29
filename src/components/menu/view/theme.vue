@@ -1,53 +1,89 @@
 <template>
-<div class="theme-group">
-  <el-row class="block-col-1">
-    <el-col :span="24">
-      <!-- <span class="demonstration">click 激活</span> -->
-      <el-dropdown trigger="click" :hide-on-click="true" class="dropdown-toggle theme-icons menu-btn" @command="handleCommand">
-        <span class="el-dropdown-link ">
-        {{current_theme}}
-      <i class="el-icon-caret-bottom el-icon--right"></i>
-    </span>
-        <el-dropdown-menu slot="dropdown" class="theme-dropdown-list">
-          <el-dropdown-item class="theme-1 dropdown-item theme-icons" command="经典">经典</el-dropdown-item>
-            <el-dropdown-item class="theme-3 dropdown-item theme-icons" command="天空蓝">天空蓝</el-dropdown-item>
-            <el-dropdown-item class="theme-4 dropdown-item theme-icons" command="文艺绿">文艺绿</el-dropdown-item>
-            <el-dropdown-item class="theme-5 dropdown-item theme-icons" command="脑残粉">脑残粉</el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </el-col>
-  </el-row>
-</div>
-
+  <div class="theme-group">
+    <el-dropdown
+      trigger="click"
+      :hide-on-click="true"
+      :disabled="disabled"
+      placement="bottom-start"
+      class="dropdown-toggle menu-btn"
+      @command="handleCommand"
+    >
+      <span class="el-dropdown-link">
+        <span
+          class="current-theme"
+          :style="getThemeThumbStyle(currentTheme)"
+        >{{ t(`minder.menu.theme.${currentTheme}`) }}</span>
+        <i class="el-icon-caret-bottom" />
+      </span>
+      <el-dropdown-menu slot="dropdown" class="theme-dropdown-list">
+        <el-dropdown-item
+          v-for="theme of themeListKeys"
+          :key="theme"
+          :command="theme"
+          :style="getThemeThumbStyle(theme)"
+          class="dropdown-item"
+          :class="theme"
+        >{{ t(`minder.menu.theme.${theme}`) }}</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
+  </div>
 </template>
 
 <script>
+import Locale from '/src/mixins/locale';
+
 export default {
   name: "theme",
+  mixins: [Locale],
   data() {
     return {
-      theme_index: 1,
-      current_theme: "经典",
-      ulActive: false,
-      items: [
-        { text: "经典" },
-        { text: "天空蓝" },
-        { text: "文艺绿" },
-        { text: "脑残粉" },
-      ],
+      currentTheme: 'fresh-blue',
+      themeList: {},
+      themeState: true,
     };
   },
-
   computed: {
-    class_theme_index: function () {
-      return "theme-" + this.theme_index;
+    disabled() {
+      try {
+        if (!window.minder) return false;
+      } catch (e) {
+        // 如果 window 的还没挂载 minder，先捕捉 undefined 异常
+        return false
+      }
+      return window.minder.minder.queryCommandState('theme') === -1;
+    },
+    themeListKeys() {
+      return Object.keys(this.themeList);
     },
   },
-
+  mounted() {
+    this.$nextTick(() => {
+      this.themeList = window.kityminder.Minder.getThemeList();
+      this.themeState = window.minder.queryCommandState('theme')
+      this.currentTheme = window.minder.getTheme();
+    });
+  },
   methods: {
     handleCommand(command) {
-      this.current_theme = command;
-      alert("暂时未实现，敬请期待！");
+      this.currentTheme = command;
+      window.minder.execCommand('theme', command)
+    },
+    getThemeThumbStyle(theme) {
+      const themeObj = this.themeList[theme];
+      if (!themeObj) {
+        return;
+      }
+      const style = {
+        'color': themeObj['root-color'],
+        'border-radius': themeObj['root-radius'] / 2
+      };
+      if (themeObj['root-background']) {
+        style['background'] = themeObj['root-background'].toString();
+      }
+      if (style['border-radius']) {
+        style['border-radius'] += 'px';
+      }
+      return style;
     },
   },
 };

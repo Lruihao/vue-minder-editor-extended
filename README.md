@@ -217,12 +217,6 @@ window.minder.execCommand('theme', 'my-minder-theme')
 - window.minder.getThemeItems() 获取当前主题的所有样式
 - window.minder.execCommand(command, params) 执行命令
 
-execCommand 函数可用命令：
-
-| Name  | Description | Params |
-| ----- | ----------- | ------ |
-| theme | 设置主题    | String |
-
 ### kityminder
 
 更多请查看 `window.kityminder` 对象

@@ -25,15 +25,17 @@
 }
 
 .theme-dropdown-list {
-  width: 120px;
-  font-size: 12px;
-  .mold-icons {
-    background-repeat: no-repeat;
-  }
+  width: 160px;
+  max-height: 400px;
+  padding-block: 5px;
+  overflow-y: auto;
   .dropdown-item {
+    font-size: 12px;
     display: inline-block;
-    width: 100px;
+    text-align: center;
+    width: 70px;
     height: 30px;
+    line-height: 30px;
     padding: 0;
     margin: 5px;
   }
@@ -52,6 +54,16 @@
 }
 
 .theme-group {
-  //background-color: pink;
-  padding: 0 10px;
+  .dropdown-toggle {
+    font-size: 12px;
+    .current-theme {
+      font-size: 12px;
+      display: inline-block;
+      text-align: center;
+      width: 70px;
+      height: 30px;
+      line-height: 30px;
+      padding: 0;
+    }
+  }
 }
