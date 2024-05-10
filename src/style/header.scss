@@ -319,21 +319,16 @@ header {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    input {
+    .el-input__inner {
       width: 80px;
-      font-size: 12px;
       height: 22px !important;
+      line-height: 22px !important;
     }
-    .font-family-select {
-      .el-input__suffix {
-        top: 12px;
-      }
+    .el-input__suffix {
+      right: 0;
     }
-    .font-size-select {
-      .el-input__suffix {
-        top: 12px;
-      }
-      margin-left: 4px;
+    .el-input__icon {
+      line-height: 22px !important;
     }
     .font-bold,
     .font-italic {

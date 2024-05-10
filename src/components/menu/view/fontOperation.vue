@@ -6,6 +6,7 @@
         :placeholder="t('minder.menu.font.font')"
         class="font-family-select"
         :disabled="disabledFont"
+        size="mini"
         @change="execCommandFontFamily"
       >
         <el-option
@@ -21,6 +22,7 @@
         :placeholder="t('minder.menu.font.size')"
         class="font-size-select"
         :disabled="disabledFontSize"
+        size="mini"
         @change="execCommandFontSize"
       >
         <el-option
