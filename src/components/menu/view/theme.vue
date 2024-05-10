@@ -50,7 +50,7 @@ export default {
         // 如果 window 的还没挂载 minder，先捕捉 undefined 异常
         return false
       }
-      return window.minder.minder.queryCommandState('theme') === -1;
+      return window.minder.queryCommandState('theme') === -1;
     },
     themeListKeys() {
       return Object.keys(this.themeList);

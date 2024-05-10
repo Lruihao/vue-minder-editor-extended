@@ -49,7 +49,7 @@ export default {
         // 如果 window 的还没挂载 minder，先捕捉 undefined 异常
         return false
       }
-      return window.minder.minder.queryCommandState('template') === -1;
+      return window.minder.queryCommandState('template') === -1;
     },
     templateList() {
       return kityminder.Minder.getTemplateList();

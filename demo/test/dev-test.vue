@@ -9,7 +9,11 @@
       </el-option>
     </el-select>
 
+    <el-button type="primary" @click="reload">重载</el-button>
+
     <minder-editor
+      v-if="active"
+      ref="minderEditor"
       :import-json="importJson"
       theme="fresh-green"
       :registerTheme="registerTheme"
@@ -49,6 +53,7 @@ export default {
   name: "dev-test",
   data() {
     return {
+      active: true,
       importJson: {
         // 节点数据
         root: {
@@ -177,6 +182,12 @@ export default {
     test() {
       console.log('check 回调方法执行')
       return false;
+    },
+    reload() {
+      this.active = false;
+      this.$nextTick(() => {
+        this.active = true;
+      })
     },
     handleMoldChange(a) {
       // console.log(a);
