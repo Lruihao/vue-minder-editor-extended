@@ -176,7 +176,7 @@ export default {
     },
     test() {
       console.log('check 回调方法执行')
-      return true;
+      return false;
     },
     handleMoldChange(a) {
       // console.log(a);

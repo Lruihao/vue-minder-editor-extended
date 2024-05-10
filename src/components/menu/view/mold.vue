@@ -1,14 +1,21 @@
 <template>
-  <div class="mold-group" :disabled="disabled">
-    <el-dropdown 
-      trigger="click" 
+  <div class="mold-group">
+    <el-dropdown
+      trigger="click"
       :hide-on-click="true"
-      class="dropdown-toggle mold-icons menu-btn"
-      @command="handleCommand" :class="'mold-' + (moldIndex + 1)"
+      :disabled="disabled"
+      class="dropdown-toggle menu-btn"
+      @command="handleCommand"
     >
-      <span class="el-dropdown-link"><i class="el-icon-caret-bottom" /></span>
+      <span class="el-dropdown-link">
+        <span
+          class="current-mold mold-icons"
+          :class="'mold-' + (moldIndex + 1)"
+        />
+        <i class="el-icon-caret-bottom" />
+      </span>
       <el-dropdown-menu slot="dropdown" class="mold-dropdown-list">
-        <el-dropdown-item 
+        <el-dropdown-item
           v-for="(item, index) in 6"
           :key="item"
           class="dropdown-item mold-icons"
@@ -37,12 +44,12 @@ export default {
   computed: {
     disabled() {
       try {
-        if (!minder) return false;
+        if (!window.minder) return false;
       } catch (e) {
-        // 如果window的还没挂载minder，先捕捉undefined异常
+        // 如果 window 的还没挂载 minder，先捕捉 undefined 异常
         return false
       }
-      return minder && minder.queryCommandState && minder.queryCommandState('template') === -1
+      return window.minder.minder.queryCommandState('template') === -1;
     },
     templateList() {
       return kityminder.Minder.getTemplateList();

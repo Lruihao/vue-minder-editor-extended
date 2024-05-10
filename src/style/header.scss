@@ -124,7 +124,6 @@ header {
     }
   }
   .menu-btn {
-    display: inline-flex;
     cursor: pointer;
     gap: 4px;
     @include flexcenter;
@@ -229,25 +228,37 @@ header {
     }
   }
   .mold-group {
-    padding-right: 20px !important;
     @for $i from 1 through 6 {
       .mold-#{$i} {
         background-position: (1-$i) * 50px 0;
       }
     }
     .dropdown-toggle {
-      display: block;
-      width: 50px;
-      height: 42px;
-      span {
+      font-size: 12px;
+      .current-mold {
         display: inline-block;
-        @include block;
-        i {
-          position: absolute;
-          right: -20px;
-          bottom: 50%;
-          transform: translateY(50%);
-        }
+        width: 50px;
+        height: 42px;
+        line-height: 42px;
+        padding: 0;
+        vertical-align: middle;
+      }
+      i {
+        vertical-align: middle;
+      }
+    }
+  }
+  .theme-group {
+    .dropdown-toggle {
+      font-size: 12px;
+      .current-theme {
+        font-size: 12px;
+        display: inline-block;
+        text-align: center;
+        width: 70px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0;
       }
     }
   }
