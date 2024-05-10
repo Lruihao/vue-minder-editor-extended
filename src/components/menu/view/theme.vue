@@ -12,7 +12,7 @@
         <span
           class="current-theme"
           :style="getThemeThumbStyle(currentTheme)"
-        >{{ t(`minder.menu.theme.${currentTheme}`) }}</span>
+        >{{ t(`minder.menu.theme.${currentTheme}`) || t('minder.menu.theme.custom-theme') }}</span>
         <i class="el-icon-caret-bottom" />
       </span>
       <el-dropdown-menu slot="dropdown" class="theme-dropdown-list">
@@ -23,7 +23,7 @@
           :style="getThemeThumbStyle(theme)"
           class="dropdown-item"
           :class="theme"
-        >{{ t(`minder.menu.theme.${theme}`) }}</el-dropdown-item>
+        >{{ t(`minder.menu.theme.${theme}`) || t('minder.menu.theme.custom-theme') }}</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>

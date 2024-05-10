@@ -29,6 +29,9 @@
   max-height: 400px;
   padding-block: 5px;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
   .dropdown-item {
     font-size: 12px;
     display: inline-block;

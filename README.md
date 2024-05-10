@@ -159,13 +159,14 @@ window.minder.execCommand('theme', 'my-minder-theme')
 
 ### 基础配置
 
-| Name        | Description                                                                                  | Type    | Default    |
-| ----------- | -------------------------------------------------------------------------------------------- | ------- | ---------- |
-| importJson  | 需要脑图解析的 js 对象，参数详情可参考上文 demo，或者调用 `minder.exportJson()` 查看具体参数 | Object  | null       |
-| height      | 显示高度，默认 500px                                                                         | Number  | 500        |
-| theme       | 设置初始化主题，可选值使用 `window.kityminder.Minder.getThemeList()` 查询                    | String  | fresh-blue |
-| disabled    | 是否禁止编辑                                                                                 | Boolean | null       |
-| defaultMold | 外观设置中样式的默认值                                                                       | Number  | 3          |
+| Name          | Description                                                                                  | Type    | Default    |
+| ------------- | -------------------------------------------------------------------------------------------- | ------- | ---------- |
+| importJson    | 需要脑图解析的 js 对象，参数详情可参考上文 demo，或者调用 `minder.exportJson()` 查看具体参数 | Object  | null       |
+| height        | 显示高度，默认 500px                                                                         | Number  | 500        |
+| theme         | 设置初始化主题，可选值使用 `window.kityminder.Minder.getThemeList()` 查询                    | String  | fresh-blue |
+| registerTheme | 注册主题，参数为主题配置项，如 `registerTheme: { ...minderThemeItems }`                      | Object  | null       |
+| disabled      | 是否禁止编辑                                                                                 | Boolean | null       |
+| defaultMold   | 外观设置中样式的默认值                                                                       | Number  | 3          |
 
 ### 启用配置
 
