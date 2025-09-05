@@ -46,6 +46,7 @@ export default {
   methods: {
     execCommand(command) {
       minder.queryCommandState(command) === -1 || minder.execCommand(command);
+      window.editor.history.makeUndoDiff();
     },
     isDisabled(command) {
       try {

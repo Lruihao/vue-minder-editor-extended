@@ -178,7 +178,8 @@ define(function (require, exports, module) {
       undo: undo,
       redo: redo,
       hasUndo: hasUndo,
-      hasRedo: hasRedo
+      hasRedo: hasRedo,
+      makeUndoDiff: makeUndoDiff, // 将 makeUndoDiff 暴露为公共方法
     };
     reset();
     minder.on('contentchange', changed);
